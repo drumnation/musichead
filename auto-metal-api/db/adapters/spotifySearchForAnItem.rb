@@ -18,11 +18,12 @@ end
 def searchForSpotifyTrack(query)
     uri = createSpotifyQueryUri(query)
     response = request(uri)
-    puts "2.1 searchForSpotifyTrack Response Code: #{response.code}"
+    puts "2.2 searchForSpotifyTrack Response Code: #{response.code}"
     JSON.parse(response.body)
 end
 
 def searchForAllTracks
+    puts "2.1 searchForAllTracks, QUERY: #{getSpotifyTrackQueriesFromCSV.first}"
     searchForSpotifyTrack(getSpotifyTrackQueriesFromCSV.first)
     # getSpotifyTrackQueriesFromCSV.map do | query |
     #     puts query

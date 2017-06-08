@@ -13,5 +13,3 @@ def getSpotifyArtist(id)
     puts "1.1 getSpotifyArtist Response Code: #{response.code}"
     JSON.parse(response.body)
 end
-
-# puts getSpotifyArtist('0ybFZ2Ab08V8hueghSXm6E')['genres']
