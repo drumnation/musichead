@@ -6,11 +6,66 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-queries_array = File.open('./db/junk_and_band_song_names.csv').map do | line |
-    line_array = line.gsub('"', '').gsub("\r\n", "").split(',')
-    { artist: line_array[0], song: line_array[1] }
+
+require_relative 'adapters/spotifyGetAnArtist'
+require_relative 'adapters/spotifySearchForAnItem'
+
+def displaySeedData(query)
+    puts <<~HEREDOC
+
+    *** SPOTIFY SEED FILE ***
+
+    *************************
+    1.  ARTIST
+    *************************
+        
+        Name:  #{query["tracks"]["items"].first["artists"].first["name"]}
+        Hometown: TK
+        Formation Date: TK
+        Description: 
+
+    *************************
+    2.  GENRE
+    *************************
+
+        Name:
+
+    *************************
+    3.  ALBUM
+    *************************
+
+        Name: #{query["tracks"]["items"].first["name"]}
+        Release Year:
+        Release Country:
+        Type:
+        Cover Art:
+        Album Length:
+        Number of Tracks:
+
+    *************************
+    4.  SONG
+    *************************
+
+        Name:
+        Length:
+        Type:
+        Lyrics: TK
+        YouTube Music Video: TK
+        Spotify Preview:
+        Spotify Open:
+        Spotify Web:
+        Spotify Related Songs: TK
+        Reddit Comments URL: TK
+        Latest News: TK
+        Tabs Sheet Music: TK
+
+    HEREDOC
 end
 
-queries_array.uniq!
+def displayAllSeedData
+    searchForAllTracks.each do | query |
+        displaySeedData(query)
+    end
+end
 
-queries_array.each { | queries_array | puts queries_array.artist + " " queries_array.song }
+# displayAllSeedData

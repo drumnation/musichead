@@ -1,0 +1,203 @@
+{
+    "tracks" : {
+        "href" : "https://api.spotify.com/v1/search?query=Opeth+Heir+Apparent&type=track&market=US&offset=0&limit=20",
+        "items" : [ {
+        "album" : {
+            "album_type" : "album",
+            "artists" : [ {
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
+            },
+            "href" : "https://api.spotify.com/v1/artists/0ybFZ2Ab08V8hueghSXm6E",
+            "id" : "0ybFZ2Ab08V8hueghSXm6E",
+            "name" : "Opeth",
+            "type" : "artist",
+            "uri" : "spotify:artist:0ybFZ2Ab08V8hueghSXm6E"
+            } ],
+            "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TR", "TW", "US", "UY" ],
+            "external_urls" : {
+            "spotify" : "https://open.spotify.com/album/0fayDgcekIaW0yQtUQ8CDm"
+            },
+            "href" : "https://api.spotify.com/v1/albums/0fayDgcekIaW0yQtUQ8CDm",
+            "id" : "0fayDgcekIaW0yQtUQ8CDm",
+            "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ede3f34bf02b8702730828d146be95455eec16d6",
+            "width" : 640
+            }, {
+            "height" : 300,
+            "url" : "https://i.scdn.co/image/efd28fcf9e0f74ecd4ba80a51c87f112f6a6a8f8",
+            "width" : 300
+            }, {
+            "height" : 64,
+            "url" : "https://i.scdn.co/image/3ecc52d705307d23f06dde1cfa572c71dd5c732e",
+            "width" : 64
+            } ],
+            "name" : "Watershed (Special Edition)",
+            "type" : "album",
+            "uri" : "spotify:album:0fayDgcekIaW0yQtUQ8CDm"
+        },
+        "artists" : [ {
+            "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
+            },
+            "href" : "https://api.spotify.com/v1/artists/0ybFZ2Ab08V8hueghSXm6E",
+            "id" : "0ybFZ2Ab08V8hueghSXm6E",
+            "name" : "Opeth",
+            "type" : "artist",
+            "uri" : "spotify:artist:0ybFZ2Ab08V8hueghSXm6E"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TR", "TW", "US", "UY" ],
+        "disc_number" : 1,
+        "duration_ms" : 530400,
+        "explicit" : false,
+        "external_ids" : {
+            "isrc" : "NLA320886534"
+        },
+        "external_urls" : {
+            "spotify" : "https://open.spotify.com/track/6OGkZoqso1wbIy5O6cV56N"
+        },
+        "href" : "https://api.spotify.com/v1/tracks/6OGkZoqso1wbIy5O6cV56N",
+        "id" : "6OGkZoqso1wbIy5O6cV56N",
+        "name" : "Heir Apparent",
+        "popularity" : 37,
+        "preview_url" : "https://p.scdn.co/mp3-preview/956839c818fba6116bdf992fea38089af69e39e9?cid=8897482848704f2a8f8d7c79726a70d4",
+        "track_number" : 2,
+        "type" : "track",
+        "uri" : "spotify:track:6OGkZoqso1wbIy5O6cV56N"
+        }, {
+        "album" : {
+            "album_type" : "album",
+            "artists" : [ {
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
+            },
+            "href" : "https://api.spotify.com/v1/artists/0ybFZ2Ab08V8hueghSXm6E",
+            "id" : "0ybFZ2Ab08V8hueghSXm6E",
+            "name" : "Opeth",
+            "type" : "artist",
+            "uri" : "spotify:artist:0ybFZ2Ab08V8hueghSXm6E"
+            } ],
+            "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TR", "TW", "US", "UY" ],
+            "external_urls" : {
+            "spotify" : "https://open.spotify.com/album/72pJBKZG5Y5mTJkyifASNe"
+            },
+            "href" : "https://api.spotify.com/v1/albums/72pJBKZG5Y5mTJkyifASNe",
+            "id" : "72pJBKZG5Y5mTJkyifASNe",
+            "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/c84d5e70b3abb1fc03bc86a0e51ae85d93fd4350",
+            "width" : 640
+            }, {
+            "height" : 300,
+            "url" : "https://i.scdn.co/image/63bba3283026bb6f713e85502453a506ad26354b",
+            "width" : 300
+            }, {
+            "height" : 64,
+            "url" : "https://i.scdn.co/image/2d27f21371dc967d3f032cb150be2a99171ad835",
+            "width" : 64
+            } ],
+            "name" : "Watershed",
+            "type" : "album",
+            "uri" : "spotify:album:72pJBKZG5Y5mTJkyifASNe"
+        },
+        "artists" : [ {
+            "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
+            },
+            "href" : "https://api.spotify.com/v1/artists/0ybFZ2Ab08V8hueghSXm6E",
+            "id" : "0ybFZ2Ab08V8hueghSXm6E",
+            "name" : "Opeth",
+            "type" : "artist",
+            "uri" : "spotify:artist:0ybFZ2Ab08V8hueghSXm6E"
+        } ],
+        "available_markets" : [ "AD", "AR", "AT", "AU", "BE", "BG", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HU", "ID", "IE", "IS", "IT", "JP", "LI", "LT", "LU", "LV", "MC", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "PA", "PE", "PH", "PL", "PT", "PY", "SE", "SG", "SK", "SV", "TR", "TW", "US", "UY" ],
+        "disc_number" : 1,
+        "duration_ms" : 530400,
+        "explicit" : false,
+        "external_ids" : {
+            "isrc" : "NLA320886534"
+        },
+        "external_urls" : {
+            "spotify" : "https://open.spotify.com/track/3o8czqWldXDDZvZWAMw3Yw"
+        },
+        "href" : "https://api.spotify.com/v1/tracks/3o8czqWldXDDZvZWAMw3Yw",
+        "id" : "3o8czqWldXDDZvZWAMw3Yw",
+        "name" : "Heir Apparent",
+        "popularity" : 17,
+        "preview_url" : "https://p.scdn.co/mp3-preview/956839c818fba6116bdf992fea38089af69e39e9?cid=8897482848704f2a8f8d7c79726a70d4",
+        "track_number" : 2,
+        "type" : "track",
+        "uri" : "spotify:track:3o8czqWldXDDZvZWAMw3Yw"
+        }, {
+        "album" : {
+            "album_type" : "album",
+            "artists" : [ {
+            "external_urls" : {
+                "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id" : "0LyfQWJT6nXafLPZqxe9Of",
+            "name" : "Various Artists",
+            "type" : "artist",
+            "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+            } ],
+            "available_markets" : [ "US" ],
+            "external_urls" : {
+            "spotify" : "https://open.spotify.com/album/3C6jILLr5iuUUHUYPwBDCd"
+            },
+            "href" : "https://api.spotify.com/v1/albums/3C6jILLr5iuUUHUYPwBDCd",
+            "id" : "3C6jILLr5iuUUHUYPwBDCd",
+            "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/27387b602d33570308a48bd2a1ed13a0036ee39d",
+            "width" : 640
+            }, {
+            "height" : 300,
+            "url" : "https://i.scdn.co/image/583c7e22c09e99718956ce24f771e3908e505ebd",
+            "width" : 300
+            }, {
+            "height" : 64,
+            "url" : "https://i.scdn.co/image/561bc53690a770d1c3523ed59993c75de18754e4",
+            "width" : 64
+            } ],
+            "name" : "XXX: Three Decades Of Roadrunner Records",
+            "type" : "album",
+            "uri" : "spotify:album:3C6jILLr5iuUUHUYPwBDCd"
+        },
+        "artists" : [ {
+            "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
+            },
+            "href" : "https://api.spotify.com/v1/artists/0ybFZ2Ab08V8hueghSXm6E",
+            "id" : "0ybFZ2Ab08V8hueghSXm6E",
+            "name" : "Opeth",
+            "type" : "artist",
+            "uri" : "spotify:artist:0ybFZ2Ab08V8hueghSXm6E"
+        } ],
+        "available_markets" : [ "US" ],
+        "disc_number" : 1,
+        "duration_ms" : 530400,
+        "explicit" : false,
+        "external_ids" : {
+            "isrc" : "NLA320886534"
+        },
+        "external_urls" : {
+            "spotify" : "https://open.spotify.com/track/2kTKJUiPKH0zqyxR9mTsMs"
+        },
+        "href" : "https://api.spotify.com/v1/tracks/2kTKJUiPKH0zqyxR9mTsMs",
+        "id" : "2kTKJUiPKH0zqyxR9mTsMs",
+        "name" : "Heir Apparent",
+        "popularity" : 5,
+        "preview_url" : "https://p.scdn.co/mp3-preview/956839c818fba6116bdf992fea38089af69e39e9?cid=8897482848704f2a8f8d7c79726a70d4",
+        "track_number" : 37,
+        "type" : "track",
+        "uri" : "spotify:track:2kTKJUiPKH0zqyxR9mTsMs"
+        } ],
+        "limit" : 20,
+        "next" : null,
+        "offset" : 0,
+        "previous" : null,
+        "total" : 3
+    }
+}
