@@ -1,12 +1,12 @@
 require_relative 'required'
-require_relative 'token'
+require_relative 'request'
 
 puts "Step 2: spotify search for an item"
 
 def getSpotifyTrackQueriesFromCSV
     artistSongMigrationArray = File.open('./db/junk_and_band_song_names.csv').map do | line |
-        line_array = line.gsub('"', '').gsub("\r\n", "").split(',')
-        { artist: line_array[0], song: line_array[1] }
+        lines = line.gsub('"', '').gsub("\r\n", "").split(',')
+        { artist: lines[0], song: lines[1] }
     end.uniq!
     artistSongMigrationArray.collect { | line | "#{line[:artist]} #{line[:song]}" }
 end
@@ -17,16 +17,17 @@ end
 
 def searchForSpotifyTrack(query)
     uri = createSpotifyQueryUri(query)
-    request = Net::HTTP::Get.new(uri)
-    request["Accept"] = "application/json"
-    request["Authorization"] = "Bearer #{TOKEN}"
-    req_options = { use_ssl: uri.scheme == "https" }
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) {|http| http.request(request)}
+    response = request(uri)
+    puts "2.1 searchForSpotifyTrack Response Code: #{response.code}"
     JSON.parse(response.body)
 end
 
 def searchForAllTracks
-    getSpotifyTrackQueriesFromCSV.map do | query | 
-        puts searchForSpotifyTrack(query)
-    end
+    searchForSpotifyTrack(getSpotifyTrackQueriesFromCSV.first)
+    # getSpotifyTrackQueriesFromCSV.map do | query |
+    #     puts query
+    #     searchForSpotifyTrack(query)
+    # end
 end
+
+# p searchForSpotifyTrack("Thriller")

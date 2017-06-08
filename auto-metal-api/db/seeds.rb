@@ -6,12 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 require_relative 'adapters/spotifyGetAnArtist'
 require_relative 'adapters/spotifySearchForAnItem'
 
-def displaySeedData(query)
-    puts <<~HEREDOC
+puts "Step 3: display all spotify data collected"
+
+def displaySeedData(searchForTrack)
+    puts "3.2: displaySeedData ArtistID"
+    artistId = searchForTrack["tracks"]["items"].first["artists"].first["id"]
+    puts "3.3: saved artistId: #{artistId}"
+    getAnArtist = getSpotifyArtist(artistId)
+    puts "3.4: displaySeedData #{getAnArtist}"
+
+    <<~HEREDOC
 
     *** SPOTIFY SEED FILE ***
 
@@ -19,22 +26,23 @@ def displaySeedData(query)
     1.  ARTIST
     *************************
         
-        Name:  #{query["tracks"]["items"].first["artists"].first["name"]}
+        Name:  #{searchForTrack["tracks"]["items"].first["artists"].first["name"]}
         Hometown: TK
         Formation Date: TK
-        Description: 
+        Description:
+        Spotify Artist ID: #{searchForTrack["tracks"]["items"].first["artists"].first["id"]}
 
     *************************
-    2.  GENRE
+    2.  GENRES
     *************************
 
-        Name:
+        Name: #{getAnArtist["genres"]}
 
     *************************
     3.  ALBUM
     *************************
 
-        Name: #{query["tracks"]["items"].first["name"]}
+        Name: #{searchForTrack["tracks"]["items"].first["name"]}
         Release Year:
         Release Country:
         Type:
@@ -63,9 +71,11 @@ def displaySeedData(query)
 end
 
 def displayAllSeedData
-    searchForAllTracks.each do | query |
-        displaySeedData(query)
-    end
+    puts "3.1: displayAllSeedData, QUERY: #{searchForAllTracks}"
+    displaySeedData(searchForAllTracks)
+    # searchForAllTracks.each do | query |
+    #     displaySeedData(query)
+    # end
 end
 
-# displayAllSeedData
+puts displayAllSeedData
