@@ -30,5 +30,3 @@ def searchForAllTracks
     #     searchForSpotifyTrack(query)
     # end
 end
-
-# p searchForSpotifyTrack("Thriller")

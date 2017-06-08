@@ -17,7 +17,7 @@ require_relative 'adapters/spotifySearchForAnItem'
 
 puts "Step 4: display all spotify data collected"
 
-def displaySeedData(searchForTrack)
+def display_seed_data(searchForTrack)
     trackId = searchForTrack["tracks"]["items"].first["id"]
     artistId = searchForTrack["tracks"]["items"].first["artists"].first["id"]
     puts "4.2: saved artistId: #{artistId}"
@@ -37,9 +37,6 @@ def displaySeedData(searchForTrack)
         
         Name: #{searchForTrack["tracks"]["items"].first["artists"].first["name"]}
         Popularity: #{getAnArtist["popularity"]}
-        Hometown: TK
-        Formation Date: TK
-        Description:
         Spotify Open Artist: #{getAnArtist["external_urls"]["spotify"]}
         Spotify Followers: #{getAnArtist["followers"]["total"]}
         Big Image: #{getAnArtist["images"][0]["url"]}
@@ -49,15 +46,10 @@ def displaySeedData(searchForTrack)
         Artists Related to Artist: #{p "Successfully Retrieved" if getSpotifyArtistRelatedArtists(artistId)}
         Artist Albums: #{p "Successfully Retrieved" if getSpotifyArtistAlbums(artistId)}
         Artist Top Tracks: #{p "Successfully Retrieved" if getSpotifyArtistTopTracks(artistId)}
-        
-    *************************
-    2.  GENRES
-    *************************
-
-        Name: #{getAnArtist["genres"]}
+        Genres: #{getAnArtist["genres"]}
 
     *************************
-    3.  ALBUM
+    2.  ALBUM
     *************************
 
         Name: #{searchForTrack["tracks"]["items"].first["album"]["name"]}
@@ -71,7 +63,7 @@ def displaySeedData(searchForTrack)
         Spotify Album Open: #{searchForTrack["tracks"]["items"].first["external_urls"]["spotify"]}
 
     *************************
-    4.  SONG
+    3.  SONG
     *************************
 
         Name: #{searchForTrack["tracks"]["items"].first["name"]}
@@ -84,27 +76,79 @@ def displaySeedData(searchForTrack)
         Spotify Song ID: #{trackId}
         Spotify Audio Analysis: #{p "Successfully Retrieved" if getSpotifyAudioAnalysisForTrack(trackId)}
         Spotify Related Songs: #{p "Successfully Retrieved" if getRecommendationsBasedOnSeeds(trackId)}
-        Lyrics: TK
-        YouTube Music Video: TK
-        Reddit Comments URL: TK
-        Latest News: TK
-        Tabs Sheet Music: TK
     
     *************************
-    5.  Record Label
+    4.  Record Label
     *************************
 
         name: #{getAnAlbum["label"]}
 
     HEREDOC
+
+    song_attr = {
+        name: searchForTrack["tracks"]["items"].first["name"],
+        popularity: searchForTrack["tracks"]["items"].first["popularity"],
+        length: searchForTrack["tracks"]["items"].first["duration_ms"],
+        track_number: searchForTrack["tracks"]["items"].first["track_number"],
+        disc_number: searchForTrack["tracks"]["items"].first["disc_number"],
+        preview: searchForTrack["tracks"]["items"].first["preview_url"],
+        open: searchForTrack["tracks"]["items"].first["external_urls"]["spotify"],
+        audio_analysis: getSpotifyAudioAnalysisForTrack(trackId),
+        related_songs: getRecommendationsBasedOnSeeds(trackId),
+        spotify_song_id: trackId
+    }
+
+    temp_song = Song.new(song_attr)
+
+    artist_attr = {
+        name: searchForTrack["tracks"]["items"].first["artists"].first["name"],
+        popularity: getAnArtist["popularity"],
+        open: getAnArtist["external_urls"]["spotify"],
+        followers: getAnArtist["followers"]["total"],
+        big_image: getAnArtist["images"][0]["url"],
+        medium_image: getAnArtist["images"][1]["url"],
+        small_image: getAnArtist["images"][2]["url"],
+        related_artists: getSpotifyArtistRelatedArtists(artistId),
+        albums: getSpotifyArtistAlbums(artistId),
+        top_tracks: getSpotifyArtistTopTracks(artistId),
+        spotify_artist_id: searchForTrack["tracks"]["items"].first["artists"].first["id"]
+    }
+
+    album_attr = {
+        name: searchForTrack["tracks"]["items"].first["album"]["name"],
+        popularity: getAnAlbum["popularity"],
+        release_date: getAnAlbum["release_date"],
+        big_image: searchForTrack["tracks"]["items"].first["album"]["images"][0]["url"],
+        medium_image: searchForTrack["tracks"]["items"].first["album"]["images"][1]["url"],
+        small_image: searchForTrack["tracks"]["items"].first["album"]["images"][2]["url"],
+        number_of_tracks: getAnAlbum["tracks"]["total"],
+        open: searchForTrack["tracks"]["items"].first["external_urls"]["spotify"],
+        spotify_album_id: searchForTrack["tracks"]["items"].first["album"]["id"]
+    }
+
+    genres = getAnArtist["genres"].map do | genre |
+        Genre.find_or_create_by(name: genre)
+    end
+
+    temp_artist = Artist.build_with(artist_attr).find_or_create_by(name: artist_attr.name)
+    temp_album = Album.build_with(album_attr).find_or_create_by(name: album_attr.name)
+    temp_song.artist = temp_artist
+    temp_song.album = temp_album
+
+    temp_song.genres = genres
+
+    temp_label = Record_label.find_or_create_by(name: record_getAnAlbum["label"])
+    temp_song.record_label = temp_label
+
+    temp_song.save
 end
 
-def displayAllSeedData
-    puts "4.1 displayAllSeedData send search json to display form"
-    displaySeedData(searchForAllTracks)
+def display_and_seed_to_db
+    puts "4.1 display_and_seed_to_db send search json to display form"
+    display_seed_data(searchForAllTracks)
     # searchForAllTracks.each do | query |
     #     displaySeedData(query)
     # end
 end
 
-displayAllSeedData
+display_and_seed_to_db
