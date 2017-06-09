@@ -12,7 +12,6 @@ class CreateAlbumsTable < ActiveRecord::Migration[5.0]
       t.string :spotify_album_id
       t.integer :record_label_id, foreign_key: true
       t.integer :artist_id, foreign_key: true
-      t.integer :genre_id, foreign_key: true
       t.timestamps
     end
   end

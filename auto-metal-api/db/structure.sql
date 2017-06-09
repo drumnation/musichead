@@ -48,7 +48,11 @@ CREATE TABLE albums (
     small_image character varying,
     number_of_tracks integer,
     open character varying,
-    spotify_album_id character varying
+    spotify_album_id character varying,
+    record_label_id integer,
+    artist_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -97,9 +101,11 @@ CREATE TABLE artists (
     medium_image character varying,
     small_image character varying,
     related_artists json,
-    albums json,
+    spotify_albums json,
     top_tracks json,
-    spotify_artist_id character varying
+    spotify_artist_id character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -128,7 +134,9 @@ ALTER SEQUENCE artists_id_seq OWNED BY artists.id;
 
 CREATE TABLE genres (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -157,7 +165,9 @@ ALTER SEQUENCE genres_id_seq OWNED BY genres.id;
 
 CREATE TABLE record_labels (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -234,7 +244,10 @@ CREATE TABLE songs (
     open character varying,
     audio_analysis json,
     related_songs json,
-    spotify_song_id character varying
+    spotify_song_id character varying,
+    album_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -370,7 +383,6 @@ ALTER TABLE ONLY songs
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('0'),
 ('20170608213457'),
 ('20170608213852'),
 ('20170608214103'),

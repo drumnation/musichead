@@ -9,7 +9,7 @@ class CreateArtistsTable < ActiveRecord::Migration[5.0]
       t.string :medium_image
       t.string :small_image
       t.json :related_artists
-      t.json :albums
+      t.json :spotify_albums
       t.json :top_tracks
       t.string :spotify_artist_id
       t.timestamps

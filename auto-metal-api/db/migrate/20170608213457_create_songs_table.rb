@@ -11,9 +11,7 @@ class CreateSongsTable < ActiveRecord::Migration[5.0]
       t.json :audio_analysis
       t.json :related_songs
       t.string :spotify_song_id
-      t.integer :artist_id, foreign_key: true
       t.integer :album_id, foreign_key: true
-      t.integer :record_label_id, foreign_key: true
       t.timestamps
     end
   end

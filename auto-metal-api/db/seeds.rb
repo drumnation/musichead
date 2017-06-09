@@ -46,7 +46,12 @@ def display_seed_data(searchForTrack)
         Artists Related to Artist: #{p "Successfully Retrieved" if getSpotifyArtistRelatedArtists(artistId)}
         Artist Albums: #{p "Successfully Retrieved" if getSpotifyArtistAlbums(artistId)}
         Artist Top Tracks: #{p "Successfully Retrieved" if getSpotifyArtistTopTracks(artistId)}
-        Genres: #{getAnArtist["genres"]}
+
+    *************************
+    2.  GENRE
+    *************************
+
+        name: #{getAnArtist["genres"]}
 
     *************************
     2.  ALBUM
@@ -99,7 +104,12 @@ def display_seed_data(searchForTrack)
     }
 
     temp_song = Song.new(song_attr)
-
+    temp_label = RecordLabel.find_or_create_by(name: getAnAlbum["label"])
+    
+    genres = getAnArtist["genres"].map do | genre |
+        Genre.find_or_create_by(name: genre)
+    end
+    
     artist_attr = {
         name: searchForTrack["tracks"]["items"].first["artists"].first["name"],
         popularity: getAnArtist["popularity"],
@@ -109,10 +119,28 @@ def display_seed_data(searchForTrack)
         medium_image: getAnArtist["images"][1]["url"],
         small_image: getAnArtist["images"][2]["url"],
         related_artists: getSpotifyArtistRelatedArtists(artistId),
-        albums: getSpotifyArtistAlbums(artistId),
+        spotify_albums: getSpotifyArtistAlbums(artistId),
         top_tracks: getSpotifyArtistTopTracks(artistId),
         spotify_artist_id: searchForTrack["tracks"]["items"].first["artists"].first["id"]
     }
+
+    # artist = {
+    #     name: 'Opeth',
+    #     popularity: 60,
+    #     open: 'https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E',
+    #     followers: 241197,
+    #     big_image: 'https://i.scdn.co/image/b4db91b921c68fee49a81ac1a1edf2e1160eb51e',
+    #     medium_image: 'https://i.scdn.co/image/1a716d3e371a6476e96d2f70f1a43c3e9edc5982',
+    #     small_image: 'https://i.scdn.co/image/f952cce40f47e2571f7e0f918b56395612ed2843',
+    #     spotify_artist_id: '0ybFZ2Ab08V8hueghSXm6E',
+    #     related_artists: ['stuff', 'things'],
+    #     spotify_albums: ['stuff', 'things'],
+    #     top_tracks: ['stuff', 'things']
+    # }
+    temp_artist = Artist.create_with(artist_attr).find_or_initialize_by(name: artist_attr[:name])
+    temp_artist.valid?
+    puts temp_artist.errors.full_messages
+    puts "got here!!!"
 
     album_attr = {
         name: searchForTrack["tracks"]["items"].first["album"]["name"],
@@ -125,30 +153,20 @@ def display_seed_data(searchForTrack)
         open: searchForTrack["tracks"]["items"].first["external_urls"]["spotify"],
         spotify_album_id: searchForTrack["tracks"]["items"].first["album"]["id"]
     }
-
-    genres = getAnArtist["genres"].map do | genre |
-        Genre.find_or_create_by(name: genre)
-    end
-
-    temp_artist = Artist.build_with(artist_attr).find_or_create_by(name: artist_attr.name)
-    temp_album = Album.build_with(album_attr).find_or_create_by(name: album_attr.name)
-    temp_song.artist = temp_artist
+    puts "got right before there"
+    temp_album = Album.create_with(album_attr).find_or_create_by(name: album_attr[:name], artist_id: temp_artist.id, record_label_id: temp_label.id)
     temp_song.album = temp_album
-
     temp_song.genres = genres
-
-    temp_label = Record_label.find_or_create_by(name: record_getAnAlbum["label"])
-    temp_song.record_label = temp_label
-
     temp_song.save
 end
 
 def display_and_seed_to_db
     puts "4.1 display_and_seed_to_db send search json to display form"
-    display_seed_data(searchForAllTracks)
-    # searchForAllTracks.each do | query |
-    #     displaySeedData(query)
-    # end
+    # display_seed_data(searchForAllTracks)
+    getSpotifyTrackQueriesFromCSV.each do | query |
+        trackObject = searchForSpotifyTrack(query)
+        display_seed_data(trackObject)
+    end
 end
 
 display_and_seed_to_db

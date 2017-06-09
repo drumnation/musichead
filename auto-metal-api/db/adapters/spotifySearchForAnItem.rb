@@ -22,11 +22,10 @@ def searchForSpotifyTrack(query)
     JSON.parse(response.body)
 end
 
-def searchForAllTracks
-    puts "2.1 searchForAllTracks, QUERY: #{getSpotifyTrackQueriesFromCSV.first}"
-    searchForSpotifyTrack(getSpotifyTrackQueriesFromCSV.first)
-    # getSpotifyTrackQueriesFromCSV.map do | query |
-    #     puts query
-    #     searchForSpotifyTrack(query)
-    # end
-end
+# def searchForAllTracks
+#     puts "2.1 searchForAllTracks, QUERY: #{getSpotifyTrackQueriesFromCSV.first}"
+#     # searchForSpotifyTrack(getSpotifyTrackQueriesFromCSV.first)
+#     getSpotifyTrackQueriesFromCSV.map do | query |
+#         searchForSpotifyTrack(query)
+#     end
+# end

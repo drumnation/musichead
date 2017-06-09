@@ -1,6 +1,6 @@
 class RecordLabel < ActiveRecord::Base
-    has_many :artists
     has_many :albums
-    has_many :genres
-    has_many :songs
+    has_many :songs, through: :albums
+    has_many :artists, through: :albums
+    has_many :genres, through: :songs
 end
