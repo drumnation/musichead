@@ -1,11 +1,12 @@
 {
-  "name": "auto-metal-jsclient",
+  "name": "spotify_player",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "actionable": "0.0.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "spotify-web-api-js": "^0.22.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
