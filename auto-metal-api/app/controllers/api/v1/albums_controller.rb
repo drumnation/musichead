@@ -40,6 +40,7 @@ class Api::V1::AlbumsController < ApplicationController
 
     def album_params
         params.require(:album).permit(
+            :id,
             :name,
             :popularity,
             :release_date,

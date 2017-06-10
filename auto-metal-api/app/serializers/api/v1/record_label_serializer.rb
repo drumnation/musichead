@@ -1,3 +1,3 @@
-class RecordLabel < ActiveModel::Serializer
-    attributes :name
+class Api::V1::RecordLabelSerializer < ActiveModel::Serializer
+    attributes :id, :name
 end

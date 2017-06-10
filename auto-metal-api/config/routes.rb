@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   mount ActionCable.server => 'cable'
-  
+
+  get '/spotify', to: 'o_auth#spotify'
+
   namespace :api do
     namespace :v1 do
       resources :artists

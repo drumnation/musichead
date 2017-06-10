@@ -10,7 +10,7 @@ def get_spotify_track_queries_from_csv
 end
 
 def create_spotify_query_uri(query)
-    URI(URI.encode("https://api.spotify.com/v1/search?q=#{query}&type=track"))
+    URI(URI.escape("https://api.spotify.com/v1/search?q=#{query}&type=track"))
 end
 
 def search_for_spotify_track(query)

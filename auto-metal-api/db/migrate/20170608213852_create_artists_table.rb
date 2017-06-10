@@ -12,6 +12,7 @@ class CreateArtistsTable < ActiveRecord::Migration[5.0]
       t.json :spotify_albums
       t.json :top_tracks
       t.string :spotify_artist_id
+      t.integer :record_label_id, foreign_key: true
       t.timestamps
     end
   end

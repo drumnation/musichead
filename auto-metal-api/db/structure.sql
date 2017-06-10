@@ -51,6 +51,7 @@ CREATE TABLE albums (
     spotify_album_id character varying,
     record_label_id integer,
     artist_id integer,
+    genre_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -104,6 +105,7 @@ CREATE TABLE artists (
     spotify_albums json,
     top_tracks json,
     spotify_artist_id character varying,
+    record_label_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -157,6 +159,37 @@ CREATE SEQUENCE genres_id_seq
 --
 
 ALTER SEQUENCE genres_id_seq OWNED BY genres.id;
+
+
+--
+-- Name: oauth; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE oauth (
+    id integer NOT NULL,
+    spotify_token character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: oauth_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE oauth_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: oauth_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE oauth_id_seq OWNED BY oauth.id;
 
 
 --
@@ -245,7 +278,9 @@ CREATE TABLE songs (
     audio_analysis json,
     related_songs json,
     spotify_song_id character varying,
+    artist_id character varying,
     album_id integer,
+    record_label_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -289,6 +324,13 @@ ALTER TABLE ONLY artists ALTER COLUMN id SET DEFAULT nextval('artists_id_seq'::r
 --
 
 ALTER TABLE ONLY genres ALTER COLUMN id SET DEFAULT nextval('genres_id_seq'::regclass);
+
+
+--
+-- Name: oauth id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY oauth ALTER COLUMN id SET DEFAULT nextval('oauth_id_seq'::regclass);
 
 
 --
@@ -345,6 +387,14 @@ ALTER TABLE ONLY genres
 
 
 --
+-- Name: oauth oauth_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY oauth
+    ADD CONSTRAINT oauth_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: record_labels record_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -388,6 +438,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170608214103'),
 ('20170608214152'),
 ('20170608214303'),
-('20170608222606');
+('20170608222606'),
+('20170609230235');
 
 

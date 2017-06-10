@@ -68,7 +68,7 @@ def display_seed_data(search_for_track)
         Spotify Open: #{search_for_track["tracks"]["items"].first["external_urls"]["spotify"]}
         Spotify Song ID: #{track_id}
         Spotify Audio Analysis: #{get_spotify_audio_analysis_for_track(track_id) ? "Successfully Retrieved" : "Failed Retrieval"}
-        Spotify Related Songs: #{get_recommendations_based_on_seeds(track_id) ? "Successfully Retrieved" : "Failed Retrieval"}
+        Spotify Related Songs: #{get_spotify_related_songs(track_id) ? "Successfully Retrieved" : "Failed Retrieval"}
     
     *************************
     4.  Record Label
@@ -87,7 +87,7 @@ def display_seed_data(search_for_track)
         preview: search_for_track["tracks"]["items"].first["preview_url"],
         open: search_for_track["tracks"]["items"].first["external_urls"]["spotify"],
         audio_analysis: get_spotify_audio_analysis_for_track(track_id),
-        related_songs: get_spotify_reccomendations(track_id),
+        related_songs: get_spotify_related_songs(track_id),
         spotify_song_id: track_id
     }
 
@@ -112,7 +112,7 @@ def display_seed_data(search_for_track)
         spotify_artist_id: search_for_track["tracks"]["items"].first["artists"].first["id"]
     }
 
-    temp_artist = Artist.create_with(artist_attr).find_or_initialize_by(name: artist_attr[:name])
+    temp_artist = Artist.create_with(artist_attr).find_or_create_by(name: artist_attr[:name])
 
     album_attr = {
         name: search_for_track["tracks"]["items"].first["album"]["name"],
@@ -125,10 +125,17 @@ def display_seed_data(search_for_track)
         open: search_for_track["tracks"]["items"].first["external_urls"]["spotify"],
         spotify_album_id: search_for_track["tracks"]["items"].first["album"]["id"]
     }
-    temp_album = Album.create_with(album_attr).find_or_create_by(name: album_attr[:name], artist_id: temp_artist.id, record_label_id: temp_label.id)
+    temp_album = Album.create_with(album_attr).find_or_create_by(name: album_attr[:name])
+    # temp_song.album_id = temp_album.id
     temp_song.album = temp_album
+    temp_song.artist = temp_artist
+    temp_song.record_label = temp_label
     temp_song.genres = genres
-    temp_song.save
+    # begin
+        temp_song.save
+    # rescue
+    #     puts "**** couldn't save #{temp_song.name} ****"
+    # end
 end
 
 def display_and_seed_to_db

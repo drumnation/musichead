@@ -9,5 +9,5 @@ def get_spotify_artist_top_tracks(id)
     uri = get_top_tracks_endpoint(id)
     response = request(uri)
     puts "6. get_top_tracks => Response Code: #{response.code}"
-    response.body
+    JSON.parse(response.body)
 end

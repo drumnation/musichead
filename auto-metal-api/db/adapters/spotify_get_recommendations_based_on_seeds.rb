@@ -2,12 +2,12 @@ require_relative 'required'
 require_relative 'request'
 
 def get_recommendations_based_on_seeds(id)
-    URI("https://api.spotify.com/v1/recommendations/seed_tracks=#{id}")
+    URI.parse("https://api.spotify.com/v1/recommendations/?seed_tracks=#{id}")
 end
 
-def get_spotify_reccomendations(id)
+def get_spotify_related_songs(id)
     uri = get_recommendations_based_on_seeds(id)
     response = request(uri)
-    puts "8. get_spotify_recommendations Response Code: #{response.code}"
-    response.body
+    puts "8. get_related_songs => Response Code: #{response.code}"
+    JSON.parse(response.body)
 end

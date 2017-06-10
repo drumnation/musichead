@@ -1,9 +1,9 @@
-class GenresController < ApplicationController
+class Api::V1::GenresController < ApplicationController
     before_action :set_genre, only: [:show, :update]
 
     def index
-        @genre = Genre.all
-        render json: @genre
+        @genres = Genre.all
+        render json: @genres
     end
 
     def show
@@ -11,7 +11,7 @@ class GenresController < ApplicationController
     end
 
     def create
-        @genre = Genre.new(album_params)
+        @genre = Genre.new(genre_params)
         if @genre.save
             render json: @genre
         else
@@ -34,11 +34,11 @@ class GenresController < ApplicationController
         
     private
 
-    def set_album
+    def set_genre
         @genre = Genre.find(params[:id])
     end
 
     def genre_params
-        params.require(:genre).permit(:name)
+        params.require(:genre).permit(:id, :name)
     end
 end

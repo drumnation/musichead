@@ -2,8 +2,8 @@ class Api::V1::ArtistsController < ApplicationController
     before_action :set_artist, only: [:show, :update]
 
     def index
-        @artist = Artist.all
-        render json: @artist
+        @artists = Artist.all
+        render json: @artists
     end
 
     def show
@@ -11,7 +11,7 @@ class Api::V1::ArtistsController < ApplicationController
     end
 
     def create
-        @artist = Artist.new(album_params)
+        @artist = Artist.new(artist_params)
         if @artist.save
             render json: @artist
         else
@@ -34,12 +34,13 @@ class Api::V1::ArtistsController < ApplicationController
         
     private
 
-    def set_album
+    def set_artist
         @artist = Artist.find(params[:id])
     end
 
     def artist_params
         params.require(:artist).permit(
+            :id,
             :name,
             :popularity,
             :open,

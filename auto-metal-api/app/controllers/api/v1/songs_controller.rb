@@ -2,8 +2,8 @@ class Api::V1::SongsController < ApplicationController
     before_action :set_song, only: [:show, :update]
 
     def index
-        @song = Song.all
-        render json: @song
+        @songs = Song.all
+        render json: @songs
     end
 
     def show
@@ -11,7 +11,7 @@ class Api::V1::SongsController < ApplicationController
     end
 
     def create
-        @song = Song.new(album_params)
+        @song = Song.new(song_params)
         if @song.save
             render json: @song
         else
@@ -34,11 +34,13 @@ class Api::V1::SongsController < ApplicationController
         
     private
 
-    def set_album
+    def set_song
         @song = Song.find(params[:id])
     end
+    
     def song_params
         params.require(:song).permit(
+            :id,
             :name,
             :popularity,
             :length,

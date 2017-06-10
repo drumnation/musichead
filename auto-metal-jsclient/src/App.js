@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Chatroom from './components/Chatroom'
+// import Chatroom from './components/Chatroom'
+import Spotify from './components/Spotify'
 
 class App extends Component {
   constructor() {
@@ -14,9 +15,10 @@ class App extends Component {
   render() {
     return (
       <div className="ui grid container">
-        <Chatroom cableApp={this.props.cableApp} selectedChatroom={this.state.selectedChatroom} />
+        {/*<Chatroom cableApp={this.props.cableApp} selectedChatroom={this.state.selectedChatroom} />*/}
+        <Spotify />
       </div>
-    );
+    )
   }
 }
 
