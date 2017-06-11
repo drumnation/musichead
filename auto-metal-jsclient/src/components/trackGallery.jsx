@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import '../App.css'
 
 class Gallery extends Component {
     constructor(props) {
@@ -40,7 +40,6 @@ class Gallery extends Component {
 
     render() {
         const tracks = this.props.tracks.tracks
-        console.log('tracks destructured', tracks )
         return (
             <div>
                 { tracks
@@ -80,6 +79,5 @@ class Gallery extends Component {
         )
     }
 }
-
 
 export default Gallery
