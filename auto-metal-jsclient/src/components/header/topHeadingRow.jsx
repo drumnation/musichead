@@ -5,7 +5,7 @@ const TopHeadingRow = () => (
     <div>
         <Media>
             <Media.Left>
-                <h2>TOP HEADING ROW</h2>
+                <h2>TOP HEADING ROW ( LOGGED IN )</h2>
             </Media.Left>
             <Media.Right> 
                 <Button style={style} bsStyle="primary" bsSize="large" active>Share</Button>
