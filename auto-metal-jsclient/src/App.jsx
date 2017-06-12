@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import './App.css'
-import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
-import ArtistProfile from './components/artistProfile'
-import Gallery from './components/trackGallery'
-import Navigation from './components/navigation'
+
+import Header from './containers/header'
+import Footer from './containers/footer'
+import HomeShow from './containers/homeShow'
+import ArtistShow from './containers/artistShow'
+import AlbumShow from  './containers/albumShow'
+import TrackShow from  './containers/trackShow'
+import LabelShow from  './containers/trackShow'
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +22,7 @@ class App extends Component {
 
   search() {
     const spotify = new Spotify()
-    spotify.setAccessToken('BQBYKI_jd2ffSCBufXkZz3wthEC1o-o8dLvB5w3mfibJXBM93isoAbRiuxT2DxlP3OM-jms3Q_xJ63Qd4iBVWd8OnqX9XtvHUh_1ZchH_5dfkdBO4_VK2icNLzMaXT8PsKVdKi1PkGdo3inQmUEvbqFkyzaz02FbRmfhhPM8ElVhzkMa044-jKvoLrTgszlyWYtZCTXZyN3ROL8Ipw3rBmycsmxIvXkGf4WkLWG23K4gC1O9QqrOHRLFX1-lWRDdOuBSvOP81JHhEEybHhNRGKz1LdFFAB1ZcW1Y6c9EiIvmVqC-Kl-9jSycRpWGJ4oNRa4I')
+    spotify.setAccessToken('BQCbIliftgjemAcL2XzaExQeOZMpaIkVBsu3PVzRB4BevRMumNSP71efk3qYHpUDsFaS547n-WJRUpjF84kCrDJcvzBZ3WcmmSnZFzM5VVqMZBBMbL_RA7ix3evLTbWY7tVLFgJSF-qF9KwUH39VVfk8nMl-d5_aEpHGGOekCZkePSSgeypihGPiMrMyB9v5q9PqK_PQ-9bDvSwNjCg9y6hkBHaJjxF8ndBX-lWv-xYh4KgDBMHnZSKpDbBm52UMk8Pj1GssiUZ2HWnioZVOzO7SWwPb34br2tp8QtevSVnm882BBVUXv7EjiehypfvP5eFg')
     spotify.searchArtists(this.state.query)
     .then( response => {
       let artist = response["artists"]["items"][0]
@@ -37,40 +41,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div><Navigation/></div>
-        <div className="App-title">SUPER BADASS MUSIC PLAYER.COM</div>
-          <FormGroup>
-            <InputGroup>
-              <FormControl
-                type="text"
-                placeholder="Search for an Artist"
-                value={ this.state.query }
-                onChange={ event => { this.setState({ query: event.target.value })} }
-                onKeyPress={ event => {
-                  if (event.key === 'Enter') {
-                    this.search()
-                  }
-                }}
-              />
-              <InputGroup.Addon onClick={ () => this.search() }>
-                <Glyphicon glyph="search"></Glyphicon>
-              </InputGroup.Addon>
-            </InputGroup>
-          </FormGroup>
-          {
-            this.state.artist !== null
-            ? 
-              <div>
-                <ArtistProfile
-                    artist={ this.state.artist }
-                />
-                <Gallery
-                  tracks={ this.state.tracks }
-                />
-              </div>
-            : 
-              <div></div>
-          }
+        <div>
+          <Header/>
+          <HomeShow
+            query={this.state.query}
+            search={this.search()}
+          />
+          <ArtistShow 
+            artist={this.state.artist}
+            tracks={this.state.tracks}
+          />
+          <AlbumShow/>
+          <TrackShow/>
+          <LabelShow/>
+          <Footer/>
+        </div>
+          
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import '../App.css'
+import '../../App.css'
 
-class Gallery extends Component {
+class topTracksList extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -42,6 +42,7 @@ class Gallery extends Component {
         const tracks = this.props.tracks.tracks
         return (
             <div>
+                <h2>TOP TRACKS</h2>
                 { tracks
                     ?
                         tracks.map((track, i) => {
@@ -80,4 +81,4 @@ class Gallery extends Component {
     }
 }
 
-export default Gallery
+export default topTracksList

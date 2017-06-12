@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
-import '../App.css'
+import '../../App.css'
 
-class ArtistProfile extends Component {
+class ArtistInfo extends Component {
+    constructor(props) {
+        super(props)
+    }
+    
     render() {
         let artist = {name: '', followers: {total: ''}, images: [{url: ''}], genres: []}
         artist = this.props.artist !== null ? this.props.artist : artist
-
         return (
             <div className="profile">
+                <h2>ARTIST INFO</h2>
                 <img
                 alt="Profile"
                 className="profile-img"
@@ -34,5 +38,4 @@ class ArtistProfile extends Component {
     }
 }
 
-
-export default ArtistProfile
+export default ArtistInfo
