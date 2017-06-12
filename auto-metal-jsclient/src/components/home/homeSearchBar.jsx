@@ -20,7 +20,7 @@ class HomeSearchBar extends Component {
 
     search() {
         const spotify = new Spotify()
-        spotify.setAccessToken('BQCtNqxSxY7lW_D5Y-npvpKdgOOm1uvIZcCbbrLdV9NUjYLL6JtuxwiKNoUsE-CWg6EwQDyGmtlcW5enShg5wzZk9TGcbBRYqL9tDGg-ygzQLs0qA9T9UMGbupSLT7DBlEh0uhc3bTx4Ba99XKj7c_SkKhCnNXhdrPnaoXg8VvgCBuPKL6qLfJbIue0qD0Fmnfta2fJJbSPIzOSETvg6jV6Bccqy9TdEky97ILtolvk2NKgboGovkQugyncY1VLFhrLqWYQjnXjMKxplkD5FLUtPJmtwYF-SoUOCzZrY8DXVb_PvH0wErHBOEt4LlDGc1zk7')
+        spotify.setAccessToken('BQAZMvN7RLK83sjoLfOtPg8H6IBmEJ4t_bAk-QcFfIQ2azbt0m0TzfUsGGiTyDA1USOx1nBC7Xc6aCUfA4X_kmoeVISHqiAoHAHszjseSzY77_Q0zikhVmK_XNpqGzEtGfC2YQlYiknqxvGCkkYeWxiw90feoE9PGhePqyhniBqkD9IkJrXtaeyLmb7jEW2o2ouOwbtkReN4d3CvmmFqhZGG-Y1l4ZZgnyEmsQE5aTRCuZ1SUygwo_H487HUOFEyfrEoQKBANeMlgm0O6betZl9sCDBBwLLLnt-lbKrNoYRVE7IeX-_BVLtyGogx8LXQFQKv')
         if (this.state.query !== '') {
         spotify.searchArtists(this.state.query)
             .then( response => {
