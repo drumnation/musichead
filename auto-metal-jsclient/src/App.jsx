@@ -3,6 +3,7 @@ import './App.css'
 
 import Header from './containers/header'
 import Footer from './containers/footer'
+import UserShow from './containers/userShow'
 import HomeShow from './containers/homeShow'
 import AlbumShow from  './containers/albumShow'
 import TrackShow from  './containers/trackShow'
@@ -25,6 +26,7 @@ class App extends Component {
         <div> 
           <Header/>
           <HomeShow/>
+          <UserShow/>
           <AlbumShow/>
           <TrackShow/>
           <LabelShow/>
