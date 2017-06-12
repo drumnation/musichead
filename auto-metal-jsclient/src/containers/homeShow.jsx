@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeSearchBar from '../components/home/homeSearchBar'
-import { Grid, Row, Col, Form, ControlLabel, FormControl, FormGroup, Button } from 'react-bootstrap'
+import { Grid, Row, Col, Form, ControlLabel, FormControl, FormGroup, Button, PageHeader } from 'react-bootstrap'
 
 const HomeShow = () => {
     return (
@@ -15,44 +15,48 @@ const HomeShow = () => {
                 <Grid>
                     <Row className="show-grid">
                         <Col md={6} mdPush={6}>
+                            <div className="text-left" align="top">
+                                <h1>Sign Up \m/</h1>
+                                <h4>It will only cost your soul.</h4>
+                            </div>    
                             <Form horizontal>
                                 <FormGroup controlId="formHorizontalUsername">
-                                    <Col componentClass={ControlLabel} sm={2}>
+                                    {/*<Col componentClass={ControlLabel} sm={2}>
                                         Name
-                                    </Col>
+                                    </Col>*/}
                                     <Col sm={10}>
-                                        <FormControl type="email" placeholder="Email" />
+                                        <FormControl type="email" placeholder="Name" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup controlId="formHorizontalEmail">
-                                    <Col componentClass={ControlLabel} sm={2}>
+                                    {/*<Col componentClass={ControlLabel} sm={2}>
                                         Email
-                                    </Col>
+                                    </Col>*/}
                                     <Col sm={10}>
                                         <FormControl type="email" placeholder="Email" />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalPassword">
-                                    <Col componentClass={ControlLabel} sm={2}>
+                                    {/*<Col componentClass={ControlLabel} sm={2}>
                                         Password
-                                    </Col>
+                                    </Col>*/}
                                     <Col sm={10}>
                                         <FormControl type="password" placeholder="Password" />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalPasswordConfirmation">
-                                    <Col componentClass={ControlLabel} sm={2}>
+                                    {/*<Col componentClass={ControlLabel} sm={2}>
                                         Confirmation
-                                    </Col>
+                                    </Col>*/}
                                     <Col sm={10}>
-                                        <FormControl type="password" placeholder="Password" />
+                                        <FormControl type="password" placeholder="Password Confirmation" />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup>
-                                    <Col smOffset={2} sm={10}>
+                                    <Col md={3}>
                                         <Button type="submit">
                                             Create Account
                                         </Button>
@@ -61,12 +65,12 @@ const HomeShow = () => {
                             </Form>
                         </Col>
                         <Col md={6} mdPull={6}>
-                            <h3>Connect with metal heads from around the world, listen with, share, and discuss, your favorite tracks.</h3>
-                            <ul>
-                                <li>See latest releases from record labels in News Feed.</li>
-                                <li>Share what you listen to in your profile on your Listening History.</li>
-                                <li>Discover new bands and tracks you like with Metal Search.</li>
-                            </ul>
+                                <h2 className="text-left" align="top">Connect with metal heads from around the world, listen with, share, and discuss, your favorite tracks.</h2>
+                                <ul className="text-left">
+                                    <li><strong>See latest releases</strong> from record labels in News Feed.</li>
+                                    <li><strong>Share what you listen to</strong> in your profile on your Listening History.</li>
+                                    <li><strong>Discover new bands and tracks</strong> you like with Metal Search.</li>
+                                </ul>
                         </Col>
                     </Row>
                 </Grid>

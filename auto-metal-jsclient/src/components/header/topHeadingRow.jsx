@@ -1,19 +1,19 @@
 import React from 'react'
-import { Button, Media } from 'react-bootstrap'
+import { Button, Media, Col, Grid, Row } from 'react-bootstrap'
 
 const TopHeadingRow = () => (
-    <div>
-        <Media>
-            <Media.Left>
+    <Grid>
+        <Row>
+            <Col xs={4} md={8} className="text-left">
                 <h2>TOP HEADING ROW ( LOGGED IN )</h2>
-            </Media.Left>
-            <Media.Right> 
+            </Col>
+            <Col xsHidden={0} xsOffset={9}> 
                 <Button style={style} bsStyle="primary" bsSize="large" active>Share</Button>
                 <Button style={style} bsSize="large" active>Profile</Button>
                 <img width={64} height={64} src="/assets/default_face_image.jpeg" alt="Image"/>
-            </Media.Right>
-        </Media>
-    </div>
+            </Col>
+        </Row>
+    </Grid>
 )
 
 const style = {

@@ -30,23 +30,25 @@ class TopNav extends Component {
                             <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
-                        <Form inline>
-                            <FormGroup controlId="formInlineName">
-                                <ControlLabel>Name</ControlLabel>
+                            <Navbar.Form pullRight>
+                                <FormGroup controlId="formInlineName">
+                                    <ControlLabel>Name</ControlLabel>
+                                    {' '}
+                                    <FormControl type="text" placeholder="Jane Doe" />
+                                </FormGroup>
                                 {' '}
-                                <FormControl type="text" placeholder="Jane Doe" />
-                            </FormGroup>
-                            {' '}
-                            <FormGroup controlId="formInlineEmail">
-                            <ControlLabel>Email</ControlLabel>
-                            {' '}
-                            <FormControl type="email" placeholder="jane.doe@example.com" />
-                            </FormGroup>
-                            {' '}
-                            <Button type="submit">
-                                Login
-                            </Button>
-                        </Form>
+                                <FormGroup controlId="formInlineEmail">
+                                    <ControlLabel>Email</ControlLabel>
+                                    {' '}
+                                    <FormControl type="email" placeholder="jane.doe@example.com" />
+                                </FormGroup>
+                                {' '}
+                                <FormGroup controlId="formInlineSubmit">
+                                    <Button bsStyle="primary" type="submit">
+                                        Login
+                                    </Button>
+                                </FormGroup>
+                            </Navbar.Form>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
