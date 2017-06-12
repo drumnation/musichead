@@ -1,0 +1,128 @@
+/* Mini-reset */
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* Set the base font */
+body {
+    font-family:'Helvetica', 'Arial', sans-serif;
+}
+/* Remove underlines on links */
+a, a:link {
+    text-decoration: none;
+}
+.image-group {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.cover-image {
+    width: 100%;
+}
+/* Create a container that can be used to size and position the profile image */
+.profile-image-group {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    bottom: -10%;
+    left: 10%;
+}
+/* Scale the image to fit the image-group */
+.profile-image {
+    height: 100%;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #222; 
+}
+/* Hide the checkbox */
+.image-checkbox {
+    position: absolute;
+    left: 100%;
+    visibility: hidden;
+}
+/* Define and position the overlay */
+.image-overlay {
+    width: 100%;
+    padding: 0 1em;
+    height: 3em;
+    line-height: 3em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #ccc;
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    transition: all 500ms ease;
+}
+.image-checkbox:checked ~ .image-overlay, .profile-image-group:hover .image-overlay { 
+    color: #eee;
+    background-color: rgba(0,0,0,.5);
+}
+.image-overlay>i {
+    font-size: 2em;
+    transition: all 500ms ease;
+}
+.image-checkbox:checked ~ .image-overlay>i, .profile-image-group:hover .image-overlay>i {
+    font-size: 1em;
+}
+.image-checkbox:checked ~ .image-overlay:after, .profile-image-group:hover .image-overlay:after {
+    content:'Change Image';
+    display: inline-block;
+    margin-left: 1em;
+    color: #fff;
+}
+.image-menu {
+    list-style: none;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 1px 1px rgba(0,0,0,.15);
+    border-radius: 0 0 4px 4px;
+}
+.image-checkbox:checked ~ .image-menu {
+    display: block;
+}
+.image-menu>li {
+    padding: 5px 15px;
+}
+.image-menu>li:last-child {
+    border-radius: 0 0 4px 4px;
+}
+.image-menu>li:hover {
+    background-color: darkblue;
+}
+.image-menu>li>a {
+    display: block;
+    line-height: 1.5;
+    color: #555;
+    white-space: nowrap;
+    font-size: .85em;
+}
+.image-menu>li:hover a {
+    color: #fff;   
+}
+.image-menu>li>a>i {
+    display: inline-block;
+    width: 1.25em;
+}
+.fa {
+    font-size: 1.1em;
+}
+.fa-times {
+    color: red;
+}
+.fa-file-image-o {
+    color: green;
+}
+.fa-camera-retro {
+    color: slategray;
+}
+.fa-upload {
+    color: dodgerblue;
+}
