@@ -57,7 +57,7 @@ const HomeShow = () => {
 
                                 <FormGroup>
                                     <Col md={3}>
-                                        <Button type="submit">
+                                        <Button bsStyle="primary" bsSize="large" type="submit">
                                             Create Account
                                         </Button>
                                     </Col>
