@@ -6,7 +6,6 @@ const brand = {
     color: "#fff"
 }
 
-
 const Logo = () => (
     <Col xs={4} md={8} className="text-left">
         <h2><strong><NavLink style={brand} to="/"> <img src="/assets/metal-hand-icon-2-1.png" /> MetalHead</NavLink></strong></h2>

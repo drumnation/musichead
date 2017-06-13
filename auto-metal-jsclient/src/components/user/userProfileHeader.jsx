@@ -3,30 +3,45 @@ import { NavLink } from 'react-router-dom'
 import './header.css'
 import { Nav, Navbar, MenuItem, NavDropdown, NavItem } from 'react-bootstrap'
 import UserListeningHistory from './userListeningHistory'
+import UserProfileSubNav from './userProfileSubNav'
 
 class UserProfileHeader extends Component {
     state = {  }
     render() {
         return (
-            <div class="image-group">
-                <img src="/assets/mastodon-cover.jpg" className="cover-image" />
-                <Navbar>
-                    <Nav pullRight>
-                        <NavItem eventKey={1}><NavLink to="/profile">Listening History</NavLink></NavItem>
-                        <NavItem eventKey={2}><NavLink to="/profile/about">About</NavLink></NavItem>
-                        <NavItem eventKey={2}><NavLink to="/profile/bands">Bands</NavLink></NavItem>
-                        <NavItem eventKey={2}><NavLink to="/profile/tracks">Tracks</NavLink></NavItem>
-                    </Nav>
-                </Navbar>
-                <div className="profile-image-group">
-                    <img src="/assets/default_face_image.jpeg" className="profile-image" />
-                    <label for="image-checkbox" className="image-overlay">
-                        <i className="fa fa-camera"></i>
-                    </label>
+            <div style={profileParent}>
+                <div style={profileStyle}>
+                {/*<div style={profileStyle} className="image-group cover-image">*/}
+                    <div className="profile-image-group" style={profileUserImage}>
+                        <img src="/assets/default_face_image.jpeg" className="profile-image" />
+                        <label htmlFor="image-checkbox" className="image-overlay">
+                            <i className="fa fa-camera"></i>
+                        </label>
+                    </div>
                 </div>
+                <UserProfileSubNav/>
             </div>
         )
     }
+}
+
+const profileParent = {
+    position: 'relative'
+}
+
+const profileStyle = {
+    background: 'center no-repeat',
+    top: '0',
+    height: '640px',
+    backgroundSize: 'cover',
+    backgroundImage: 'url(/assets/mastodon-cover.jpg)'
+}
+
+const profileUserImage = {
+    zIndex: '1',
+    position: 'absolute',
+    bottom: '5px',
+    left: '50px'
 }
 
 export default UserProfileHeader
