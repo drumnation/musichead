@@ -1,16 +1,35 @@
 import React, { Component } from 'react'
-import TopNav from '../components/header/topNav'
 import TopHeadingRow from '../components/header/topHeadingRow'
+import TopNavLoggedIn from '../components/header/topNavLoggedIn'
+import TopNavNotLoggedIn from '../components/header/topNavNotLoggedIn'
 
 class Header extends Component {
+    constructor() {
+        super()
+        this.state = {
+            loggedIn: false
+        }
+    }
+
     render() {
         return (
             <div>
+               
                 <div>
-                    <TopHeadingRow />
-                </div>
-                <div>
-                    <TopNav />
+                    {
+                        this.state.loggedIn === true 
+                        ?
+                            <div>
+                                <TopHeadingRow loggedIn={this.state.loggedIn} />
+                                <TopNavLoggedIn  />
+                            </div>
+                            
+                        :
+                            <div>
+                                <TopHeadingRow loggedIn={this.state.loggedIn} />
+                                <TopNavLoggedIn  />
+                            </div>
+                    }
                 </div>
             </div>
         )

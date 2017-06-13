@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div>
             <hr/><br/>
-            <p>MetalHead.FM -- Copyright David Mieloch © 2017</p>
+            <p>MetalHead.fm © 2017</p>
         </div>
     )
 }
