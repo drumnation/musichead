@@ -1,14 +1,15 @@
 import React from 'react'
-import HomeNotLoggedIn from '../components/home/homeNotLoggedIn'
 import HomeLoggedIn from '../components/home/homeLoggedIn'
+import HomeLoggedOut from '../components/home/homeLoggedOut'
+import { connect } from 'react-redux'
 
-const HomeShow = () => {
-    console.log('logged in or not')
-    return (
-        1 === 1 
-                ? <HomeNotLoggedIn/>
-                : <HomeLoggedIn/>
-    )
+const HomeShow = (props) => {
+    console.log(props)
+    return props.loggedIn ? <HomeLoggedIn/> : <HomeLoggedOut/>
 }
 
-export default HomeShow
+function mapStateToProps(state, ownProps) {
+    return { ...ownProps, loggedIn: state.auth.loggedIn}
+}
+
+export default connect(mapStateToProps)(HomeShow)

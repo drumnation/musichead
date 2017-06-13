@@ -1,53 +1,19 @@
 import React, { Component } from 'react'
-import TopHeadingRow from '../components/header/topHeadingRow'
+import { connect } from 'react-redux'
+import { Grid, Row } from 'react-bootstrap'
 import TopNavLoggedIn from '../components/header/topNavLoggedIn'
-import TopNavNotLoggedIn from '../components/header/topNavNotLoggedIn'
-import { logIn } from '../api/railsApi'
+import TopNavLoggedOut from '../components/header/topNavLoggedOut'
 
 class Header extends Component {
-    constructor() {
-        super()
-        this.state = {
-            email: '',
-            password: '',
-            loggedIn: true
-        }
-    }
-
-    handleLogin(event) {
-        event.preventDefault()
-        logIn(this.state)
-        .then( response => {
-            if (response.error) {
-                return
-            }
-            localStorage.setItem('jwt', response.token)
-            this.setState({ loggedIn: this.props.loggedIn })
-            this.props.history.push('/')
-        })
-    }
-
     render() {
         return (
             <div>
                 <div>
-                    {
-                        false
+                    {this.props.loggedIn
                         ?
-                            <div>
-                                <TopHeadingRow loggedIn={this.state.loggedIn} />
-                                <TopNavLoggedIn loggedIn={this.state.loggedIn} />
-                            </div>    
+                            <div><TopNavLoggedIn /></div>
                         :
-                            <div>
-                                <TopHeadingRow loggedIn={this.state.loggedIn} />
-                                <TopNavNotLoggedIn 
-                                    loggedIn={this.state.loggedIn} 
-                                    email={this.state.email} 
-                                    password={this.state.password} 
-                                    handleLogin={this.handleLogin()}
-                                />
-                            </div>
+                            <div><TopNavLoggedOut /></div>
                     }
                 </div>
             </div>
@@ -55,4 +21,8 @@ class Header extends Component {
     }
 }
 
-export default Header
+function mapStateToProps(state, ownProps) {
+    return { ...ownProps, loggedIn: state.auth.loggedIn}
+}
+
+export default connect(mapStateToProps)(Header)

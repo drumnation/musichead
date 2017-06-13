@@ -7,7 +7,6 @@ import { Switch, Route } from 'react-router-dom'
 
 class HomeLoggedIn extends Component {
     render() {
-        console.log('home logged in render')
         return (
             <Switch>
                 <Route path='/artist' component={SearchForArtist}/>
