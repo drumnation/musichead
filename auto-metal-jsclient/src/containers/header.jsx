@@ -7,14 +7,13 @@ class Header extends Component {
     constructor() {
         super()
         this.state = {
-            loggedIn: false
+            loggedIn: true
         }
     }
 
     render() {
         return (
             <div>
-               
                 <div>
                     {
                         this.state.loggedIn === true 
