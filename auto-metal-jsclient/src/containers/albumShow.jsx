@@ -6,7 +6,6 @@ class AlbumShow extends Component {
     render() {
         return (
             <div>
-                <h1>ALBUM SHOW</h1>
                 <AlbumInfo />
             </div>
         )

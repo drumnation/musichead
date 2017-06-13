@@ -10,7 +10,6 @@ class ArtistShow extends Component {
             artist !== null
                 ? 
                     <div>
-                        <h1>ARTIST SHOW</h1>
                         <ArtistInfo
                             artist={ artist }
                         />

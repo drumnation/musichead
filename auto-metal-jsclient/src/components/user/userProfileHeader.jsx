@@ -1,25 +1,28 @@
 import React, { Component } from 'react'
-import css from './style.css'
+import { NavLink } from 'react-router-dom'
+import './header.css'
+import { Nav, Navbar, MenuItem, NavDropdown, NavItem } from 'react-bootstrap'
+import UserListeningHistory from './userListeningHistory'
 
 class UserProfileHeader extends Component {
     state = {  }
     render() {
         return (
             <div class="image-group">
-                <h2>USER PROFILE HEADER</h2>
-                <img src="/assets/default_face_image.jpeg" class="cover-image" />
-                <div class="profile-image-group">
-                    <img src="/assets/mastodon-cover.jpg" class="profile-image" />
-                    <input id="image-checkbox" type="checkbox" class="image-checkbox" />    
-                    <label for="image-checkbox" class="image-overlay">
-                        <i class="fa fa-camera"></i>
+                <img src="/assets/mastodon-cover.jpg" className="cover-image" />
+                <Navbar>
+                    <Nav pullRight>
+                        <NavItem eventKey={1}><NavLink to="/profile">Listening History</NavLink></NavItem>
+                        <NavItem eventKey={2}><NavLink to="/profile/about">About</NavLink></NavItem>
+                        <NavItem eventKey={2}><NavLink to="/profile/bands">Bands</NavLink></NavItem>
+                        <NavItem eventKey={2}><NavLink to="/profile/tracks">Tracks</NavLink></NavItem>
+                    </Nav>
+                </Navbar>
+                <div className="profile-image-group">
+                    <img src="/assets/default_face_image.jpeg" className="profile-image" />
+                    <label for="image-checkbox" className="image-overlay">
+                        <i className="fa fa-camera"></i>
                     </label>
-                    <ul class="image-menu">
-                        <li><a href=""><i class="fa fa-file-image-o"></i> Choose from Photos...</a></li>
-                        <li><a href=""><i class="fa fa-camera-retro"></i> Take Photo...</a></li>
-                        <li><a href=""><i class="fa fa-upload"></i> Upload Photo...</a></li>
-                        <li><a href=""><i class="fa fa-times"></i> Remove...</a></li>
-                    </ul>
                 </div>
             </div>
         )

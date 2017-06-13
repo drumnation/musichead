@@ -41,7 +41,6 @@ class HomeSearchBar extends Component {
     render() {
         return (
             <FormGroup>
-                <h2>HOME SEARCH BAR</h2>
                 <InputGroup>
                     <FormControl
                         type="text"

@@ -1,22 +1,16 @@
 import React from 'react'
 import HomeSearchBar from '../components/home/homeSearchBar'
-import { Grid, Row, Col, Form, ControlLabel, FormControl, FormGroup, Button, PageHeader } from 'react-bootstrap'
+import { Grid, Row, Col, Form, ControlLabel, FormControl, FormGroup, Button, Glyphicon, Image } from 'react-bootstrap'
 
 const HomeShow = () => {
     return (
         <div>
             <div>
-                <h1>HOME SHOW (LOGGED IN)</h1>
-                <p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.</p>
-                <HomeSearchBar/>
-            </div>
-            <div>
-                <h1>HOME SHOW (LOGGED OUT)</h1>
                 <Grid>
                     <Row className="show-grid">
                         <Col md={6} mdPush={6}>
                             <div className="text-left" align="top">
-                                <h1>Sign Up \m/</h1>
+                                <h1>Sign Up <img src="/assets/cemetary-3-1.png" /></h1>
                                 <h4>It will only cost your soul.</h4>
                             </div>    
                             <Form horizontal>
@@ -57,7 +51,7 @@ const HomeShow = () => {
 
                                 <FormGroup>
                                     <Col md={3}>
-                                        <Button bsStyle="primary" bsSize="large" type="submit">
+                                        <Button bsStyle="danger" bsSize="large" type="submit">
                                             Create Account
                                         </Button>
                                     </Col>
@@ -65,12 +59,13 @@ const HomeShow = () => {
                             </Form>
                         </Col>
                         <Col md={6} mdPull={6}>
-                                <h2 className="text-left" align="top">Connect with metal heads from around the world, listen with, share, and discuss, your favorite tracks.</h2>
-                                <ul className="text-left">
-                                    <li><strong>See latest releases</strong> from record labels in News Feed.</li>
-                                    <li><strong>Share what you listen to</strong> in your profile on your Listening History.</li>
-                                    <li><strong>Discover new bands and tracks</strong> you like with Metal Search.</li>
-                                </ul>
+                                <h2 className="text-left" align="top">Connect with metal heads from around the world to listen, share, and discuss your favorite tracks.</h2>
+                                <br/>
+                                <div className="text-left">
+                                    <p><Glyphicon glyph="cd" /> <strong>See latest releases</strong> from record labels in News Feed.</p>
+                                    <p><Glyphicon glyph="headphones" /> <strong>Share what you listen to</strong> in your profile on your Listening History.</p>
+                                    <p><Glyphicon glyph="search" /> <strong>Discover new bands and tracks</strong> you like with Metal Search.</p>
+                                </div>
                         </Col>
                     </Row>
                 </Grid>
