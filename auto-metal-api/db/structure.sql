@@ -162,37 +162,6 @@ ALTER SEQUENCE genres_id_seq OWNED BY genres.id;
 
 
 --
--- Name: oauth; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE oauth (
-    id integer NOT NULL,
-    spotify_token character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: oauth_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE oauth_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: oauth_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE oauth_id_seq OWNED BY oauth.id;
-
-
---
 -- Name: record_labels; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -306,6 +275,41 @@ ALTER SEQUENCE songs_id_seq OWNED BY songs.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    name character varying,
+    email character varying,
+    password_digest character varying,
+    spotify_token character varying,
+    uid character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
 -- Name: albums id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -327,13 +331,6 @@ ALTER TABLE ONLY genres ALTER COLUMN id SET DEFAULT nextval('genres_id_seq'::reg
 
 
 --
--- Name: oauth id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oauth ALTER COLUMN id SET DEFAULT nextval('oauth_id_seq'::regclass);
-
-
---
 -- Name: record_labels id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -352,6 +349,13 @@ ALTER TABLE ONLY song_genres ALTER COLUMN id SET DEFAULT nextval('song_genres_id
 --
 
 ALTER TABLE ONLY songs ALTER COLUMN id SET DEFAULT nextval('songs_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
@@ -387,14 +391,6 @@ ALTER TABLE ONLY genres
 
 
 --
--- Name: oauth oauth_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oauth
-    ADD CONSTRAINT oauth_pkey PRIMARY KEY (id);
-
-
---
 -- Name: record_labels record_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -424,6 +420,14 @@ ALTER TABLE ONLY song_genres
 
 ALTER TABLE ONLY songs
     ADD CONSTRAINT songs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --

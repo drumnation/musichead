@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :songs
       resources :record_labels
       resources :genres
+      post '/sessions', to: 'sessions#create'
     end
   end  
 

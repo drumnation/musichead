@@ -19,15 +19,15 @@ class TopNavNotLoggedIn extends Component {
         return (
             <Navbar inverse>
                 <Nav pullRight> 
-                    <Form inline style={inlineForm}>
+                    <Form inline style={inlineForm} onSubmit={ event => this.props.handleLogin(event) }>
                         <FormGroup controlId="formInlineEmail">
                             {' '}
-                            <FormControl type="email" placeholder="Email" />
+                            <FormControl value={this.state.email} type="email" placeholder="Email" onChange={(event) => this.setState({email: event.target.value})}/>
                         </FormGroup>
                             {' '}
                         <FormGroup controlId="formInlinePassword">
                             {' '}
-                            <FormControl type="password" placeholder="Password" />
+                            <FormControl value={this.state.password} type="password" placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
                         </FormGroup>
                             {' '}
                         <Button bsStyle="primary" type="submit">Log in</Button>
