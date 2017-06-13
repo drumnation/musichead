@@ -13,10 +13,10 @@ class UserShow extends Component {
             <div>
                 <UserProfileHeader />
                 <Switch>
-                    <Route exact path="/profile/" component={UserListeningHistory}/>
                     <Route path="/profile/about" component={UserInfo}/>
                     <Route path="/profile/bands" component={UserFavoriteBands}/>
                     <Route path="/profile/tracks" component={UserFavoriteTracks}/>
+                    <Route path="/profile/" component={UserListeningHistory}/>
                 </Switch>
             </div>
         )

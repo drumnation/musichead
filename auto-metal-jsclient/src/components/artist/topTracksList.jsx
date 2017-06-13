@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Panel } from 'react-bootstrap'
 import '../../App.css'
 
 class topTracksList extends Component {
@@ -42,7 +43,7 @@ class topTracksList extends Component {
         const tracks = this.props.tracks.tracks
         return (
             <div>
-                <h2>TOP TRACKS</h2>
+                <Panel header={title} id="tracks">
                 { tracks
                     ?
                         tracks.map((track, i) => {
@@ -76,9 +77,17 @@ class topTracksList extends Component {
                     :
                         <div></div>
                 }
+                </Panel>
             </div>
         )
     }
 }
+
+const title = (
+    <p> 
+        <img src='/assets/werewolf-3.png'/><br/>
+        <strong>ARTIST TOP TRACKS</strong>
+    </p>
+)
 
 export default topTracksList

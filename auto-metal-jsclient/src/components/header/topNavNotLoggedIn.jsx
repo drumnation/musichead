@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Nav, Navbar, NavItem, FormGroup, FormControl, Button, Form, ControlLabel  } from 'react-bootstrap'
+import { 
+    Nav, 
+    Navbar, 
+    FormGroup, 
+    FormControl, 
+    Button, 
+    Form 
+} from 'react-bootstrap'
 import '../../App.css'
 
 const inlineForm = {

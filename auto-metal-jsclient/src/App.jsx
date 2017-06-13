@@ -6,32 +6,16 @@ import Header from './containers/header'
 import Footer from './containers/footer'
 import UserShow from './containers/userShow'
 import HomeShow from './containers/homeShow'
-import ArtistShow from './containers/artistShow'
-import AlbumShow from  './containers/albumShow'
-import TrackShow from  './containers/trackShow'
-import LabelShow from  './containers/labelShow'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      query: '',
-      artist: null,
-      tracks: []
-    }
-  }
-
   render() {
+    console.log('app rerendered')
     return (
       <div className="App">
         <Header/>
           <Switch>
-            <Route exact path="/" component={HomeShow}/>
             <Route path="/profile" component={UserShow}/>
-            <Route path="/artist" component={ArtistShow}/>
-            <Route path="/album" component={AlbumShow}/>
-            <Route path="/track" component={TrackShow}/>
-            <Route path="/track" component={LabelShow}/>
+            <Route path="/" component={HomeShow}/>
           </Switch>
         <Footer/>
       </div>

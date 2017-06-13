@@ -10,7 +10,7 @@ class TopHeadingRow extends Component {
             <Grid>
                 <Row>
                     { 
-                        this.props.loggedIn === false 
+                        true
                             ?
                                 <Logo/>
                             :

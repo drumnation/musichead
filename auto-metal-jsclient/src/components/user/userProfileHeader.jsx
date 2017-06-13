@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 import './header.css'
-import { Nav, Navbar, MenuItem, NavDropdown, NavItem } from 'react-bootstrap'
-import UserListeningHistory from './userListeningHistory'
 import UserProfileSubNav from './userProfileSubNav'
 
 class UserProfileHeader extends Component {

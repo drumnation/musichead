@@ -6,9 +6,9 @@ import {
     Glyphicon 
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
-import ArtistShow from '../../containers/artistShow'
+import TracksDisplay from '../../track/tracksDisplay'
 
-class HomeSearchBar extends Component {
+class SearchForTrack extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -20,19 +20,17 @@ class HomeSearchBar extends Component {
 
     search() {
         const spotify = new Spotify()
-        spotify.setAccessToken('BQAhM_fyTEvd8XGf32kcX5rzvfy5VpjvTX0gig-dRYEix3gP51jSnYMlKKFWu7T3KTr2Cci6ulRrhg5OcEecXyAwG-mXA8qEGw9dZlVAy78N3qC3bXtOoiePBLtzrMtOquRE06-ge8qxq3nLQYtrtxpDy0l4ogthHz6JZj75a5F2ys7npkE51jdbvVtg3UIQb7WG4cIg12QzYU_MyI7bMay9CpdOoDVJ-85AVTnMg3qo5TCSX4ZVZaECVIEQ_63PgjunUN1Fh2Iz_sPJoofsVXtRldxQ2TPQfSkE_ejVIeNwVOMwuMLW8ydzpecseqfMRHgl')
+        spotify.setAccessToken('BQBquZi-WHxyo11Qr7XoCgOPiAhuAFEiGMF4SiS3HhqiZFByyYZ4lasHCYZuDrVQyvNNXj4k_8bI5b6BAI9UCWQMS3Wp5Q22RGjmt2r7UMB7rpvo4_6g9lX1T5QucRQpAIGZRmyLWCLsIERp4qQ2bMq-s4fXjFbkfjERM3brC0AQwuT3Xkaam6xJTUT2O-_PULSpdlooywmrKgu_39GhaEQEIRJLdBq3D0hl7NYy2bxxPGI_YiPlvYTMUZx1IRP6LpnswgDUNlhStMq7C0JtwwzkHELW7TIYhAJPfXx5SEjWIb1zjLJKuA7GsWeOgLiS08ru')
         if (this.state.query !== '') {
-        spotify.searchArtists(this.state.query)
+        spotify.searchTracks(this.state.query)
             .then( response => {
-                let artist = response["artists"]["items"][0]
-                if (!artist) {
+                console.log('response', response)
+                let tracks = response["tracks"]["items"]
+                if (!tracks) {
                     return
                 } else {
-                    this.setState({ artist })
-                    spotify.getArtistTopTracks(artist.id, "US")
-                    .then(tracks => {
-                        this.setState({ tracks })
-                    })
+                    console.log('tracks', tracks)
+                    this.setState({ tracks })
                 }
             })
         }
@@ -41,10 +39,11 @@ class HomeSearchBar extends Component {
     render() {
         return (
             <FormGroup>
+                <h2>TRACK SEARCH BAR</h2>
                 <InputGroup>
                     <FormControl
                         type="text"
-                        placeholder="Search for an Artist"
+                        placeholder="Search for a Track"
                         value={ this.state.query }
                         onChange={ event => this.setState({ query: event.target.value }) }
                         onKeyPress={ event => {
@@ -57,8 +56,7 @@ class HomeSearchBar extends Component {
                         <Glyphicon glyph="search"></Glyphicon>
                     </InputGroup.Addon>
                 </InputGroup>
-                <ArtistShow 
-                    artist={this.state.artist}
+                <TracksDisplay
                     tracks={this.state.tracks}
                 />
             </FormGroup>
@@ -66,4 +64,4 @@ class HomeSearchBar extends Component {
     }
 }
 
-export default HomeSearchBar
+export default SearchForTrack

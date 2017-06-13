@@ -16,17 +16,16 @@ class Header extends Component {
             <div>
                 <div>
                     {
-                        this.state.loggedIn === true 
+                        false
                         ?
                             <div>
                                 <TopHeadingRow loggedIn={this.state.loggedIn} />
                                 <TopNavLoggedIn  />
-                            </div>
-                            
+                            </div>    
                         :
                             <div>
                                 <TopHeadingRow loggedIn={this.state.loggedIn} />
-                                <TopNavLoggedIn  />
+                                <TopNavNotLoggedIn  />
                             </div>
                     }
                 </div>

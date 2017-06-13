@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Form, ControlLabel, FormControl, FormGroup, Button, Glyphicon, Image } from 'react-bootstrap'
+import { 
+    Grid, 
+    Row, 
+    Col, 
+    Form, 
+    FormControl,
+    FormGroup, 
+    Button, 
+    Glyphicon 
+} from 'react-bootstrap'
 
 
 const features = {
