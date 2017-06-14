@@ -13,6 +13,7 @@ import {
     Row, 
     Col
 } from 'react-bootstrap'
+import './style.css'
 import '../../App.css'
 
 const inlineForm = {
@@ -42,7 +43,7 @@ class TopNavNotLoggedIn extends Component {
                         <h2>
                             <strong>
                                 <NavLink className="brand" to="/">
-                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> MetalHead</NavLink>
+                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MetalHead</span></NavLink>
                             </strong>
                         </h2>
                     </Col>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { ButtonGroup, ButtonToolbar, Button, Grid, Row, Col } from 'react-bootstrap'
+import { ButtonGroup, ButtonToolbar, Button, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { logOut } from '../../actions/authActions'
 import '../../App.css'
@@ -14,7 +14,8 @@ class TopNavLoggedIn extends Component {
                     <h2>
                         <strong>
                             <NavLink className="brand" to="/">
-                            <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> MetalHead</NavLink>
+                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MetalHead</span>
+                            </NavLink>
                         </strong>
                     </h2>
                 </Col>

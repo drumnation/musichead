@@ -11,6 +11,14 @@ body {
   font-size: 26px;
 }
 
+h1 {
+  font-family: 'New Rocker';
+}
+
+.panel-heading {
+
+}
+
 /*Profile*/
 
 .profile {
@@ -37,6 +45,7 @@ body {
 
 .profile-name {
   font-size: 26px;
+  font-family: 'Michroma'
 }
 
 .profile-followers, .profile-genres {
