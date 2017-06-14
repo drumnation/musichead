@@ -2,6 +2,14 @@
     color: #fff;
 }
 
+.loggedInMenu {
+    margin-bottom: 25px;
+}
+
 .brand {
     color: #fff;
+}
+
+.profile-buttons {
+    margin-top: 24px;
 }

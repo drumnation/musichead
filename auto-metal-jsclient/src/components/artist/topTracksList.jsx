@@ -85,7 +85,7 @@ class topTracksList extends Component {
 
 const title = (
     <p> 
-        <img src='/assets/werewolf-3.png'/><br/>
+        <img src='/assets/werewolf-3.png' alt="werewolf"/><br/>
         <strong>ARTIST TOP TRACKS</strong>
     </p>
 )

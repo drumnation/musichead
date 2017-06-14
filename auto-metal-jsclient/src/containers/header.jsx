@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row } from 'react-bootstrap'
 import TopNavLoggedIn from '../components/header/topNavLoggedIn'
 import TopNavLoggedOut from '../components/header/topNavLoggedOut'
 
@@ -10,10 +9,8 @@ class Header extends Component {
             <div>
                 <div>
                     {this.props.loggedIn
-                        ?
-                            <div><TopNavLoggedIn /></div>
-                        :
-                            <div><TopNavLoggedOut /></div>
+                        ? <TopNavLoggedIn />
+                        : <TopNavLoggedOut />
                     }
                 </div>
             </div>

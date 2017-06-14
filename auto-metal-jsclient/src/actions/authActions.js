@@ -10,7 +10,7 @@ export function logOut() {
     return function (dispatch) {
         localStorage.clear()
         dispatch({
-        type: 'LOG_OUT'
+            type: 'LOG_OUT'
         })
     }
 }

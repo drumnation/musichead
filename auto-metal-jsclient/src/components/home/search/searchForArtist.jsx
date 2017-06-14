@@ -21,7 +21,7 @@ class SearchForArtist extends Component {
 
     search() {
         const spotify = new Spotify()
-        spotify.setAccessToken('BQA7GL3Kf9WVsZqjDlsGi5l_mnPyx2gbmMxtUPnXXYWhkaS0FDnmPeeSrH9cDqAhAL-rmsIL5fywCNV-ZlXi8Z9EhDb4EQ6nuMBIAJ5YCEm94mcoVN7cZ6OatVHnetlLr2Ai5rdxSYDjbIjD_pMldE5-UgawyiZ7mRepx2KNMgLH_7KT1HX8EW9WP-pxecCND_jPjIqtfhk8EBhbiZWf3inmIlo8FiRrTn26ELn5aBxWspfQIF5XHxc13y8LfTmbn6v86Vcl52P0baqOOZ1zXoL1TPwmDnutm9pX3SwpVMNK74jcwza7t-fsIf1lSd8IIg15')
+        spotify.setAccessToken('BQCZsXD7b3Vl7dLEHlknPPv0MbRM_iYj06HrPLLfB_UyW12qKA4ZKLZYRgqZ5Z3-yQX6AeBfoFIAczxFVZ7JXHZSS2ZWGW1LfHmnd8SwEFIdUzKsqyl1NlRCyYk_SmhF3RYijpf1U0iZ-423EFLaqMxwYihKkBTy_spCQlnSiU1IxZj6CLoAMAIspsn5GiH3hn3HKqLVxc5_gp-qGIF32a9wZi1I9bA4MJ0c9jDY21BYj9Sne2oj5vc6b48MYue8d3gVWpWRQ1rZF20ncpYfrLEeSYJjMXxLTtmGN-03On3ovp8J-NXNAn5uLMRmMU5wjhCM')
         if (this.state.query !== '') {
         spotify.searchArtists(this.state.query)
             .then( response => {
@@ -75,7 +75,7 @@ class SearchForArtist extends Component {
 
 const title = (
     <p> 
-        <img src='/assets/long-beard-2.png'/><br/>
+        <img src='/assets/long-beard-2.png' alt="beard guy icon"/><br/>
         <strong>ARTIST SEARCH</strong>
     </p>
 )

@@ -42,7 +42,7 @@ class TopNavNotLoggedIn extends Component {
                         <h2>
                             <strong>
                                 <NavLink className="brand" to="/">
-                                <img src="/assets/metal-hand-icon-2-1.png" /> MetalHead</NavLink>
+                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> MetalHead</NavLink>
                             </strong>
                         </h2>
                     </Col>

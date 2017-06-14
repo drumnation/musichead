@@ -8,9 +8,8 @@ class UserProfileHeader extends Component {
         return (
             <div style={profileParent}>
                 <div style={profileStyle}>
-                {/*<div style={profileStyle} className="image-group cover-image">*/}
                     <div className="profile-image-group" style={profileUserImage}>
-                        <img src="/assets/default_face_image.jpeg" className="profile-image" />
+                        <img alt="profile" src="/assets/default_face_image.jpeg" className="profile-image" />
                         <label htmlFor="image-checkbox" className="image-overlay">
                             <i className="fa fa-camera"></i>
                         </label>

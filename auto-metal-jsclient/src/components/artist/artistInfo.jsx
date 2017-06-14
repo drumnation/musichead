@@ -8,7 +8,7 @@ class ArtistInfo extends Component {
         let artist = {name: '', followers: {total: ''}, images: [{url: ''}], genres: []}
         artist = this.props.artist !== null ? this.props.artist : artist
         return (
-            <Panel id="artist">
+            <Panel header={title} id="artist">
                 <div className="profile">
                     <img
                         alt="Profile"
@@ -39,7 +39,7 @@ class ArtistInfo extends Component {
 
 const title = (
     <p> 
-        <img src='/assets/skull-1.png'/><br/>
+        {/*<img src='/assets/skull-1.png' alt="skull"/><br/>*/}
         <strong>ARTIST</strong>
     </p>
 )

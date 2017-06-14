@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Panel } from 'react-bootstrap'
 import '../../App.css'
 import './style.css'
 

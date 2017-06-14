@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 
 // function logIn(userAttributes) { // ALSO WORKS AND IS MUCH SHORTER
 //     axios.post('http://localhost:3000/api/v1/sessions/', userAttributes)

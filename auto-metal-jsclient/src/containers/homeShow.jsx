@@ -4,7 +4,6 @@ import HomeLoggedOut from '../components/home/homeLoggedOut'
 import { connect } from 'react-redux'
 
 const HomeShow = (props) => {
-    console.log(props)
     return props.loggedIn ? <HomeLoggedIn/> : <HomeLoggedOut/>
 }
 

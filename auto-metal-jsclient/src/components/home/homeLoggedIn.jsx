@@ -3,7 +3,8 @@ import SearchForArtist from './search/searchForArtist'
 import SearchForLabel from './search/searchForLabel'
 import SearchForTrack from './search/searchForTrack'
 import SearchForAlbum from './search/searchForAlbum'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { Grid, Col, Row } from 'react-bootstrap'
 
 class HomeLoggedIn extends Component {
     render() {
@@ -18,4 +19,4 @@ class HomeLoggedIn extends Component {
     }
 }
 
-export default HomeLoggedIn
+export default withRouter(HomeLoggedIn)
