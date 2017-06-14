@@ -17,17 +17,16 @@ export function logOut() {
 
 export function fetchLogIn(user, history) {
     return function (dispatch) {
-
         dispatch(requestLogIn())
 
         return logIn(user)
         .then( data => {
-            if(data.error) {
-            dispatch(logInError(data.error))
+            if (data.error) {
+                dispatch(logInError(data.error))
             } else {
-            dispatch(receiveLogIn(data))
-            history.push('/')
-            return data
+                dispatch(receiveLogIn(data))
+                history.push('/')
+                return data
             }
         })
     }
@@ -51,6 +50,8 @@ export function requestLogIn( account ) {
 export function receiveLogIn( data ) {
     return function (dispatch) {
         localStorage.setItem('jwt', data.token)
+        localStorage.setItem('user_id', data.id)
+        localStorage.setItem('profile_image', data.image)
         dispatch(logInAction())
         dispatch({
             type: 'RECEIVE_LOG_IN',

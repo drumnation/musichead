@@ -3,18 +3,29 @@ import { Link, NavLink, Switch, Route } from 'react-router-dom'
 import { ButtonGroup, ButtonToolbar, Button, Row, Col } from 'react-bootstrap'
 import connectedWithRoutes from '../../hocs/connectedWithRoutes'
 import { logOut } from '../../actions/authActions'
+import { fetchUser } from '../../api/railsApi'
 import '../../App.css'
 import './style.css'
 
 class TopNavLoggedIn extends Component {
-    handleConnectSpotifyClick() {
+    constructor() {
+        super()
+        this.state = {
+            userName: '',
+            userImage: ''
+        }
+    }
 
+    componentDidMount() {
+        fetchUser(localStorage["user_id"])
+            .then(user => this.setState({userName: user.name, userImage: user.image}))
+        console.log('state', this.state)
     }
 
     render() {
         return (
             <Row>
-                <Col xs={4} md={6} className="text-left">
+                <Col xs={4} md={8} className="text-left">
                     <h2>
                         <strong>
                             <NavLink className="brand" to="/">
@@ -26,7 +37,7 @@ class TopNavLoggedIn extends Component {
                 <ButtonToolbar className="profile-buttons">
                     <Button bsSize="lg" onClick={this.props.logUserOut}>Log Out</Button>
                     <Link to="/profile/"><Button bsStyle="primary" bsSize="large">Profile</Button></Link>
-                    <Link to="/profile/"><img width={64} height={64} src="/assets/default_face_image.jpeg" alt="face"/></Link>
+                    <Link to="/profile/"><img className="topnav-profile-img" width={64} height={64} src={localStorage["profile_image"]} alt="face"/></Link>
                     <Switch>
                         <Route path="/profile">
                             <Button 

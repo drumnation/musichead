@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { fetchLogIn } from '../../actions/authActions'
 import { connect } from 'react-redux'
 import { 
@@ -42,8 +42,9 @@ class TopNavNotLoggedIn extends Component {
                     <Col xs={4} md={8} className="text-left">
                         <h2>
                             <strong>
-                                <NavLink className="brand" to="/">
-                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MetalHead</span></NavLink>
+                                <Link className="brand" to="/">
+                                    <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MetalHead</span>
+                                </Link>
                             </strong>
                         </h2>
                     </Col>
@@ -51,7 +52,7 @@ class TopNavNotLoggedIn extends Component {
                 <Row>
                     <Navbar inverse>
                         <Nav pullRight> 
-                            <Form inline style={inlineForm} onSubmit={ this.handleLogin.bind(this)  }>
+                            <Form inline style={inlineForm} onSubmit={ this.handleLogin.bind(this) }>
                                 <FormGroup controlId="formInlineEmail">
                                     {' '}
                                     <FormControl value={this.state.email} type="email" placeholder="Email" onChange={(event) => this.setState({email: event.target.value})}/>

@@ -18,3 +18,12 @@
     font-family: 'Bungee';
     /*font-family: 'New Rocker';*/
 }
+
+.topnav-profile-img {
+    width: 64px;
+    height: 64px;
+    float: center;
+    border: 3px solid #FFF;
+    border-radius: 75px;
+    object-fit: cover;
+}

@@ -9,7 +9,8 @@ import {
     Button, 
     Glyphicon 
 } from 'react-bootstrap'
-
+import { fetchSignUp} from '../../actions/signupActions'
+import connectedWithRoutes from '../../hocs/connectedWithRoutes'
 
 const features = {
     fontSize: "18px"
@@ -25,6 +26,21 @@ const submitButton = {
 }
 
 class HomeLoggedOut extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: ''
+        }
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+        this.props.signUp(this.state, this.props.history)
+    }
+
     render() {
         return (
             <div>
@@ -32,7 +48,7 @@ class HomeLoggedOut extends Component {
                     <Row className="show-grid">
                         <Col md={6} mdPush={6}>
                         
-                            <div className="text-left" align="top">
+                            <div className="text-left">
                                 <h1>
                                     Sign Up <img src="/assets/cemetary-3-1.png" style={tombstone} alt="tombstone"/>
                                 </h1>
@@ -40,28 +56,48 @@ class HomeLoggedOut extends Component {
                                 <br/>
                             </div>    
 
-                            <Form horizontal>
+                            <Form onSubmit={this.handleSubmit.bind(this) } horizontal>
                                 <FormGroup controlId="formHorizontalUsername">
                                     <Col sm={10}>
-                                        <FormControl type="email" placeholder="Name" />
+                                        <FormControl 
+                                            type="text" 
+                                            placeholder="Name" 
+                                            value={this.state.name} 
+                                            onChange={ event => this.setState({ name: event.target.value }) } 
+                                        />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalEmail">
                                     <Col sm={10}>
-                                        <FormControl type="email" placeholder="Email" />
+                                        <FormControl
+                                            type="email" 
+                                            placeholder="Email"
+                                            value={this.state.email} 
+                                            onChange={(event) => this.setState({email: event.target.value})} 
+                                        />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalPassword">
                                     <Col sm={10}>
-                                        <FormControl type="password" placeholder="Password" />
+                                        <FormControl
+                                            type="password" 
+                                            placeholder="Password"
+                                            value={this.state.password} 
+                                            onChange={(event) => this.setState({password: event.target.value})}
+                                        />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalPasswordConfirmation">
                                     <Col sm={10}>
-                                        <FormControl type="password" placeholder="Password Confirmation" />
+                                        <FormControl
+                                            type="password" 
+                                            placeholder="Password Confirmation"
+                                            value={this.state.password_confirmation} 
+                                            onChange={(event) => this.setState({password_confirmation: event.target.value})} 
+                                        />
                                     </Col>
                                 </FormGroup>
 
@@ -76,7 +112,7 @@ class HomeLoggedOut extends Component {
                             </Form>
                         </Col>
                         <Col md={6} mdPull={6}>
-                            <h2 className="text-left" align="top">Connect with metal heads from around the world to watch, listen, and share your favorite tracks.</h2>
+                            <h2 className="text-left">Connect with metal heads from around the world to watch, listen, and share your favorite tracks.</h2>
                             <br/>
                             <div className="text-left">
                                 <p style={features}><Glyphicon glyph="cd" /> <strong>See latest releases</strong> from record labels in News Feed.</p>
@@ -93,5 +129,15 @@ class HomeLoggedOut extends Component {
     }
 }
 
-export default HomeLoggedOut
+function mapStateToProps(state, ownProps) {
+    return ownProps
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+    return { 
+        signUp: (state, history) => dispatch(fetchSignUp(state, history))
+    }
+}
+
+export default connectedWithRoutes(mapStateToProps, mapDispatchToProps)(HomeLoggedOut)
             

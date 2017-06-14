@@ -8,11 +8,11 @@ export function fetchSignUp(user, history) {
         return createUser(user)
         .then( data => {
             if(!!data.error) {
-            dispatch(signUpError(data.error))
+                dispatch(signUpError(data.error))
             } else {
-            dispatch(receiveSignUp(data))
-            history.push('/')
-            return data
+                dispatch(receiveSignUp(data))
+                history.push('/')
+                return data
             }
         })
     }
@@ -35,13 +35,13 @@ function signUpError(error) {
 
 function receiveSignUp(data) {
     return function (dispatch) {
-        localStorage.setItem('jwt', data.token)
-        localStorage.setItem('email', data.account.email)
+        localStorage.setItem('email', data.email)
+        localStorage.setItem('user_id', data.id)
         dispatch(logInAction())
         dispatch({
             type: 'RECEIVE_SIGN_UP',
             status: 'success',
-            email: data.account.email,
+            email: data.email,
             receivedAt: Date.now()
         })
     }

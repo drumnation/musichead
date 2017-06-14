@@ -7,6 +7,12 @@ import UserFavoriteBands from '../components/user/userFavoriteBands'
 import UserFavoriteTracks from '../components/user/userFavoriteTracks'
 
 class UserShow extends Component {
+    componentDidMount(props) {
+        if (!localStorage.jwt) {
+            this.props.history.push('/')
+        }
+    }
+
     render() {
         return (
             <div>

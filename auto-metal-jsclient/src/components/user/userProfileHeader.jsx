@@ -9,7 +9,7 @@ class UserProfileHeader extends Component {
             <div style={profileParent}>
                 <div style={profileStyle}>
                     <div className="profile-image-group" style={profileUserImage}>
-                        <img alt="profile" src="/assets/default_face_image.jpeg" className="profile-image" />
+                        <img alt="profile" src={localStorage["profile_image"]} className="profile-image" />
                         <label htmlFor="image-checkbox" className="image-overlay">
                             <i className="fa fa-camera"></i>
                         </label>

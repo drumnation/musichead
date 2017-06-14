@@ -6,7 +6,7 @@ class Api::V1::SessionsController < ApplicationController
         user = User.find_by(email: params[:email])
         if user.present? && user.authenticate(params[:password])
             token = JWT.encode({user_id: user.id}, SECRET, ALGORITHM)
-            render json: {token: token}
+            render json: {token: token, id: user.id, image: user.image}
         end
     end
 

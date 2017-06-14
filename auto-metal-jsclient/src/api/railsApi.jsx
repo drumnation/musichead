@@ -25,6 +25,15 @@ function fetchUsers(){
     .then( res => res.json() )
 }
 
+function fetchUser(id) {
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+        headers: {
+            'Authorization': localStorage.getItem('jwt')
+        }
+    })
+    .then( res => res.json() )
+}
+
 function createUser(user) {
     return fetch('http://localhost:3000/api/v1/users/', {
         headers: {
@@ -60,4 +69,4 @@ function deleteUser(user) {
     }).then( res => res.json() )
 }
 
-export { logIn, fetchUsers, createUser, updateUser, deleteUser }
+export { logIn, fetchUser, fetchUsers, createUser, updateUser, deleteUser }
