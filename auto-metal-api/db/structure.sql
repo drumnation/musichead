@@ -282,9 +282,17 @@ CREATE TABLE users (
     id integer NOT NULL,
     name character varying,
     email character varying,
+    image character varying,
+    birthdate date,
+    country_code character varying,
+    follower_count integer,
     password_digest character varying,
+    spotify_uid integer,
+    spotify_profile_url character varying,
     spotify_token character varying,
-    uid character varying,
+    spotify_refresh_token character varying,
+    spotify_token_expires_at integer,
+    spotify_token_expires boolean,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

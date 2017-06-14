@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  mount ActionCable.server => 'cable'
+  # mount ActionCable.server => 'cable'
 
-  get '/spotify', to: 'o_auth#spotify'
-
+  # get '/spotify', to: 'o_auth#spotify'
+  get '/auth/:provider/callback', to: 'omni#create'
   namespace :api do
     namespace :v1 do
       resources :artists
@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       resources :songs
       resources :record_labels
       resources :genres
-      post '/sessions', to: 'sessions#create'
+      resources :users
+      post '/sessions', to: 'sessions#new'
     end
   end  
 

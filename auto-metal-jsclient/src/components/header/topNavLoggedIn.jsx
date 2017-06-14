@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, Switch, Route } from 'react-router-dom'
 import { ButtonGroup, ButtonToolbar, Button, Row, Col } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import connectedWithRoutes from '../../hocs/connectedWithRoutes'
 import { logOut } from '../../actions/authActions'
 import '../../App.css'
 import './style.css'
 
 class TopNavLoggedIn extends Component {
+    handleConnectSpotifyClick() {
+
+    }
+
     render() {
         return (
             <Row>
-                <Col xs={4} md={8} className="text-left">
+                <Col xs={4} md={6} className="text-left">
                     <h2>
                         <strong>
                             <NavLink className="brand" to="/">
@@ -23,6 +27,17 @@ class TopNavLoggedIn extends Component {
                     <Button bsSize="lg" onClick={this.props.logUserOut}>Log Out</Button>
                     <Link to="/profile/"><Button bsStyle="primary" bsSize="large">Profile</Button></Link>
                     <Link to="/profile/"><img width={64} height={64} src="/assets/default_face_image.jpeg" alt="face"/></Link>
+                    <Switch>
+                        <Route path="/profile">
+                            <Button 
+                                bsStyle="success" 
+                                bsSize="lg"
+                                href="http://localhost:3000/auth/spotify?show_dialog=true"
+                            >
+                                Connect Spotify
+                            </Button>
+                        </Route>
+                    </Switch>
                 </ButtonToolbar>
                 <ButtonGroup bsSize="lg" className="loggedInMenu" justified>
                     <Button bsStyle="primary" href="#" type="button"><Link to="/artist">ARTIST</Link></Button>
@@ -45,4 +60,4 @@ function mapDispatchToProps(dispatch, ownProps) {
     }
 }
 
-export default connect(mapStateFromProps, mapDispatchToProps)(TopNavLoggedIn)
+export default connectedWithRoutes(mapStateFromProps, mapDispatchToProps)(TopNavLoggedIn)
