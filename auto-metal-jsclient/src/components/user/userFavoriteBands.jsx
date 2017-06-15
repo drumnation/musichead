@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Panel, Glyphicon } from 'react-bootstrap'
+import ArtistCard from '../artist/artistCard'
 
 class UserFavoriteBands extends Component {
     render() {
         return (
             <div>
                 <Panel header={title}>
-                    Panel content
+                    <ArtistCard/>
                 </Panel>
             </div>
         )

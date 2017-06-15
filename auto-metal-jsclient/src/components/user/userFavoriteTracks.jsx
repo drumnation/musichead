@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Panel, Glyphicon } from 'react-bootstrap'
 import TrackCard from '../track/trackCard'
-import ArtistCard from '../artist/artistCard'
 import LabelCard from '../label/labelCard'
 import AlbumCard from '../album/albumCard'
 
@@ -12,7 +11,6 @@ class UserFavoriteTracks extends Component {
                 <Panel header={title}>
                     <TrackCard/>
                     {/*<LabelCard/>*/}
-                    <ArtistCard/>
                     <AlbumCard/>
                 </Panel>
             </div>
