@@ -3,7 +3,8 @@ import {
     FormGroup, 
     FormControl, 
     InputGroup, 
-    Glyphicon 
+    Glyphicon,
+    Panel
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
 import ArtistShow from '../../../containers/artistShow'
@@ -40,30 +41,39 @@ class SearchForLabel extends Component {
 
     render() {
         return (
-            <FormGroup>
-                <InputGroup>
-                    <FormControl
-                        type="text"
-                        placeholder="Search for an Label"
-                        value={ this.state.query }
-                        onChange={ event => this.setState({ query: event.target.value }) }
-                        onKeyPress={ event => {
-                            if (event.key === 'Enter') {
-                                this.search()
-                            }
-                        }}
+            <Panel header={title}>
+                <FormGroup>
+                    <InputGroup>
+                        <FormControl
+                            type="text"
+                            placeholder="Search for an Label"
+                            value={ this.state.query }
+                            onChange={ event => this.setState({ query: event.target.value }) }
+                            onKeyPress={ event => {
+                                if (event.key === 'Enter') {
+                                    this.search()
+                                }
+                            }}
+                        />
+                        <InputGroup.Addon onClick={ () => this.search() }>
+                            <Glyphicon glyph="search"></Glyphicon>
+                        </InputGroup.Addon>
+                    </InputGroup>
+                    <ArtistShow 
+                        artist={this.state.artist}
+                        tracks={this.state.tracks}
                     />
-                    <InputGroup.Addon onClick={ () => this.search() }>
-                        <Glyphicon glyph="search"></Glyphicon>
-                    </InputGroup.Addon>
-                </InputGroup>
-                <ArtistShow 
-                    artist={this.state.artist}
-                    tracks={this.state.tracks}
-                />
-            </FormGroup>
+                </FormGroup>
+            </Panel>
         )
     }
 }
+
+const title = (
+    <p> 
+        <img src='/assets/pirate-skull-1.png' alt="beard guy icon"/><br/>
+        <strong>LABEL SEARCH</strong>
+    </p>
+)
 
 export default SearchForLabel

@@ -3,7 +3,8 @@ import {
     FormGroup, 
     FormControl, 
     InputGroup, 
-    Glyphicon 
+    Glyphicon, 
+    Panel 
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
 import TracksDisplay from '../../track/tracksDisplay'
@@ -38,30 +39,38 @@ class SearchForTrack extends Component {
 
     render() {
         return (
-            <FormGroup>
-                <h2>TRACK SEARCH BAR</h2>
-                <InputGroup>
-                    <FormControl
-                        type="text"
-                        placeholder="Search for a Track"
-                        value={ this.state.query }
-                        onChange={ event => this.setState({ query: event.target.value }) }
-                        onKeyPress={ event => {
-                            if (event.key === 'Enter') {
-                                this.search()
-                            }
-                        }}
+            <Panel header={title}>
+                <FormGroup>
+                    <InputGroup>
+                        <FormControl
+                            type="text"
+                            placeholder="Search for a Track"
+                            value={ this.state.query }
+                            onChange={ event => this.setState({ query: event.target.value }) }
+                            onKeyPress={ event => {
+                                if (event.key === 'Enter') {
+                                    this.search()
+                                }
+                            }}
+                        />
+                        <InputGroup.Addon onClick={ () => this.search() }>
+                            <Glyphicon glyph="search"></Glyphicon>
+                        </InputGroup.Addon>
+                    </InputGroup>
+                    <TracksDisplay
+                        tracks={this.state.tracks}
                     />
-                    <InputGroup.Addon onClick={ () => this.search() }>
-                        <Glyphicon glyph="search"></Glyphicon>
-                    </InputGroup.Addon>
-                </InputGroup>
-                <TracksDisplay
-                    tracks={this.state.tracks}
-                />
-            </FormGroup>
+                </FormGroup>
+            </Panel>
         )
     }
 }
+
+const title = (
+    <p> 
+        <img src='/assets/guitar-1.png' alt="beard guy icon"/><br/>
+        <strong>Track SEARCH</strong>
+    </p>
+)
 
 export default SearchForTrack

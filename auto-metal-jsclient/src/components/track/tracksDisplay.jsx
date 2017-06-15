@@ -43,7 +43,6 @@ class TracksDisplay extends Component {
         const tracks = this.props.tracks.tracks
         return (
             <div id="tracks">
-                <h2>TRACKS: SEARCH RESULTS</h2>
                     { tracks
                         ?   
                             tracks.map((track, i) => {
