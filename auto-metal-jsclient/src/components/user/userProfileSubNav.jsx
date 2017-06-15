@@ -8,7 +8,7 @@ class UserProfileSubNav extends Component {
         return (
             <Navbar>
                 <Nav pullRight>
-                    { !localStorage["spotify_token"]
+                    { localStorage["spotify_token"] !== ''
                         ?   
                             <NavItem 
                                 eventKey={1}

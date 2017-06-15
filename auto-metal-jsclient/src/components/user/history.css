@@ -17,7 +17,7 @@ strong {
   font-size: 2.4em;
 }*/
 #content {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   text-align: center;
 }
 /* Timeline */
@@ -40,20 +40,25 @@ strong {
   list-style: none;
   text-align: left;
   font-weight: 100;
-  max-width: 30%;
+  max-width: 50%;
 }
 .timeline h1,
 .timeline h2,
 .timeline h3 {
-  font-family: Helvetica, 'Oswald', sans-serif;
+  font-family: 'New Rocker', 'Oswald', sans-serif;
   letter-spacing: 1.5px;
   font-weight: 100;
+  font-size: 2em;
+}
+
+p {
   font-size: 1.4em;
 }
+
 .timeline .event {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-  padding-bottom: 25px;
-  margin-bottom: 50px;
+  /*padding-bottom: 25px;*/
+  /*margin-bottom: 50px;*/
   position: relative;
 }
 .timeline .event:last-of-type {

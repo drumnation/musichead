@@ -293,6 +293,7 @@ CREATE TABLE users (
     spotify_refresh_token character varying,
     spotify_token_expires_at integer,
     spotify_token_expires boolean,
+    facebook_token character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
