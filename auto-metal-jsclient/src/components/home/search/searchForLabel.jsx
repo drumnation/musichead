@@ -71,7 +71,7 @@ class SearchForLabel extends Component {
 
 const title = (
     <p> 
-        <img src='/assets/pirate-skull-1.png' alt="beard guy icon"/><br/>
+        <img src='/assets/pirate-skull-1.png' alt="skull icon"/><br/>
         <strong>LABEL SEARCH</strong>
     </p>
 )
