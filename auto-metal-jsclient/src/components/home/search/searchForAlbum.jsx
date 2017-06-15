@@ -20,7 +20,7 @@ class SearchForAlbum extends Component {
 
     search() {
         const spotify = new Spotify()
-        spotify.setAccessToken('BQAhM_fyTEvd8XGf32kcX5rzvfy5VpjvTX0gig-dRYEix3gP51jSnYMlKKFWu7T3KTr2Cci6ulRrhg5OcEecXyAwG-mXA8qEGw9dZlVAy78N3qC3bXtOoiePBLtzrMtOquRE06-ge8qxq3nLQYtrtxpDy0l4ogthHz6JZj75a5F2ys7npkE51jdbvVtg3UIQb7WG4cIg12QzYU_MyI7bMay9CpdOoDVJ-85AVTnMg3qo5TCSX4ZVZaECVIEQ_63PgjunUN1Fh2Iz_sPJoofsVXtRldxQ2TPQfSkE_ejVIeNwVOMwuMLW8ydzpecseqfMRHgl')
+        spotify.setAccessToken(localStorage["spotify_token"])
         if (this.state.query !== '') {
         spotify.searchArtists(this.state.query)
             .then( response => {

@@ -47,11 +47,14 @@ export function requestLogIn( account ) {
     }
 }
 
-export function receiveLogIn( data ) {
+export function receiveLogIn( user ) {
     return function (dispatch) {
-        localStorage.setItem('jwt', data.token)
-        localStorage.setItem('user_id', data.id)
-        localStorage.setItem('profile_image', data.image)
+        localStorage.setItem('jwt', user.token)
+        localStorage.setItem('user_id', user.id)
+        localStorage.setItem('profile_image', user.image)
+        localStorage.setItem('spotify_token', user.spotify_token)
+        localStorage.setItem('spotify_refresh_token', user.spotify_refresh_token)
+        localStorage.setItem('spotify_uid', user.spotify_uid)
         dispatch(logInAction())
         dispatch({
             type: 'RECEIVE_LOG_IN',

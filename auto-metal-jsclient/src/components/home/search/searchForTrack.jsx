@@ -20,7 +20,7 @@ class SearchForTrack extends Component {
 
     search() {
         const spotify = new Spotify()
-        spotify.setAccessToken('BQBquZi-WHxyo11Qr7XoCgOPiAhuAFEiGMF4SiS3HhqiZFByyYZ4lasHCYZuDrVQyvNNXj4k_8bI5b6BAI9UCWQMS3Wp5Q22RGjmt2r7UMB7rpvo4_6g9lX1T5QucRQpAIGZRmyLWCLsIERp4qQ2bMq-s4fXjFbkfjERM3brC0AQwuT3Xkaam6xJTUT2O-_PULSpdlooywmrKgu_39GhaEQEIRJLdBq3D0hl7NYy2bxxPGI_YiPlvYTMUZx1IRP6LpnswgDUNlhStMq7C0JtwwzkHELW7TIYhAJPfXx5SEjWIb1zjLJKuA7GsWeOgLiS08ru')
+        spotify.setAccessToken(localStorage["spotify_token"])
         if (this.state.query !== '') {
         spotify.searchTracks(this.state.query)
             .then( response => {
