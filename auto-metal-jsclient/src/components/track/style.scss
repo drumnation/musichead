@@ -1,0 +1,146 @@
+@import url(https://fonts.googleapis.com/css?family=RobotoDraft:400);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+
+.button {
+  $size: 56px;
+  $speed: 0.3s;
+  $bg-default: #E0E0E0;
+  $bg-active: #FF4081;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: $size;
+  width: $size;
+  margin: $size/-2;
+  border-radius: 100%;
+  background: none;;
+  font-family: "Roboto Draft", Roboto, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+  user-select: none;
+  
+  input {
+    position: absolute;
+    left: 50%;
+    top: 50%;;
+    transform: translate(-50%, -50%);
+  }
+  
+  label {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    
+    &[for="vote_down"] {
+      display: none;
+    }
+    &[for="vote_up"] {
+      display: block;
+    }
+  }
+  
+  #vote_up:checked ~{
+    label[for="vote_up"] {
+      display: none;
+    }
+    label[for="vote_down"] {
+      display: block;
+    }
+  }
+  
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    animation: null $speed forwards;
+    box-shadow: 
+        0 0 0 0 $bg-active inset,
+        0 0 0 $size/2 $bg-default inset;
+  }
+
+  .icon, .count, .count-up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $speed;
+  }
+  
+  .icon svg {
+    margin-bottom: 2em;
+    transition-delay: 0.1s
+ }
+  
+  .count {
+    transform: translate3d(0,0,0);
+    color: #000;
+    transition-delay: 0s
+  }
+  .count-up {
+    transform: translate3d(0,100%,0);
+    color: #fff;
+  }
+  
+  @keyframes up {
+    0% {
+      box-shadow: 
+        0 0 0 $size/2 $bg-default inset,
+        0 0 0 $size/2 $bg-active inset;
+    }
+    100% {
+      box-shadow: 
+        0 0 0 0 $bg-default inset,
+        0 0 0 $size/2 $bg-active inset;
+    }
+  }
+  @keyframes down {
+    0% {
+      box-shadow: 
+        0 0 0 $size/2 $bg-active inset,
+        0 0 0 $size/2 $bg-default inset;
+    }
+    100% {
+      box-shadow: 
+        0 0 0 0 $bg-active inset,
+        0 0 0 $size/2 $bg-default inset;
+    }
+  }
+  
+    #vote_down:checked ~ {
+        .bg {
+          animation-name: down;
+        }
+    }
+    #vote_up:checked ~ {
+      .bg {
+        animation-name: up;
+      }
+      .icon {
+        transform: translate3d(0,-100%,0);
+        transition-delay: 0s
+
+      }
+      .count-up {
+        transform: translate3d(0,0,0);
+     }
+      .count {
+        transform: translate3d(0,-100%,0);
+        transition-delay: 0.1s
+      }
+  }
+  
+}
+
+

@@ -1,3 +1,60 @@
 .panel-body #artist {
     background:grey;
 }
+
+.artist-title {
+    color: black;
+    text-align: left;
+    font-family: 'New Rocker';
+    font-size: 40px;
+    margin-top: 30px;
+}
+.artist-subinfo {
+    font-family: 'bungee';
+    color: black;
+    text-align: left;
+    font-size: 45px;
+    margin-top: 31px;
+}
+.artist-cover {
+    float: left;
+}
+
+.artist-body {
+    color: black;
+    text-align: left;
+    font-size: 16px;
+}
+.artist-row {
+    vertical-align: middle;
+}
+
+.artist-button {
+    color: black;
+    font-size: 30px;
+    text-align: left;
+    margin-top: 41px;
+    /*margin-right: 25px;*/
+    font-family: 'helvetica'
+}
+
+.large-band-img {
+    width: 128px;
+    height: 128px;
+    float: left;
+    border: 3px solid #000;
+    border-radius: 75px;
+    object-fit: cover;
+}
+.small-label-img {
+    width: 64px;
+    height: 64px;
+    float: left;
+    border: 3px solid #000;
+    object-fit: cover;
+}
+
+.label-title {
+    margin-left: 15px;
+    font-size: 30px;
+}

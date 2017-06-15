@@ -1,35 +1,35 @@
-.panel-body #tracks {
+.panel-body #albums {
     background:grey;
 }
 
-.track-title {
+.album-title {
     color: black;
     text-align: left;
     font-family: 'New Rocker';
-    font-size: 30px;
-    margin-top: 10px;
+    font-size: 33px;
+    margin-top: 14px;
 }
-.track-subinfo {
+.album-subinfo {
     font-family: 'bungee';
     color: black;
     text-align: left;
     font-size: 30px;
     margin-top: 31px;
 }
-.track-cover {
+.album-cover {
     float: left;
 }
 
-.track-body {
+.album-body {
     color: black;
     text-align: left;
     font-size: 16px;
 }
-.track-row {
+.album-row {
     vertical-align: middle;
 }
 
-.track-button {
+.album-button {
     color: black;
     font-size: 30px;
     text-align: left;
