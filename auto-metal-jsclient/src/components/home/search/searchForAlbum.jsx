@@ -6,14 +6,14 @@ import {
     Glyphicon 
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
-import ArtistShow from '../../../containers/artistShow'
+import AlbumShow from '../../../containers/albumShow'
 
 class SearchForAlbum extends Component {
     constructor(props){
         super(props)
         this.state = {
             query: '',
-            artist: null,
+            album: null,
             tracks: []
         }
     }
@@ -22,9 +22,9 @@ class SearchForAlbum extends Component {
         const spotify = new Spotify()
         spotify.setAccessToken(localStorage["spotify_token"])
         if (this.state.query !== '') {
-        spotify.searchArtists(this.state.query)
+        spotify.searchAlbums(this.state.query)
             .then( response => {
-                let artist = response["artists"]["items"][0]
+                let artist = response["albums"]["items"][0]
                 if (!artist) {
                     return
                 } else {
@@ -57,10 +57,7 @@ class SearchForAlbum extends Component {
                         <Glyphicon glyph="search"></Glyphicon>
                     </InputGroup.Addon>
                 </InputGroup>
-                <ArtistShow 
-                    artist={this.state.artist}
-                    tracks={this.state.tracks}
-                />
+                <AlbumShow album={this.state.album}/>
             </FormGroup>
         )
     }

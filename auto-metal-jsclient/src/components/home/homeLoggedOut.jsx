@@ -9,8 +9,10 @@ import {
     Button, 
     Glyphicon 
 } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { fetchSignUp} from '../../actions/signupActions'
 import connectedWithRoutes from '../../hocs/connectedWithRoutes'
+import FacebookLogin from 'react-facebook-login'
 
 const features = {
     fontSize: "18px"
@@ -23,6 +25,10 @@ const tombstone = {
 
 const submitButton = {
     marginTop: "10px"
+}
+
+const responseFacebook = (response) => {
+    console.log(response);
 }
 
 class HomeLoggedOut extends Component {
@@ -106,6 +112,12 @@ class HomeLoggedOut extends Component {
                                         <Button bsStyle="danger" bsSize="large" type="submit" style={submitButton}>
                                             Create Account
                                         </Button>
+                                        {/*<FacebookLogin
+                                            appId="306729159767109"
+                                            autoLoad={true}
+                                            fields="name,email,picture"
+                                            callback={responseFacebook} 
+                                        />*/}
                                     </Col>
                                 </FormGroup>
 

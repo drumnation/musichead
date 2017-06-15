@@ -5,9 +5,6 @@ class AlbumInfo extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <h2>ALBUM INFO</h2>
-                </div>
                 <div className="profile">
                     <img
                     alt="Profile"
@@ -15,7 +12,7 @@ class AlbumInfo extends Component {
                     src="/assets/mastodon-cover.jpg"
                     />
                     <div className="profile-info">
-                        <div className="profile-name">Album Name</div>
+                        <div className="profile-name">{this.props.albumName}</div>
                         <div className="profile-followers">
                             <p>Release Year: 2017</p>
                             <p>Number of Tracks: 10</p>

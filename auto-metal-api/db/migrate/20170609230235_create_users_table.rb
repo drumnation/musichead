@@ -11,9 +11,10 @@ class CreateUsersTable < ActiveRecord::Migration[5.0]
       t.integer :spotify_uid
       t.string :spotify_profile_url
       t.string :spotify_token
-      t.string :spotify_refresh_token
+      t.string :spotify_refresh_token      
       t.integer :spotify_token_expires_at
       t.boolean :spotify_token_expires
+      t.string :facebook_token
       t.timestamps
     end
   end

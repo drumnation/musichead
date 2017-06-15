@@ -1,4 +1,36 @@
+require 'net/http'
+require 'uri'
+
 class OmniController < ApplicationController
+
+    def get_spotify_refresh_token
+        @user = User.find(params["user_id"])
+        uri = URI.parse("https://accounts.spotify.com/api/token")
+        byebug
+        request = Net::HTTP::Post.new(uri)
+        request["Authorization"] = `Basic ${@user.spotify_token}`
+        request.set_form_data(
+            "grant_type" => "refresh_token",
+            "refresh_token" => `${@user.spotify_refresh_token}`,
+        )
+        req_options = { use_ssl: uri.scheme == "https" }
+        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(request)
+        puts response.body
+    end
+
+    def fb_login
+        auth = request.env['omniauth.auth']
+        @user = User.find_or_create_by(email: auth.info.email)
+        @user.update({
+            name: auth.info.name,
+            email: auth.info.email,
+            facebook_token: params.code,
+        })
+        @user.save
+        session[:user_id] = @user.id
+        redirect_to 'http://localhost:3001/' 
+    end
 
     def create
         auth = request.env['omniauth.auth']
@@ -18,9 +50,7 @@ class OmniController < ApplicationController
             spotify_token_expires: auth.credentials.expires,
         })
         @user.save
-        session[:user_id] = @user.id
-        session[:return_to] ||= request.referer
         redirect_to 'http://localhost:3001/'
-        # render json: @user
     end
+
 end
