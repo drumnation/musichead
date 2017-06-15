@@ -7,7 +7,6 @@ import {
     Panel
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
-import AlbumShow from '../../../containers/albumShow'
 
 class SearchForAlbum extends Component {
     constructor(props){

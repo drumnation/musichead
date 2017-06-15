@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Panel, Glyphicon } from 'react-bootstrap'
 import TrackCard from '../track/trackCard'
-import LabelCard from '../label/labelCard'
+// import LabelCard from '../label/labelCard'
 import AlbumCard from '../album/albumCard'
 
 class UserFavoriteTracks extends Component {

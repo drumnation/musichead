@@ -9,10 +9,10 @@ import {
     Button, 
     Glyphicon 
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { fetchSignUp} from '../../actions/signupActions'
 import connectedWithRoutes from '../../hocs/connectedWithRoutes'
-import FacebookLogin from 'react-facebook-login'
+// import FacebookLogin from 'react-facebook-login'
 
 const features = {
     fontSize: "18px"
@@ -27,9 +27,9 @@ const submitButton = {
     marginTop: "10px"
 }
 
-const responseFacebook = (response) => {
-    console.log(response);
-}
+// const responseFacebook = (response) => {
+//     console.log(response);
+// }
 
 class HomeLoggedOut extends Component {
     constructor(props) {

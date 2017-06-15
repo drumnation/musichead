@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Link, NavLink, Switch, Route } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { ButtonGroup, ButtonToolbar, Button, Row, Col } from 'react-bootstrap'
 import connectedWithRoutes from '../../hocs/connectedWithRoutes'
 import { logOut } from '../../actions/authActions'
-import { fetchUser } from '../../api/railsApi'
 import '../../App.css'
 import './style.css'
 

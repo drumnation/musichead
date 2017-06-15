@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Nav, Navbar, NavItem } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
 
 class UserProfileSubNav extends Component {
     state = {  }
