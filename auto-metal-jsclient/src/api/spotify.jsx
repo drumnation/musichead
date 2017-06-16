@@ -43,7 +43,7 @@ function getArtistAlbums(artist) {
 
 function getRelatedArtists(seedArtist) {
     const spotifyApi = intitializeSpotify()
-    return
+    return 
 }
 
 // ALBUMS
@@ -53,8 +53,13 @@ function getAlbumTracks(album) {
     return spotifyApi.getAlbum(album.id)
     .then( data => data.tracks.map( track => track.id ))
     .then( trackIds => spotifyApi.getTracks(trackIds) )
-    .then( tracksInfo => console.log(tracksInfo) )
     .catch( error => console.error(error) )
+}
+
+function getNewAlbumReleases(){
+    const spotifyApi = intitializeSpotify()
+    return spotifyApi.getNewReleases()
+    .then( albums => albums.json())
 }
 
 
