@@ -69,7 +69,7 @@ class SearchForTrack extends Component {
 const title = (
     <p> 
         <img src='/assets/guitar-1.png' alt="beard guy icon"/><br/>
-        <strong>Track SEARCH</strong>
+        <strong>TRACK SEARCH</strong>
     </p>
 )
 

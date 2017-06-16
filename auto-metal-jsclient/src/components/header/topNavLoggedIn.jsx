@@ -26,7 +26,7 @@ class TopNavLoggedIn extends Component {
                     {/*<span>Hi, {localStorage['name']}!</span>*/}
                 </ButtonToolbar>
                 <ButtonGroup bsSize="lg" className="loggedInMenu" justified>
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/track">FEED</Link></Button>
+                    <Button bsStyle="primary" href="#" type="button"><Link to="/">FEED</Link></Button>
                     <Button bsStyle="primary" href="#" type="button"><Link to="/artist">ARTIST</Link></Button>
                     <Button bsStyle="primary" href="#" type="button"><Link to="/album">ALBUM</Link></Button>
                     <Button bsStyle="primary" href="#" type="button"><Link to="/track">TRACK</Link></Button>
