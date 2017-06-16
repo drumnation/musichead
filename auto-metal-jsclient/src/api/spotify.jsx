@@ -67,7 +67,7 @@ function getRelatedTracks(seedTrack) {
 
 // ME
 
-function getRecentlyPlayedTracks() {
+function getUserRecentlyPlayedTracks() {
     return fetch("https://api.spotify.com/v1/me/player/recently-played", {
         headers: {
             'Accept': 'application/json',
@@ -101,6 +101,86 @@ function getUserFollowedArtists() {
     .then( response => response.json())
 }
 
+// ME -> PLAYBACK
+
+function getUserCurrentlyPlayingTrack() {
+    return fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'GET',
+    })
+    .then( response => response.json())
+}
+
+function putStartStopUserPlayback(context_uri) {
+    return fetch("https://api.spotify.com/v1/me/player/play", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'PUT',
+        body: `${{context_uri: context_uri }}`
+    })
+    .then( response => response.json())
+}
+
+function putSeekToPositionInCurrentlyPlayingTrack(position_ms) {
+    return fetch(`https://api.spotify.com/v1/me/player/seek?position_ms=${position_ms}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'PUT',
+    })
+    .then( response => response.json())
+}
+
+// PLAYLISTS
+
+function postAddTracksToPlaylist(user_id, uris_to_add) {
+    return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'POST',
+    })
+    .then( response => response.json())
+    // request body or query string: uris, position *optional
+}
+
+function putReorderPlaylistTracks(user_id, uris_to_add) {
+    return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'POST',
+    })
+    .then( response => response.json())
+    // request body or query string: uris, position *optional
+}
+
+function deletePlaylistTracks(user_id, uris_to_add) {
+    return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'DELETE',
+    })
+    .then( response => response.json())
+    // request body or query string: uris, position *optional
+}
+
 export { 
     searchForArtist, 
     searchForTrack, 
@@ -110,8 +190,14 @@ export {
     getRelatedArtists,
     getAlbumTracks,
     getRelatedTracks,
-    getRecentlyPlayedTracks,
-    getUserSavedTracks
+    getUserRecentlyPlayedTracks,
+    getUserSavedTracks,
+    getUserCurrentlyPlayingTrack,
+    putStartStopUserPlayback,
+    putSeekToPositionInCurrentlyPlayingTrack,
+    postAddTracksToPlaylist,
+    putReorderPlaylistTracks,
+    deletePlaylistTracks
 }
 
 
