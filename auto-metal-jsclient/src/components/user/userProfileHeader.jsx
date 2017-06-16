@@ -38,41 +38,22 @@ class UserProfileHeader extends Component {
     }
     
     render() {
-        console.log('profile', profileStyle)
         const profileStyle = {
-            background: 'center no-repeat',
-            top: '0',
-            height: '640px',
-            backgroundSize: 'cover',
-            filter: 'blur(100)',
             backgroundImage: `url(${this.state.lastCover})`
         }
         return (
-            <div style={profileParent}>
-                <div style={profileStyle}>
-                    <div className="profile-image-group" style={profileUserImage}>
-                        <img alt="profile" src={localStorage["profile_image"]} className="profile-image" />
-                        <label htmlFor="image-checkbox" className="image-overlay">
-                            <i className="fa fa-camera"></i>
-                        </label>
-                    </div>
+            <div className="profile-container">
+                <div className="blur-bg" style={profileStyle}></div>
+                <div className="profile-image-group">
+                    <img alt="profile" src={localStorage["profile_image"]} className="profile-image" />
+                    <label htmlFor="image-checkbox" className="image-overlay">
+                        <i className="fa fa-camera"></i>
+                    </label>
                 </div>
                 <UserProfileSubNav/>
             </div>
         )
     }
-}
-
-const profileParent = {
-    position: 'relative'
-}
-
-
-const profileUserImage = {
-    zIndex: '1',
-    position: 'absolute',
-    bottom: '5px',
-    left: '50px'
 }
 
 export default UserProfileHeader
