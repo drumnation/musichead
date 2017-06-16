@@ -38,8 +38,6 @@ class UserFavoriteTracks extends Component {
             
 
             this.setState({ savedTracks: savedTracks })
-            console.log('this.state saved tracks: ', this.state)
-
         })
         
         function fetchArtistData(artistId) {
