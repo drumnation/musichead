@@ -15,10 +15,6 @@ h1 {
   font-family: 'New Rocker';
 }
 
-.panel-heading {
-
-}
-
 /*Profile*/
 
 .profile {
@@ -124,3 +120,8 @@ h1 {
 
 /*Not Logged In*/
 
+
+.big-artist {
+  width: 95%;
+  height: 95;
+}

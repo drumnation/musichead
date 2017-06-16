@@ -8,6 +8,7 @@ import {
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
 import TracksDisplay from '../../track/tracksDisplay'
+import TrackShow from '../../../containers/trackShow'
 
 class SearchForTrack extends Component {
     constructor(props){
@@ -61,7 +62,9 @@ class SearchForTrack extends Component {
                         tracks={this.state.tracks}
                     />
                 </FormGroup>
+                <TrackShow />
             </Panel>
+
         )
     }
 }

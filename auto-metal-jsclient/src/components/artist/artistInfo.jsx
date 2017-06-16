@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../../App.css'
-import { Panel } from 'react-bootstrap'
+import { Panel, Row, Col } from 'react-bootstrap'
 import './style.css'
 
 class ArtistInfo extends Component {
@@ -8,30 +8,35 @@ class ArtistInfo extends Component {
         let artist = {name: '', followers: {total: ''}, images: [{url: ''}], genres: []}
         artist = this.props.artist !== null ? this.props.artist : artist
         return (
-            <Panel header={title} id="artist">
-                <div className="profile">
-                    <img
-                        alt="Profile"
-                        className="profile-img"
-                        src={artist.images[0].url}
-                    />
-                    <div className="profile-info">
-                        <div className="profile-name">{artist.name}</div>
-                        <div className="profile-followers">
+            <Panel>
+                <Row>
+                    <Col md={6}>
+                        <img
+                            alt="Profile"
+                            className="big-artist"
+                            src={artist.images[0].url}
+                        />
+                    </Col>
+                    <Col className="track-details-col" md={6}>
+                        <Row className="band-name">
+                            {artist.name}
+                        </Row>
+                        <Row className="album-title">
                             {artist.followers.total} followers
-                        </div>
-                        <div className="profile-genres">
+                        </Row>
+                        <Row className="genres">
+                            <strong>Genres:</strong>
                             {
-                                artist.genres.map((genre, i) => {
-                                    genre = genre !== artist.genres[artist.genres.length - 1]
-                                                ? ` ${genre},`
-                                                : ` & ${genre}`
-                                    return <span key={i}>{genre}</span>
-                                })
-                            }
-                        </div>
-                    </div>
-                </div>
+                                    artist.genres.map((genre, i) => {
+                                        genre = genre !== artist.genres[artist.genres.length - 1]
+                                                    ? ` ${genre},`
+                                                    : ` & ${genre}`
+                                        return <span key={i}>{genre}</span>
+                                    })
+                                }
+                        </Row>
+                    </Col>
+                </Row>
             </Panel>
         )
     }
