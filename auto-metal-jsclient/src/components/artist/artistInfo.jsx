@@ -18,7 +18,7 @@ class ArtistInfo extends Component {
                         />
                     </Col>
                     <Col className="track-details-col" md={6}>
-                        <Row className="band-name">
+                        <Row className="artist-subinfo">
                             {artist.name}
                         </Row>
                         <Row className="album-title">

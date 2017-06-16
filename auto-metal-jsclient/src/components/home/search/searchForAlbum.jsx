@@ -7,6 +7,7 @@ import {
     Panel
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
+import AlbumShow from '../../../containers/albumShow'
 
 class SearchForAlbum extends Component {
     constructor(props){
@@ -40,6 +41,7 @@ class SearchForAlbum extends Component {
 
     render() {
         return (
+            <div>
             <Panel header={title}>
                 <FormGroup>
                     <InputGroup>
@@ -60,6 +62,8 @@ class SearchForAlbum extends Component {
                     </InputGroup>
                 </FormGroup>
             </Panel>
+            <AlbumShow/>
+            </div>
         )
     }
 }

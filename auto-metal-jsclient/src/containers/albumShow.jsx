@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
-import AlbumInfo from '../components/album/albumInfo'
+import AlbumInfoPanel from '../components/album/albumInfoPanel'
+import AlbumTracksPanel from '../components/album/albumTracksPanel'
+import { Row, Panel } from 'react-bootstrap'
 
 class AlbumShow extends Component {
-    state = {  }
     render() {
         return (
-            <div>
-                <AlbumInfo />
-            </div>
+            <Panel>
+            <Row>
+                <Panel>
+                    <AlbumInfoPanel/>
+                </Panel>
+                <Panel header="TRACKS">
+                    <AlbumTracksPanel/>
+                </Panel>
+            </Row>
+            </Panel>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Grid, Col, Row } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
-class RelatedArtistsPanel extends Component {
+class AlbumTracksPanel extends Component {
     render() {
         return (
             <Row>
@@ -12,7 +12,7 @@ class RelatedArtistsPanel extends Component {
                         src="/assets/mastodon-band.jpg"
                     />
                     <Row className="track-text">
-                        ARTIST NAME
+                        TRACK TITLE
                     </Row>
                 </Row>
                 <Row className="track">
@@ -90,4 +90,4 @@ class RelatedArtistsPanel extends Component {
     }
 }
 
-export default RelatedArtistsPanel
+export default AlbumTracksPanel
