@@ -16,10 +16,10 @@ function accountReducer(state = initialState, action) {
             isPosting: false,
             receivedAt: action.receivedAt
         }
-        if(action.status === 'error') {
+        if (action.status === 'error') {
             return {
-            ...returnState,
-            error: action.error
+                ...returnState,
+                error: action.error
             }
         }
         return {

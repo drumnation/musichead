@@ -6,8 +6,9 @@ import {
     Glyphicon,
     Panel
 } from 'react-bootstrap'
-import Spotify from 'spotify-web-api-js'
+// import Spotify from 'spotify-web-api-js'
 import ArtistShow from '../../../containers/artistShow'
+import { searchForArtist, getArtistTopTracks } from '../../../api/spotify'
 
 class SearchForArtist extends Component {
     constructor(props){
@@ -20,23 +21,17 @@ class SearchForArtist extends Component {
     }
 
     search() {
-        const spotify = new Spotify()
-        spotify.setAccessToken(localStorage["spotify_token"])
-        if (this.state.query !== '') {
-        spotify.searchArtists(this.state.query)
-            .then( response => {
-                let artist = response["artists"]["items"][0]
-                if (!artist) {
-                    return
-                } else {
-                    this.setState({ artist })
-                    spotify.getArtistTopTracks(artist.id, "US")
-                    .then(tracks => {
-                        this.setState({ tracks })
-                    })
-                }
-            })
-        }
+        searchForArtist(this.state.query)
+        .then( response => {
+            let artist = response["artists"]["items"][0]
+            if (!artist) {
+                return
+            } else {
+                this.setState({ artist })
+                getArtistTopTracks(artist)
+                .then( tracks => this.setState({ tracks }) )
+            }
+        })
     }
 
     render() {

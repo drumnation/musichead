@@ -107,6 +107,12 @@ h1 {
   animation-duration: 0.3s;
 }
 
+.view-track-button {
+  position: relative;
+  display: block;
+  margin-right: 15px;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

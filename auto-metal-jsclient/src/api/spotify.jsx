@@ -2,39 +2,42 @@ import Spotify from 'spotify-web-api-js'
 
 // SEARCH
 
-function initializeSpotify() {
-    const spotify = new Spotify()
-    spotify.setAccessToken(localStorage["spotify_token"])
-    return spotify
-}
-
 function searchForArtist(query) {
-    const spotifyApi = intitializeSpotify()
+    const spotifyApi = new Spotify()
+    spotifyApi.setAccessToken(localStorage["spotify_token"])
     return spotifyApi.searchArtists(query)
-    .then( artists => artists.json() )
 }
 
 function searchForTrack(query) {
-    const spotifyApi = intitializeSpotify()
-    return spotifyApi.searchTracks('Love')
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
+    return spotify.searchTracks('Love')
     .then( track => track.json())
 }
 
 function searchForAlbum(query) {
-    const spotifyApi = intitializeSpotify()
+    return fetch(`https://api.spotify.com/v1/search?q=album:${query}&type=album&limit=1`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'GET',
+    }).then( response => response.json())
 }
 
 // ARTIST
 
 function getArtistTopTracks(artist) {
-    const spotifyApi = intitializeSpotify()
-    return spotifyApi.getArtistTopTracks(artist.id, "US")
-    .then(topTracks => topTracks.json())
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
+    return spotify.getArtistTopTracks(artist.id, "US")
 }
 
 function getArtistAlbums(artist) {
-    const spotifyApi = intitializeSpotify()
-    return spotifyApi.getArtistAlbums(artist.id, {limit: 10, offset: 20}, function(err, data) {
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
+    return spotify.getArtistAlbums(artist.id, {limit: 10, offset: 20}, function(err, data) {
         if (err) console.error(err)
         else console.log('Artist albums', data)
     })
@@ -42,23 +45,23 @@ function getArtistAlbums(artist) {
 }
 
 function getRelatedArtists(seedArtist) {
-    const spotifyApi = intitializeSpotify()
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
     return 
 }
 
 // ALBUMS
 
-function getAlbumTracks(album) {
-    const spotifyApi = intitializeSpotify()
-    return spotifyApi.getAlbum(album.id)
-    .then( data => data.tracks.map( track => track.id ))
-    .then( trackIds => spotifyApi.getTracks(trackIds) )
-    .catch( error => console.error(error) )
+function getAlbumTracks(albumId) {
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
+    return spotify.getAlbumTracks(albumId)
 }
 
 function getNewAlbumReleases(){
-    const spotifyApi = intitializeSpotify()
-    return spotifyApi.getNewReleases()
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
+    return spotify.getNewReleases()
     .then( albums => albums.json())
 }
 
@@ -66,7 +69,8 @@ function getNewAlbumReleases(){
 // TRACKS
 
 function getRelatedTracks(seedTrack) {
-    const spotifyApi = intitializeSpotify()
+    const spotify = new Spotify()
+    spotify.setAccessToken(localStorage["spotify_token"])
     return
 }
 
@@ -147,7 +151,7 @@ function putSeekToPositionInCurrentlyPlayingTrack(position_ms) {
 
 // PLAYLISTS
 
-function postAddTracksToPlaylist(user_id, uris_to_add) {
+function postAddTracksToPlaylist(user_id, playlist_id, uris_to_add) {
     return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
         headers: {
             'Accept': 'application/json',
@@ -160,7 +164,7 @@ function postAddTracksToPlaylist(user_id, uris_to_add) {
     // request body or query string: uris, position *optional
 }
 
-function putReorderPlaylistTracks(user_id, uris_to_add) {
+function putReorderPlaylistTracks(user_id, playlist_id, uris_to_add) {
     return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
         headers: {
             'Accept': 'application/json',
@@ -173,7 +177,7 @@ function putReorderPlaylistTracks(user_id, uris_to_add) {
     // request body or query string: uris, position *optional
 }
 
-function deletePlaylistTracks(user_id, uris_to_add) {
+function deletePlaylistTracks(user_id, playlist_id, uris_to_add) {
     return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
         headers: {
             'Accept': 'application/json',
