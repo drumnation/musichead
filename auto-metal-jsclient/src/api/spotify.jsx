@@ -45,7 +45,7 @@ function getArtistAlbums(artist) {
 }
 
 function getRelatedArtists(seedArtist) {
-    return fetch(`https://api.spotify.com/v1/artists/${seedArtist.id}/related-artists`, {
+    return fetch(`https://api.spotify.com/v1/artists/${seedArtist}/related-artists`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -73,10 +73,15 @@ function getNewAlbumReleases(){
 
 // TRACKS
 
-function getRelatedTracks(seedTrack) {
-    const spotify = new Spotify()
-    spotify.setAccessToken(localStorage["spotify_token"])
-    return
+function getRelatedTracksBasedOnTrack(track_id) {
+    return fetch(`https://api.spotify.com/v1/recommendations?seed_tracks=${track_id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'GET',
+    }).then( response => response.json())
 }
 
 // ME
@@ -203,7 +208,7 @@ export {
     getArtistAlbums,
     getRelatedArtists,
     getAlbumTracks,
-    getRelatedTracks,
+    getRelatedTracksBasedOnTrack,
     getUserRecentlyPlayedTracks,
     getUserSavedTracks,
     getUserCurrentlyPlayingTrack,

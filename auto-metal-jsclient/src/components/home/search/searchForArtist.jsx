@@ -37,7 +37,7 @@ class SearchForArtist extends Component {
                 .then( tracks => this.setState({ tracks }) )
                 getArtistAlbums(artist)
                 .then( albums => this.setState({ albums }))
-                getRelatedArtists( this.state.artist )
+                getRelatedArtists( artist.id )
                 .then( relatedArtists => {
                     this.setState({ relatedArtists })
                     this.setState({ fetching: false })

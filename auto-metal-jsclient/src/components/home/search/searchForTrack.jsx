@@ -9,10 +9,10 @@ import {
     Col
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
-import TracksDisplay from '../../track/tracksDisplay'
-import TrackShow from '../../../containers/trackShow'
-import { searchForTrack, searchForArtist, searchForAlbum } from '../../../api/spotify'
 import search from 'youtube-search'
+import { searchForTrack, searchForArtist, searchForAlbum, getRelatedTracksBasedOnTrack, getRelatedArtists } from '../../../api/spotify'
+import '../style.css'
+// import '../../../../app.css'
 
 class SearchForTrack extends Component {
     constructor(props){
@@ -22,6 +22,8 @@ class SearchForTrack extends Component {
             artist: [],
             tracks: [],
             video: [],
+            relatedTracks: [],
+            relatedArtists: [],
             album: null,
             fetching: undefined,
             playing: false,
@@ -42,15 +44,23 @@ class SearchForTrack extends Component {
                     let track = tracks.tracks.items[0]
                     this.setState({ fetching: true })
                     this.setState({ tracks })
-                    searchForAlbum(track.album.name)
-                    .then( album => this.setState({ album }) )
+                    if (track.album.name) {
+                        searchForAlbum(track.album.name)
+                        .then( album => this.setState({ album }) )
+                    }
                     searchForArtist(track.artists[0].name)
-                    .then( artist => this.setState({ artist }) )
+                    .then( artist => this.setState({ artist }))
+                    getRelatedArtists(track.artists[0].id)
+                    .then( relatedArtists => this.setState({ relatedArtists }) )
                     search(`${track.artists[0].name} ${track.name} Music Video`, opts, (err, video) => {
-                        console.log('youtube query', `${track.artists[0].name} ${track.name}`)
                         this.setState({video})
-                        this.setState({ fetching: false })
+                        console.log('this.video', video)
+                    })
+                    getRelatedTracksBasedOnTrack(track.id)
+                    .then( relatedTracks => {
+                        this.setState({ relatedTracks })
                         console.log('final state at end of promise', this.state)
+                        this.setState({ fetching: false })
                     })
                 } else {
                     console.log('loading')
@@ -66,103 +76,101 @@ class SearchForTrack extends Component {
         let track
         let album
         let artist
-        if (this.state.tracks && this.state.album && this.state.artist) {
-            track = this.state.tracks.tracks.items[0]
-            album = this.state.album.albums.items[0]
-            artist = this.state.artist.artists.items[0]
+        if (this.state.artist && this.state.album && this.state.artist) {
+                console.log('state render info', this.state)
+                track = this.state.tracks.tracks.items[0]
+                album = this.state.album.albums.items[0]
+                artist = this.state.artist.artists.items[0]
                 return (
-                    <Row>
-                        <Col md={6}>
-                            <img
-                                alt="album-cover"
-                                className="album-cover"
-                                src={album.images[0].url}
-                            />
-                        </Col>
-                        <Col className="track-details-col" md={6}>
-                            <Row className="track-info-title">
-                                {track.name}
-                            </Row>
-                            <Row className="album-title">
-                                {album.name}
-                            </Row>
-                            <Row className="band-name">
-                                {artist.name}
-                            </Row>
-                            <Row className="release-date">
-                                <strong>Popularity:</strong> {track.popularity}
-                            </Row>
-                            <Row className="release-label">
-                                <strong>Followers:</strong> {artist.followers.total}
-                            </Row>
-                            <Row className="genres">
-                                <strong>Genres:</strong> {artist.genres}
-                            </Row>
-                        </Col>
-                    </Row>
+                    <Panel header="Track Info">
+                        <Row>
+                            <Col md={6}>
+                                <img
+                                    alt="album-cover"
+                                    className="album-cover"
+                                    src={album.images[0].url}
+                                />
+                            </Col>
+                            <Col className="track-details-col" md={6}>
+                                <Row className="track-info-title">
+                                    {track.name}
+                                </Row>
+                                <Row className="album-title">
+                                    {album.name}
+                                </Row>
+                                <Row className="band-name">
+                                    {artist.name}
+                                </Row>
+                                <Row className="release-date">
+                                    <strong>Popularity:</strong> {track.popularity}
+                                </Row>
+                                <Row className="release-label">
+                                    <strong>Followers:</strong> {artist.followers.total}
+                                </Row>
+                                <Row className="genres">
+                                    <strong>Genres:</strong> {artist.genres}
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Panel>
                 )
             }
         }
 
     renderTrack() {
-        let track
-        let album
-        let artist
-        let video
-        if (this.state.tracks && this.state.album && this.state.artist && this.state.video) {
-            track = this.state.tracks.tracks.items[0]
-            album = this.state.album.albums.items[0]
-            artist = this.state.artist.artists.items[0]
-            video = this.state.video[0]
+        let track = this.state.tracks.tracks.items[0]
+        let video = this.state.video[0]
+        if (video) {
             return(
-                <Panel>
-                    <Row>
-                        <Col md={8}>
-                            <iframe width="100%" height="315" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allowfullscreen />
-                        </Col>
-                        <Col className="track-details-col" md={4}>
-                            <Row>
-                                <iframe src={`https://open.spotify.com/embed/track/${track.id}`} width="95%" height="315" frameborder="0" allowtransparency="true"/>
-                            </Row>
-                        </Col>
-                    </Row>
-                </Panel>
+                <Row>
+                    <Col md={8}>
+                        <iframe width="100%" height="315" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allowfullscreen />
+                    </Col>
+                    <Col className="track-details-col" md={4}>
+                        <Row>
+                            <iframe src={`https://open.spotify.com/embed/track/${track.id}`} width="95%" height="315" frameborder="0" allowtransparency="true"/>
+                        </Row>
+                    </Col>
+                </Row>
             )
         }
     }
 
     renderRelatedTracks() {
-        return(
-            <Panel header="Related Tracks">
+        console.log('got here related tracks')
+        return this.state.relatedTracks.tracks.map( track => {
+            return(
                 <Row className="track">
                     <img
                         alt="related-track-cover"
                         className="track-img"
-                        src="/assets/mastodon-band.jpg"
+                        src={track.album.images[0].url}
                     />
                     <Row className="track-text">
-                        ARTIST NAME
+                        {track.name}<br/>
+                        <strong>{track.artists[0].name}</strong>
                     </Row>
                 </Row>
-            </Panel>
-        )
+            )
+        })
     }
 
     renderRelatedArtists() {
-        return(
-            <Panel header="Related Artists">
+        let artists = this.state.relatedArtists.artists
+        return artists.map( artist => {
+            return(
                 <Row className="track">
                     <img
                         alt="related-track-cover"
                         className="track-img"
-                        src="/assets/mastodon-band.jpg"
+                        src={artist.images[0].url}
                     />
                     <Row className="track-text">
-                        ARTIST NAME
+                        {artist.name}
                     </Row>
                 </Row>
-            </Panel>
-        )
+            )
+        })
     }
 
     render() {
@@ -187,13 +195,13 @@ class SearchForTrack extends Component {
                     </InputGroup>
                 </FormGroup>
                 { 
-                    this.state.fetching === false 
+                    this.state.fetching === false
                         ? 
                             <div>
                                 {this.renderTrackInfo()}
-                                {this.renderTrack()}
-                                {this.renderRelatedTracks()}
-                                {this.renderRelatedArtists()}
+                                <Panel header="Listen">{this.renderTrack()}</Panel>
+                                <Panel header="Related Tracks">{this.renderRelatedTracks()}</Panel>
+                                <Panel header="Related Artists">{this.renderRelatedArtists()}</Panel>
                             </div>
                         : 
                             console.log('loading and not rendering tracks', this.state) 
