@@ -9,10 +9,14 @@ function searchForArtist(query) {
 }
 
 function searchForTrack(query) {
-    const spotify = new Spotify()
-    spotify.setAccessToken(localStorage["spotify_token"])
-    return spotify.searchTracks('Love')
-    .then( track => track.json())
+    return fetch(`https://api.spotify.com/v1/search?q=track:${query}&type=track&limit=1`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'GET',
+    }).then( response => response.json())
 }
 
 function searchForAlbum(query) {
@@ -37,17 +41,18 @@ function getArtistTopTracks(artist) {
 function getArtistAlbums(artist) {
     const spotify = new Spotify()
     spotify.setAccessToken(localStorage["spotify_token"])
-    return spotify.getArtistAlbums(artist.id, {limit: 10, offset: 20}, function(err, data) {
-        if (err) console.error(err)
-        else console.log('Artist albums', data)
-    })
-    .then(artistAlbums => artistAlbums.json())
+    return spotify.getArtistAlbums(artist.id, {limit: 20})
 }
 
 function getRelatedArtists(seedArtist) {
-    const spotify = new Spotify()
-    spotify.setAccessToken(localStorage["spotify_token"])
-    return 
+    return fetch(`https://api.spotify.com/v1/artists/${seedArtist.id}/related-artists`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'GET',
+    }).then( response => response.json())
 }
 
 // ALBUMS

@@ -19,12 +19,12 @@ class ArtistShow extends Component {
                         <Panel header="TOP TRACKS">
                             <TopTracksList tracks={ tracks }/>
                         </Panel>
-                        <Panel header="Albums">
+                        {/*<Panel header="Albums">
                             <ArtistAlbumsPanel/>
                         </Panel>
                         <Panel header="SIMILAR BANDS">
                             <RelatedArtistsPanel/>
-                        </Panel>
+                        </Panel>*/}
                     </Row>
                 : 
                     <div></div>

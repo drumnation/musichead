@@ -12,6 +12,7 @@ import Spotify from 'spotify-web-api-js'
 // import AlbumShow from '../../../containers/albumShow'
 import AlbumInfoPanel from '../../album/albumInfoPanel'
 import { searchForAlbum, getAlbumTracks } from '../../../api/spotify'
+import { Link } from 'react-router-dom'
 // import { connect } from 'react-redux'
 // import { album } from '../../../actions/albumActions'
 
@@ -20,10 +21,13 @@ class SearchForAlbum extends Component {
         super(props)
         this.state = {
             query: '',
+            artistName: '',
             album: null,
             albumId: null,
             albumTracks: [],
-            fetching: undefined
+            fetching: undefined,
+            playing: false,
+            playingUrl: ''
         }
     }
 
@@ -50,35 +54,35 @@ class SearchForAlbum extends Component {
         }
     }
 
-    searchTrackFromLink(track){
-        // searchTrack(track.id)
-        .then(
+    // searchTrackFromLink(track){
+    //     // searchTrack(track.id)
+    //     // .then(
 
-        )
-    }
+    //     // )
+    // }
 
-    search() {
-        if (this.state.query !== null) {
-            searchForAlbum(this.state.query)
-            .then( album => {
-                if (album) {
-                    this.setState({ fetching: true })
-                    console.log('state when fetching is true: ', album)
-                    if (album.albums.items[0]) {
-                        console.log('album info is set to state', album.albums.items[0].id)
-                        this.setState({ album: album, albumId: album.albums.items[0].id })
-                        let tracks = getAlbumTracks(this.state.albumId)
-                        .then( tracks => this.setState({ albumTracks: tracks }))
-                        .then( tracks => this.setState({fetching: false}))
-                        .then( tracks => console.log('state for last promise', this.state))
-                    } else {
-                        console.log('album id is undefined', this.state)
-                    }
-                }
-            })
+    // search() {
+    //     if (this.state.query !== null) {
+    //         searchForAlbum(this.state.query)
+    //         .then( album => {
+    //             if (album) {
+    //                 this.setState({ fetching: true })
+    //                 console.log('state when fetching is true: ', album)
+    //                 if (album.albums.items[0]) {
+    //                     console.log('album info is set to state', album.albums.items[0].id)
+    //                     this.setState({ album: album, albumId: album.albums.items[0].id })
+    //                     let tracks = getAlbumTracks(this.state.albumId)
+    //                     .then( tracks => this.setState({ albumTracks: tracks }))
+    //                     .then( tracks => this.setState({fetching: false}))
+    //                     .then( tracks => console.log('state for last promise', this.state))
+    //                 } else {
+    //                     console.log('album id is undefined', this.state)
+    //                 }
+    //             }
+    //         })
             
-        }
-    }
+    //     }
+    // }
 
     playAudio(previewUrl) {
         let audio = new Audio(previewUrl)
@@ -140,9 +144,9 @@ class SearchForAlbum extends Component {
                                     {`${track.track_number}. ${track.name}`}
                                 </Row>
                             </div>
-                            <Button bsStyle="primary" className="view-track-button">
-                                View track
-                            </Button>
+                            {/*<Button bsStyle="primary" className="view-track-button">
+                                <Link to={`/tracks/:artist/:trackname`}>View track</Link>
+                            </Button>*/}
                         </Row>
                     )
                 })
@@ -166,7 +170,6 @@ class SearchForAlbum extends Component {
                                 value={ this.state.query }
                                 onChange={ event => {
                                     this.setState({ query: event.target.value })
-                                    this.search()
                                 }}
                                 onKeyPress={ event => event.key === 'Enter' ? this.search() : null}
                             />
@@ -176,10 +179,7 @@ class SearchForAlbum extends Component {
                         </InputGroup>
                     </FormGroup>
                 </Panel>
-                <AlbumInfoPanel album={this.state.album} />
-                <Panel>
-                    { this.state.fetching === false ? this.renderTracks() : console.log('loading and not rendering tracks', this.state) }
-                </Panel>
+                { this.state.fetching === false ? <div><AlbumInfoPanel album={this.state.album} /><Panel header="Album Tracks">{this.renderTracks()}</Panel></div> : console.log('loading and not rendering tracks', this.state) }
             </div>
         ) 
     }
