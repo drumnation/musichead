@@ -51,9 +51,9 @@ class SearchForAlbum extends Component {
     }
 
     searchTrackFromLink(track){
-        searchTrack(track.id)
+        // searchTrack(track.id)
         .then(
-            
+
         )
     }
 
