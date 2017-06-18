@@ -8,3 +8,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :facebook, keys.facebook['APP_ID'], keys.facebook['APP_SECRET'],
         scope: 'email,user_birthday,read_stream'
 end
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :google, keys['GOOGLE_CLIENT_ID'], keys['GOOGLE_CLIENT_SECRET']
+end

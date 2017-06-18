@@ -19,7 +19,7 @@ class OmniController < ApplicationController
         end
         puts user
     end
-
+    
     # def fb_login
     #     auth = request.env['omniauth.auth']
     #     @user = User.find_or_create_by(email: auth.info.email)

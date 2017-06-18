@@ -12,6 +12,7 @@ import Spotify from 'spotify-web-api-js'
 import TracksDisplay from '../../track/tracksDisplay'
 import TrackShow from '../../../containers/trackShow'
 import { searchForTrack, searchForArtist, searchForAlbum } from '../../../api/spotify'
+import search from 'youtube-search'
 
 class SearchForTrack extends Component {
     constructor(props){
@@ -20,6 +21,7 @@ class SearchForTrack extends Component {
             query: '',
             artist: [],
             tracks: [],
+            video: [],
             album: null,
             fetching: undefined,
             playing: false,
@@ -29,16 +31,24 @@ class SearchForTrack extends Component {
 
     search() {
         if (this.state.query !== null) {
+            
             searchForTrack(this.state.query)
             .then( tracks => {
                 if (tracks) {
+                    let opts = {
+                        maxResults: 1, 
+                        key: 'AIzaSyDIk4c0whIdjKw-HRc3oA7v9Qo_d6OkuU8'
+                    }
+                    let track = tracks.tracks.items[0]
                     this.setState({ fetching: true })
                     this.setState({ tracks })
-                    searchForAlbum(tracks.tracks.items[0].album.name)
+                    searchForAlbum(track.album.name)
                     .then( album => this.setState({ album }) )
-                    searchForArtist(tracks.tracks.items[0].artists[0].name)
+                    searchForArtist(track.artists[0].name)
                     .then( artist => this.setState({ artist }) )
-                    .then( artist => {
+                    search(`${track.artists[0].name} ${track.name} Music Video`, opts, (err, video) => {
+                        console.log('youtube query', `${track.artists[0].name} ${track.name}`)
+                        this.setState({video})
                         this.setState({ fetching: false })
                         console.log('final state at end of promise', this.state)
                     })
@@ -98,15 +108,17 @@ class SearchForTrack extends Component {
         let track
         let album
         let artist
-        if (this.state.tracks && this.state.album && this.state.artist) {
+        let video
+        if (this.state.tracks && this.state.album && this.state.artist && this.state.video) {
             track = this.state.tracks.tracks.items[0]
             album = this.state.album.albums.items[0]
             artist = this.state.artist.artists.items[0]
+            video = this.state.video[0]
             return(
                 <Panel>
                     <Row>
                         <Col md={8}>
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/f8aT9oRp95A" frameborder="0" allowfullscreen />
+                            <iframe width="100%" height="315" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allowfullscreen />
                         </Col>
                         <Col className="track-details-col" md={4}>
                             <Row>
