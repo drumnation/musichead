@@ -6,8 +6,9 @@
     color: black;
     text-align: left;
     font-family: 'Rock Salt';
-    font-size: 25px;
+    font-size: 40px;
     margin-top: 20px;
+    line-height: 65px;
     letter-spacing: 8px;
 }
 .album-subinfo {
@@ -47,4 +48,11 @@
     border: 3px solid #000;
     border-radius: 75px;
     object-fit: cover;
+}
+
+.footer {
+    text-transform: uppercase;
+    font-family: 'rock salt';
+    letter-spacing: 10px;
+    font-size: 12px;
 }

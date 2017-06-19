@@ -23,6 +23,8 @@ strong {
 /* Timeline */
 
 .timeline-track-cover {
+  width: 450px;
+  height: 450px;
 }
 .timeline {
   border-left: 4px solid #4298C3;
@@ -40,7 +42,7 @@ strong {
   list-style: none;
   text-align: left;
   font-weight: 100;
-  max-width: 75%;
+  max-width: 45%;
 }
 .timeline h1,
 .timeline h2,
@@ -75,13 +77,24 @@ p {
   top: 0;
 }
 .timeline .event:before {
-  left: -217.5px;
+  left: -375.5px;
   color: black;
   content: attr(data-date);
   text-align: right;
-  font-weight: 100;
+  font-weight: 700;
   font-size: 0.9em;
   min-width: 120px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
 }
 .timeline .event:after {
   box-shadow: 0 0 0 4px #4298c3;
@@ -92,4 +105,21 @@ p {
   width: 11px;
   content: "";
   top: 5px;
+}
+
+.timeline-time-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.view-track-button-history {
+  margin-top: 15px;
 }

@@ -6,7 +6,8 @@ import {
     Glyphicon, 
     Panel,
     Row,
-    Col
+    Col,
+    Button
 } from 'react-bootstrap'
 import Spotify from 'spotify-web-api-js'
 import search from 'youtube-search'
@@ -93,23 +94,27 @@ class SearchForTrack extends Component {
                                 />
                             </Col>
                             <Col className="track-details-col" md={6}>
-                                <Row className="track-info-title">
+                                <Row className="track-card-title">
                                     {track.name}
                                 </Row>
-                                <Row className="album-title">
+                                <Row className="album-card-title">
                                     {album.name}
                                 </Row>
-                                <Row className="band-name">
-                                    {artist.name}
-                                </Row>
-                                <Row className="release-date">
+                                <Row className="popularity-card">
                                     <strong>Popularity:</strong> {track.popularity}
                                 </Row>
-                                <Row className="release-label">
-                                    <strong>Followers:</strong> {artist.followers.total}
+                                <Row className="followers-card">
+                                    <strong>Followers:</strong> { artist.followers.total.toLocaleString( undefined, { minimumFractionDigits: 0 }) }
                                 </Row>
-                                <Row className="genres">
+                                <hr/>
+                                <Row className="band-card-name">
+                                    {artist.name}
+                                </Row>
+                                <Row className="genres-card">
                                     <strong>Genres:</strong> {artist.genres}
+                                </Row>
+                                <Row>
+                                    <Button bsSize="lg" className="track-info-card-artist-button" bsStyle="primary">View Artist</Button>
                                 </Row>
                             </Col>
                         </Row>
@@ -252,7 +257,7 @@ class SearchForTrack extends Component {
                             ? 
                                 <div>
                                     {this.renderTrackInfo()}
-                                    <Panel header="Listen">{this.renderTrack()}</Panel>
+                                    <Panel>{this.renderTrack()}</Panel>
                                     <Panel header="Related Tracks">{this.renderRelatedTracks()}</Panel>
                                     <Panel header="Related Artists">{this.renderRelatedArtists()}</Panel>
                                 </div>

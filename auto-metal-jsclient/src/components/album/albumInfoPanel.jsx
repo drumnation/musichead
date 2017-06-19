@@ -21,11 +21,12 @@ class AlbumInfoPanel extends Component {
                                 />
                             </Col>
                             <Col className="track-details-col" md={6}>
-                                <Row className="track-info-title">
+                                <Row className="album-title">
                                     {album.name}
                                 </Row>
+                                <hr/>
                                 <Row className="band-name">
-                                    {album.artists[0].name}
+                                    By {album.artists[0].name}
                                 </Row>
                                 {/*<Row className="release-date">
                                     <strong>Released:</strong> 2014

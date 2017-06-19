@@ -91,3 +91,40 @@
     font-size: 30px;
     font-family: 'helvetica';
 }
+
+/*track*/
+
+.track-card-title {
+    font-size: 33px;
+    letter-spacing: 2.5px;
+    font-family: 'rock salt';
+    margin-top: 40px;
+}
+
+.album-card-title {
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 20px;
+}
+
+.band-card-name {
+    margin-top: 20px;
+    font-family: 'Bungee';
+    font-size: 40px;
+}
+
+.popularity-card {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.followers-card {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.genres-card{
+    margin-top: 20px;
+    font-size: 23px;
+}

@@ -14,22 +14,22 @@ class TopNavLoggedIn extends Component {
                     <h2>
                         <strong>
                             <NavLink className="brand" to="/">
-                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MusicHead</span>
+                                <img alt="metal hand logo" src="/assets/long-beard-2-1.png"/> <span className="logo">MusicHead</span>
                             </NavLink>
                         </strong>
                     </h2>
                 </Col>
                 <ButtonToolbar className="profile-buttons">
-                    <Button bsSize="lg" onClick={this.props.logUserOut}>Log Out</Button>
-                    <Link to="/profile/"><Button bsStyle="primary" bsSize="large">Profile</Button></Link>
+                    <Button className="log-out-button" bsSize="lg" onClick={this.props.logUserOut}>Log Out</Button>
+                    <Link to="/profile/"><Button bsStyle="primary" bsSize="large" className="profile-link-button">Profile</Button></Link>
                     <Link to="/profile/"><img className="topnav-profile-img" width={64} height={64} src={localStorage["profile_image"]} alt="face"/></Link>
                     {/*<span>Hi, {localStorage['name']}!</span>*/}
                 </ButtonToolbar>
                 <ButtonGroup bsSize="lg" className="loggedInMenu" justified>
                     {/*<Button bsStyle="primary" href="#" type="button"><Link to="/">FEED</Link></Button>*/}
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/artist">ARTIST</Link></Button>
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/album">ALBUM</Link></Button>
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/track">TRACK</Link></Button>
+                    <Button bsStyle="primary" href="#" type="button"><Link to="/artist"><strong>ARTIST</strong></Link></Button>
+                    <Button bsStyle="primary" href="#" type="button"><Link to="/album"><strong>ALBUM</strong></Link></Button>
+                    <Button bsStyle="primary" href="#" type="button"><Link to="/track"><strong>TRACK</strong></Link></Button>
                 </ButtonGroup>
             </Row>
         )

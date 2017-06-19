@@ -22,7 +22,7 @@ class ArtistInfo extends Component {
                             {artist.name}
                         </Row>
                         <Row className="album-title">
-                            {artist.followers.total} followers
+                            {artist.followers.total.toLocaleString( undefined, { minimumFractionDigits: 0 })} followers
                         </Row>
                         <Row className="genres">
                             <strong>Genres:</strong>

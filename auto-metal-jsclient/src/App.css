@@ -144,3 +144,14 @@ h1 {
   font-family: helvetica;
   text-transform: uppercase;
 }
+
+.sub-menu-buttons {
+  height: 50px;
+  margin-left: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.spotify-connect-button {
+  margin-right: 25px;
+}

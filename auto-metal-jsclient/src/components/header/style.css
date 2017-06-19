@@ -4,6 +4,7 @@
 
 .loggedInMenu {
     margin-bottom: 25px;
+    height: 64px;
 }
 
 .brand {
@@ -12,11 +13,28 @@
 
 .profile-buttons {
     margin-top: 24px;
+    margin-bottom: 7px;
+}
+
+.log-out-button {
+    height: 63px;
+    width: 120px;
+    margin-right: 15px;
+}
+
+.profile-link-button {
+    height: 63px;
+    width: 140px;
 }
 
 .logo {
     font-family: 'Bungee';
     /*font-family: 'New Rocker';*/
+    font-size: 43px;
+}
+
+.logo-image {
+    filter: invert(100%);
 }
 
 .topnav-profile-img {
@@ -26,4 +44,8 @@
     border: 3px solid #FFF;
     border-radius: 75px;
     object-fit: cover;
+}
+
+.track-info-card-artist-button {
+    margin-top: 20px;
 }
