@@ -22,7 +22,8 @@ class HomeLoggedIn extends Component {
     render() {
         return(
             <Switch>
-                <Route exact path='/' component={HomeFeed}/>
+                {/*<Route exact path='/' component={HomeFeed}/>*/}
+                <Route exact path='/' component={SearchForTrack}/>
                 <Route path='/artist' component={SearchForArtist}/>
                 <Route path='/album' component={SearchForAlbum}/>
                 <Route path='/track' component={SearchForTrack}/>

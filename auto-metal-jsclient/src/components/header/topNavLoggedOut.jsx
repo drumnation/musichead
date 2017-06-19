@@ -43,7 +43,7 @@ class TopNavNotLoggedIn extends Component {
                         <h2>
                             <strong>
                                 <Link className="brand" to="/">
-                                    <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MusicHead</span>
+                                    <img alt="metal hand logo" src="/assets/long-beard-2-1.png" /> <span className="logo">MusicHead</span>
                                 </Link>
                             </strong>
                         </h2>
@@ -63,7 +63,7 @@ class TopNavNotLoggedIn extends Component {
                                     <FormControl value={this.state.password} type="password" placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
                                 </FormGroup>
                                     {' '}
-                                <Button bsStyle="primary" type="submit">Log in</Button>
+                                <Button className="login-button" bsStyle="primary" type="submit">Log in</Button>
                             </Form>
                         </Nav>
                     </Navbar>

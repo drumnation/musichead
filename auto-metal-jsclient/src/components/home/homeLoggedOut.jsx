@@ -56,9 +56,9 @@ class HomeLoggedOut extends Component {
                         
                             <div className="text-left">
                                 <h1>
-                                    Sign Up <img src="/assets/cemetary-3-1.png" style={tombstone} alt="tombstone"/>
+                                    Sign Up <img src="/assets/music-video-1-1.png" style={tombstone} alt="tombstone"/>
                                 </h1>
-                                <h4>It will only cost your <i>soul...</i></h4>
+                                <h4>And it won't cost you a dime...</h4>
                                 <br/>
                             </div>    
 
@@ -124,12 +124,12 @@ class HomeLoggedOut extends Component {
                             </Form>
                         </Col>
                         <Col md={6} mdPull={6}>
-                            <h2 className="text-left">Connect with metal heads from around the world to watch, listen, and share your favorite tracks.</h2>
+                            <h2 className="text-left">Connect with music heads from around the world to watch, listen, and share your favorite tracks.</h2>
                             <br/>
                             <div className="text-left">
-                                <p style={features}><Glyphicon glyph="cd" /> <strong>See latest releases</strong> from record labels in News Feed.</p>
-                                <p style={features}><Glyphicon glyph="headphones" /> <strong>Share your listener footprint</strong> with Listening History.</p>
-                                <p style={features}><Glyphicon glyph="search" /> <strong>Discover new tracks</strong> to save using Metal Search.</p>
+                                <p style={features}><Glyphicon glyph="cd" /> <strong>See latest releases</strong> from record labels in News Feed</p>
+                                <p style={features}><Glyphicon glyph="headphones" /> <strong>Share your listener footprint</strong> with Listening History</p>
+                                <p style={features}><Glyphicon glyph="search" /> <strong>Discover new tracks</strong> to save using MusicHead Search&trade;</p>
                             </div>
                             <br/>
                             <img src="/assets/spotify-1-2.png" alt="powered by spotify"/>
