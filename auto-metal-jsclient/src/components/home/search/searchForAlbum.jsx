@@ -150,7 +150,7 @@ class SearchForAlbum extends Component {
                         </InputGroup>
                     </FormGroup>
                 </Panel>
-                { this.state.fetching === false ? <div><AlbumInfoPanel album={this.state.album} /><Panel header="Album Tracks">{this.renderTracks()}</Panel></div> : console.log('loading and not rendering tracks', this.state) }
+                { this.state.fetching === false ? <div><AlbumInfoPanel album={this.state.album} /><Panel header={albumTracks}>{this.renderTracks()}</Panel></div> : console.log('loading and not rendering tracks', this.state) }
             </div>
         ) 
     }
@@ -160,6 +160,12 @@ const title = (
     <p> 
         <img src='/assets/music-record-1.png' alt="beard guy icon"/><br/>
         {/*<strong>ALBUM SEARCH</strong>*/}
+    </p>
+)
+const albumTracks = (
+    <p> 
+        <img src='/assets/music-record-1.png' alt="beard guy icon"/><br/>
+        <strong>ALBUM TRACKS</strong>
     </p>
 )
 

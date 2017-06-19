@@ -258,8 +258,8 @@ class SearchForTrack extends Component {
                                 <div>
                                     {this.renderTrackInfo()}
                                     <Panel>{this.renderTrack()}</Panel>
-                                    <Panel header="Related Tracks">{this.renderRelatedTracks()}</Panel>
-                                    <Panel header="Related Artists">{this.renderRelatedArtists()}</Panel>
+                                    <Panel header={title}>{this.renderRelatedTracks()}</Panel>
+                                    <Panel header={title2}>{this.renderRelatedArtists()}</Panel>
                                 </div>
                             : 
                                 console.log('loading and not rendering tracks', this.state) 
@@ -271,8 +271,15 @@ class SearchForTrack extends Component {
 
 const title = (
     <p> 
-        <img src='/assets/guitar-1.png' alt="beard guy icon"/><br/>
-        {/*<strong>TRACK SEARCH</strong>*/}
+        <img src='/assets/notes-4.png' alt="beard guy icon"/><br/>
+        <strong>RELATED TRACKS</strong>
+    </p>
+)
+
+const title2 = (
+    <p> 
+        <img src='/assets/long-beard-2.png' alt="beard guy icon"/><br/>
+        <strong>RELATED ARTISTS</strong>
     </p>
 )
 

@@ -8,7 +8,7 @@
     font-family: 'Rock Salt';
     font-size: 40px;
     margin-top: 20px;
-    line-height: 65px;
+    line-height: 75px;
     letter-spacing: 8px;
 }
 .album-subinfo {
@@ -55,4 +55,8 @@
     font-family: 'rock salt';
     letter-spacing: 10px;
     font-size: 12px;
+}
+
+.album-view-artist-button{
+    margin-top: 20px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Panel } from 'react-bootstrap'
+import { Row, Col, Panel, Button } from 'react-bootstrap'
 import './style.css'
 
 class AlbumInfoPanel extends Component {
@@ -26,14 +26,12 @@ class AlbumInfoPanel extends Component {
                                 </Row>
                                 <hr/>
                                 <Row className="band-name">
-                                    By {album.artists[0].name}
+                                    {album.artists[0].name}
                                 </Row>
-                                {/*<Row className="release-date">
-                                    <strong>Released:</strong> 2014
-                                </Row>*/}
-                                {/*<Row className="genres">
-                                    <strong>Genres:</strong> grunge metal, progressive metal, hard-rock
-                                </Row>*/}
+                                <Row>
+                                    <Button className="album-view-artist-button" bsStyle="primary" bsSize="lg">View Artist</Button>
+                                </Row>
+
                             </Col>
                         </Row>
                     </Panel>

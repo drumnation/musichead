@@ -13,7 +13,14 @@
     font-family: 'bungee';
     color: black;
     text-align: left;
-    font-size: 45px;
+    font-size: 70px;
+    margin-top: 31px;
+}
+.artist-name-card {
+    font-family: 'bungee';
+    color: black;
+    text-align: left;
+    font-size: 70px;
     margin-top: 31px;
 }
 .artist-cover {
@@ -57,4 +64,12 @@
 .label-title {
     margin-left: 15px;
     font-size: 30px;
+}
+
+.artist-favorite-card{
+    font-size: 40px;
+    font-family: 'bungee';
+    color: black;
+    text-align: left;
+    margin-top: 31px;
 }
