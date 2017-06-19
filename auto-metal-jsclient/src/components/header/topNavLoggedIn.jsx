@@ -14,7 +14,7 @@ class TopNavLoggedIn extends Component {
                     <h2>
                         <strong>
                             <NavLink className="brand" to="/">
-                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MetalHead</span>
+                                <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MusicHead</span>
                             </NavLink>
                         </strong>
                     </h2>
@@ -26,7 +26,7 @@ class TopNavLoggedIn extends Component {
                     {/*<span>Hi, {localStorage['name']}!</span>*/}
                 </ButtonToolbar>
                 <ButtonGroup bsSize="lg" className="loggedInMenu" justified>
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/">FEED</Link></Button>
+                    {/*<Button bsStyle="primary" href="#" type="button"><Link to="/">FEED</Link></Button>*/}
                     <Button bsStyle="primary" href="#" type="button"><Link to="/artist">ARTIST</Link></Button>
                     <Button bsStyle="primary" href="#" type="button"><Link to="/album">ALBUM</Link></Button>
                     <Button bsStyle="primary" href="#" type="button"><Link to="/track">TRACK</Link></Button>

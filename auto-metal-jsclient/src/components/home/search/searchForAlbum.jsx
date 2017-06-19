@@ -54,36 +54,6 @@ class SearchForAlbum extends Component {
         }
     }
 
-    // searchTrackFromLink(track){
-    //     // searchTrack(track.id)
-    //     // .then(
-
-    //     // )
-    // }
-
-    // search() {
-    //     if (this.state.query !== null) {
-    //         searchForAlbum(this.state.query)
-    //         .then( album => {
-    //             if (album) {
-    //                 this.setState({ fetching: true })
-    //                 console.log('state when fetching is true: ', album)
-    //                 if (album.albums.items[0]) {
-    //                     console.log('album info is set to state', album.albums.items[0].id)
-    //                     this.setState({ album: album, albumId: album.albums.items[0].id })
-    //                     let tracks = getAlbumTracks(this.state.albumId)
-    //                     .then( tracks => this.setState({ albumTracks: tracks }))
-    //                     .then( tracks => this.setState({fetching: false}))
-    //                     .then( tracks => console.log('state for last promise', this.state))
-    //                 } else {
-    //                     console.log('album id is undefined', this.state)
-    //                 }
-    //             }
-    //         })
-            
-    //     }
-    // }
-
     playAudio(previewUrl) {
         let audio = new Audio(previewUrl)
         if (!this.state.playing) {
@@ -145,7 +115,7 @@ class SearchForAlbum extends Component {
                                 </Row>
                             </div>
                             {/*<Button bsStyle="primary" className="view-track-button">
-                                <Link to={`/tracks/:artist/:trackname`}>View track</Link>
+                                <Link className="album-to-track-button" to={`/album/${track.artists[0].name}/${this.state.album.albums.items[0].name}/${track.name}`.replace(/\s+/g, '-').toLowerCase()}>View track</Link>
                             </Button>*/}
                         </Row>
                     )
@@ -161,11 +131,12 @@ class SearchForAlbum extends Component {
     render() {
         return (
             <div>
-                <Panel header={title}>
+                <Panel>
                     <FormGroup>
                         <InputGroup>
                             <FormControl
                                 type="text"
+                                className="big_search"
                                 placeholder="Search for an Album"
                                 value={ this.state.query }
                                 onChange={ event => {
@@ -188,7 +159,7 @@ class SearchForAlbum extends Component {
 const title = (
     <p> 
         <img src='/assets/music-record-1.png' alt="beard guy icon"/><br/>
-        <strong>ALBUM SEARCH</strong>
+        {/*<strong>ALBUM SEARCH</strong>*/}
     </p>
 )
 

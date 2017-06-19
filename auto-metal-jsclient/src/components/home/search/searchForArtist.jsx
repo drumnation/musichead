@@ -10,6 +10,7 @@ import {
 // import Spotify from 'spotify-web-api-js'
 import ArtistShow from '../../../containers/artistShow'
 import { searchForArtist, getArtistTopTracks, getArtistAlbums, getRelatedArtists } from '../../../api/spotify'
+import '../../../App.css'
 
 class SearchForArtist extends Component {
     constructor(props){
@@ -125,37 +126,50 @@ class SearchForArtist extends Component {
 
     render() {
         return (
-            <Panel header={title}>
-                <FormGroup>
-                    <InputGroup>
-                        <FormControl
-                            type="text"
-                            placeholder="Search for an Artist"
-                            value={ this.state.query }
-                            onChange={ event => {
-                                this.setState({ query: event.target.value })
-                                {/*this.search()*/}
-                            }}
-                            onKeyPress={ event => {
-                                if (event.key === 'Enter') {
-                                    this.search()
-                                }
-                            }}
-                        />
+            <div>
+                <Panel>
+                    <FormGroup>
+                        <InputGroup >
+                            <FormControl
+                                type="text"
+                                className="big_search"
+                                placeholder="Search for an Artist"
+                                value={ this.state.query }
+                                onChange={ event => {
+                                    this.setState({ query: event.target.value })
+                                    {/*this.search()*/}
+                                }}
+                                onKeyPress={ event => {
+                                    if (event.key === 'Enter') {
+                                        this.search()
+                                    }
+                                }}
+                            />
 
-                        <InputGroup.Addon onClick={ () => this.search() }>
-                            <Glyphicon glyph="search"></Glyphicon>
-                        </InputGroup.Addon>
+                            <InputGroup.Addon onClick={ () => this.search() }>
+                                <Glyphicon glyph="search"></Glyphicon>
+                            </InputGroup.Addon>
 
-                    </InputGroup>
-
-                    <ArtistShow 
-                        artist={this.state.artist}
-                        tracks={this.state.tracks}
-                    />
-                    { this.state.fetching === false ? <div><Panel header="Albums">{this.renderAlbums()}</Panel><Panel header="Related Artists">{this.renderRelatedArtists()}</Panel></div> : console.log('loading and not rendering tracks', this.state) }
-                </FormGroup>
-            </Panel>
+                        </InputGroup>
+                    </FormGroup>
+                </Panel>
+                <ArtistShow 
+                    artist={this.state.artist}
+                    tracks={this.state.tracks}
+                />
+                { this.state.fetching === false 
+                    ? 
+                        <div>
+                            <Panel header={albums}>
+                                {this.renderAlbums()}
+                            </Panel>
+                            <Panel header={artists}>
+                                {this.renderRelatedArtists()}
+                            </Panel>
+                        </div> 
+                    : 
+                        console.log('loading and not rendering tracks', this.state) }
+            </div>
         )
     }
 }
@@ -163,7 +177,20 @@ class SearchForArtist extends Component {
 const title = (
     <p> 
         <img src='/assets/long-beard-2.png' alt="beard guy icon"/><br/>
-        <strong>ARTIST SEARCH</strong>
+    </p>
+)
+
+const albums = (
+    <p> 
+        <img src='/assets/music-record-7.png' alt="beard guy icon"/><br/>
+        <strong>ALBUMS</strong>
+    </p>    
+)
+
+const artists = (
+    <p> 
+        <img src='/assets/guitar-5.png' alt="beard guy icon"/><br/>
+        <strong>RELATED ARTISTS</strong>
     </p>
 )
 

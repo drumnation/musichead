@@ -1,6 +1,11 @@
 body {
   background: #000;
   color: #fff;
+  font-family: 'Helvetica';
+}
+
+.helvetica {
+  font-family: 'Helvetica'
 }
 
 .App {
@@ -12,7 +17,7 @@ body {
 }
 
 h1 {
-  font-family: 'New Rocker';
+  font-family: 'Play';
 }
 
 /*Profile*/
@@ -130,4 +135,12 @@ h1 {
 .big-artist {
   width: 95%;
   height: 95;
+}
+
+.big_search {
+  font-size: 60px;
+  padding: 60px;
+  text-align: center;
+  font-family: helvetica;
+  text-transform: uppercase;
 }

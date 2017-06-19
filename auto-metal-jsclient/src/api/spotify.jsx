@@ -63,11 +63,10 @@ function getAlbumTracks(albumId) {
     return spotify.getAlbumTracks(albumId)
 }
 
-function getNewAlbumReleases(){
+function getNewAlbumReleases() {
     const spotify = new Spotify()
     spotify.setAccessToken(localStorage["spotify_token"])
     return spotify.getNewReleases()
-    .then( albums => albums.json())
 }
 
 

@@ -1,13 +1,14 @@
 .panel-body #albums {
-    background:grey;
+    background:white;
 }
 
 .album-title {
     color: black;
     text-align: left;
-    font-family: 'New Rocker';
-    font-size: 33px;
-    margin-top: 14px;
+    font-family: 'Rock Salt';
+    font-size: 25px;
+    margin-top: 20px;
+    letter-spacing: 8px;
 }
 .album-subinfo {
     font-family: 'bungee';

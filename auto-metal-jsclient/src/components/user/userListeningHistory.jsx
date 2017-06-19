@@ -52,7 +52,7 @@ class UserListeningHistory extends Component {
 }
 
 const title = (
-    <p><Glyphicon glyph="headphones" />&#32;&#32;<strong>Listening History</strong></p>
+    <p><Glyphicon glyph="headphones" />&#32;&#32;<strong className="helvetica">Listening History</strong></p>
 )
 
 export default UserListeningHistory

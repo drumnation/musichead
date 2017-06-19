@@ -13,12 +13,10 @@ class ArtistShow extends Component {
             artist !== null
                 ?   
                     <Row>
-                        <Panel>
+                      
                             <ArtistInfo artist={ artist }/>
-                        </Panel>
-                        <Panel header="TOP TRACKS">
-                            <TopTracksList tracks={ tracks }/>
-                        </Panel>
+                        
+                        <TopTracksList tracks={ tracks }/>
                         {/*<Panel header="Albums">
                             <ArtistAlbumsPanel/>
                         </Panel>

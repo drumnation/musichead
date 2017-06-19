@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div>
             <hr/><br/>
-            <p>MetalHead.fm © 2017</p>
+            <p>MusicHead.fm © 2017</p>
         </div>
     )
 }

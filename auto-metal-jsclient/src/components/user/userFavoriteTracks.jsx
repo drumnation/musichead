@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Panel, Glyphicon } from 'react-bootstrap'
 import TrackCard from '../track/trackCard'
+import '../../App.css'
 
 class UserFavoriteTracks extends Component {
     constructor(props) {

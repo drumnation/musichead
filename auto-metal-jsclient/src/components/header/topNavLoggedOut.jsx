@@ -43,7 +43,7 @@ class TopNavNotLoggedIn extends Component {
                         <h2>
                             <strong>
                                 <Link className="brand" to="/">
-                                    <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MetalHead</span>
+                                    <img alt="metal hand logo" src="/assets/metal-hand-icon-2-1.png" /> <span className="logo">MusicHead</span>
                                 </Link>
                             </strong>
                         </h2>
