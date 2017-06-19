@@ -137,7 +137,7 @@ class SearchForAlbum extends Component {
                         </InputGroup>
                     </FormGroup>
                 </Panel>
-                { this.state.fetching === false ? <div><AlbumInfoPanel album={this.state.album} /><Panel header={albumTracks}>{this.renderTracks()}</Panel></div> : console.log('loading and not rendering tracks', this.state) }
+                { this.state.fetching === false ? <div><AlbumInfoPanel album={this.state.album} /><Panel header={albumTracks}>{this.renderTracks()}</Panel></div> : null }
             </div>
         ) 
     }

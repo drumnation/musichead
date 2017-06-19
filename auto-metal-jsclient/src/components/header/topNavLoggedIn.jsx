@@ -23,13 +23,11 @@ class TopNavLoggedIn extends Component {
                     <Button className="log-out-button" bsSize="lg" onClick={this.props.logUserOut}>Log Out</Button>
                     <Link to="/profile/"><Button bsStyle="primary" bsSize="large" className="profile-link-button">Profile</Button></Link>
                     <Link to="/profile/"><img className="topnav-profile-img" width={64} height={64} src={localStorage["profile_image"]} alt="face"/></Link>
-                    {/*<span>Hi, {localStorage['name']}!</span>*/}
                 </ButtonToolbar>
                 <ButtonGroup bsSize="lg" className="loggedInMenu" justified>
-                    {/*<Button bsStyle="primary" href="#" type="button"><Link to="/">FEED</Link></Button>*/}
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/artist"><strong>ARTIST</strong></Link></Button>
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/album"><strong>ALBUM</strong></Link></Button>
-                    <Button bsStyle="primary" href="#" type="button"><Link to="/track"><strong>TRACK</strong></Link></Button>
+                    <Button bsStyle="primary" href="#!" type="button"><Link to="/artist"><strong>ARTIST</strong></Link></Button>
+                    <Button bsStyle="primary" href="#!" type="button"><Link to="/album"><strong>ALBUM</strong></Link></Button>
+                    <Button bsStyle="primary" href="#!" type="button"><Link to="/track"><strong>TRACK</strong></Link></Button>
                 </ButtonGroup>
             </Row>
         )

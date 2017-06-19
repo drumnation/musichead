@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Nav, Navbar, ButtonGroup, Button } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import '../../App.css'
+import './style.css'
 
 class UserProfileSubNav extends Component {
-    state = {  }
     render() {
         return (
             <Navbar>

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import './header.css'
 import UserProfileSubNav from './userProfileSubNav'
-import './style.css'
 import { getUserRecentlyPlayedTracks } from '../../api/spotify'
+import './style.css'
 
 class UserProfileHeader extends Component {
     constructor(props){

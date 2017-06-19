@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './history.css'
 import dateFormat from 'dateformat'
 import { Button } from 'react-bootstrap'
+import './style.css'
 
 class UserHistoryItem extends Component {
     formatDateTime(played_at_datetime){

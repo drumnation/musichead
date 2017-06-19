@@ -7,12 +7,11 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <div>
-                    {this.props.loggedIn
+                {
+                    this.props.loggedIn
                         ? <TopNavLoggedIn />
                         : <TopNavLoggedOut />
-                    }
-                </div>
+                }
             </div>
         )
     }

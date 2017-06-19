@@ -50,13 +50,6 @@
     object-fit: cover;
 }
 
-.footer {
-    text-transform: uppercase;
-    font-family: 'rock salt';
-    letter-spacing: 10px;
-    font-size: 12px;
-}
-
 .album-view-artist-button{
     margin-top: 20px;
 }

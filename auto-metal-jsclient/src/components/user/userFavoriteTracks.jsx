@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Panel } from 'react-bootstrap'
 import TrackCard from '../track/trackCard'
 import { getUserSavedTracks } from '../../api/spotify'
-import '../../App.css'
 
 class UserFavoriteTracks extends Component {
     constructor(props) {
