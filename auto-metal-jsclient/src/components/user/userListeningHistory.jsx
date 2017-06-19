@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Panel, Glyphicon } from 'react-bootstrap'
 import UserHistoryItem from './userHistoryItem'
+import { getUserRecentlyPlayedTracks } from '../../api/spotify'
 
 class UserListeningHistory extends Component {
     constructor(props) {
@@ -10,17 +11,10 @@ class UserListeningHistory extends Component {
         }
     }
     componentDidMount(){
-        return fetch("https://api.spotify.com/v1/me/player/recently-played", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage["spotify_token"]}`,
-            },
-            method: 'GET',
-        }).then( response => response.json())
-        .then( json => {
+        getUserRecentlyPlayedTracks()
+        .then( tracks => {
             let recentTracks = []
-            json.items.forEach( track => {
+            tracks.items.forEach( track => {
                 const trackItem = {
                     artistName: track['track']['artists'][0]['name'],
                     trackName: track['track']['name'],
@@ -31,28 +25,29 @@ class UserListeningHistory extends Component {
                 recentTracks.push(trackItem)
             })
             this.setState({ recently_played_tracks: recentTracks })
-            console.log('this.state', this.state)
         })
     }
 
     render() {
         return (
-            <div>
-                <Panel header={title}>
-                    {
-                        this.state.recently_played_tracks.map( track => {
-                            return <UserHistoryItem track={track} />
-                        })
-                    }
-                    
-                </Panel>
-            </div>
+            <Panel header={title}>
+                {
+                    this.state.recently_played_tracks.map( track => {
+                        return <UserHistoryItem track={track} />
+                    })
+                }
+            </Panel>
         )
     }
 }
 
 const title = (
-    <p><Glyphicon glyph="headphones" />&#32;&#32;<strong className="helvetica">LISTENING HISTORY</strong></p>
+    <p>
+        <Glyphicon glyph="headphones" />
+        <strong className="helvetica">
+            &#32;&#32; LISTENING HISTORY
+        </strong>
+    </p>
 )
 
 export default UserListeningHistory

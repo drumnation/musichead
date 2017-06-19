@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, Navbar, NavItem, ButtonGroup, Button } from 'react-bootstrap'
+import { Nav, Navbar, ButtonGroup, Button } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import '../../App.css'
 
@@ -16,7 +16,7 @@ class UserProfileSubNav extends Component {
                                 className="spotify-connect-button"
                                 bsStyle="success"
                                 href="http://localhost:3000/auth/spotify?show_dialog=true"
-                                ><img width={32} height={32}src='/assets/spotify-icon-25.png'/>
+                                ><img width={32} height={32} src='/assets/spotify-icon-25.png' alt="spotify icon"/>
                                     <span className="spotify-button-text">
                                         Connect Spotify
                                     </span>
@@ -28,9 +28,6 @@ class UserProfileSubNav extends Component {
                         <Button className="sub-menu-buttons" eventKey={3}><NavLink to="/profile/bands">Bands</NavLink></Button>
                         <Button className="sub-menu-buttons" eventKey={5}><NavLink to="/profile/tracks">Tracks</NavLink></Button>
                     </ButtonGroup>
-                    {/*<NavItem eventKey={3}><NavLink to="/profile/about">About</NavLink></NavItem>*/}
-                    {/*<NavItem eventKey={4}><NavLink to="/profile/bands">Bands</NavLink></NavItem>
-                    <NavItem eventKey={5}><NavLink to="/profile/tracks">Tracks</NavLink></NavItem>*/}
                 </Nav>
             </Navbar>
         )

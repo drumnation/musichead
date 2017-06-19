@@ -6,12 +6,10 @@ import { Row, Panel } from 'react-bootstrap'
 class AlbumShow extends Component {
     render() {
         return (
-                    // <Panel>
-                        <Row>
-                            <AlbumInfoPanel album={this.props.album} />
-                            <AlbumTracksPanel/>
-                        </Row>
-                    // </Panel>
+            <Row>
+                <AlbumInfoPanel album={this.props.album} />
+                <AlbumTracksPanel/>
+            </Row>
         )
     }
 }

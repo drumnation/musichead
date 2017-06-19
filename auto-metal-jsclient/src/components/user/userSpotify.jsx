@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMyInfo, setTokens } from '../actions/actions'
+import { getMyInfo, setTokens } from '../actions/spotifyActions'
 
 /**
 * Our user page

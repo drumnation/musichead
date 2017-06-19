@@ -42,11 +42,4 @@ class ArtistInfo extends Component {
     }
 }
 
-const title = (
-    <p> 
-        {/*<img src='/assets/skull-1.png' alt="skull"/><br/>*/}
-        <strong>ARTIST</strong>
-    </p>
-)
-
 export default ArtistInfo

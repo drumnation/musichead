@@ -4,15 +4,7 @@ import dateFormat from 'dateformat'
 import { Button } from 'react-bootstrap'
 
 class UserHistoryItem extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     formatDateTime(played_at_datetime){
-        let options = {  
-            day: "numeric", hour: "2-digit", minute: "2-digit"  
-        }
-        console.log('played_at_datetime', played_at_datetime)
         let track_play = new Date(played_at_datetime)
         return dateFormat(track_play, "dddd, mmmm dS, h:MM TT")
     }

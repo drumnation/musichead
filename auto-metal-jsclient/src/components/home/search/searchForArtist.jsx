@@ -7,9 +7,13 @@ import {
     Panel,
     Row
 } from 'react-bootstrap'
-// import Spotify from 'spotify-web-api-js'
 import ArtistShow from '../../../containers/artistShow'
-import { searchForArtist, getArtistTopTracks, getArtistAlbums, getRelatedArtists } from '../../../api/spotify'
+import { 
+    searchForArtist, 
+    getArtistTopTracks, 
+    getArtistAlbums, 
+    getRelatedArtists 
+} from '../../../api/spotify'
 import '../../../App.css'
 
 class SearchForArtist extends Component {
@@ -49,11 +53,8 @@ class SearchForArtist extends Component {
     }
 
     renderAlbums() {
-        console.log('state in renderTracks: ', this.state)
         if (this.state.albums.items) {
-            console.log('items are here, rendertracks:', this.state)
             if (this.state.albums.items.length !== 0) {
-                console.log('tracks have populated, renderTracks: ', this.state)
                 return this.state.albums.items.map( (album, i) => {
                     let index = Math.random()
                     return(
@@ -72,14 +73,11 @@ class SearchForArtist extends Component {
                                     {`${album.name}`}
                                 </Row>
                             </div>
-                            {/*<Button bsStyle="primary" className="view-track-button">
-                                <Link to={`/tracks/:artist/:trackname`}>View track</Link>
-                            </Button>*/}
                         </Row>
                     )
                 })
             } else {
-                console.log('no tracks', this.state)
+                console.log('loadling')
             }
         } else {
             console.log('loading!!!', this.state)
@@ -87,11 +85,8 @@ class SearchForArtist extends Component {
     }
 
     renderRelatedArtists() {
-        console.log('state in renderTracks: ', this.state)
         if (this.state.relatedArtists.artists) {
-            console.log('items are here, rendertracks:', this.state)
             if (this.state.relatedArtists.artists.length !== 0) {
-                console.log('tracks have populated, renderTracks: ', this.state)
                 return this.state.relatedArtists.artists.map( (artist, i) => {
                     let index = Math.random()
                     return(
@@ -110,9 +105,6 @@ class SearchForArtist extends Component {
                                     {`${artist.name}`}
                                 </Row>
                             </div>
-                            {/*<Button bsStyle="primary" className="view-track-button">
-                                <Link to={`/tracks/:artist/:trackname`}>View track</Link>
-                            </Button>*/}
                         </Row>
                     )
                 })
@@ -137,7 +129,6 @@ class SearchForArtist extends Component {
                                 value={ this.state.query }
                                 onChange={ event => {
                                     this.setState({ query: event.target.value })
-                                    {/*this.search()*/}
                                 }}
                                 onKeyPress={ event => {
                                     if (event.key === 'Enter') {
@@ -168,28 +159,22 @@ class SearchForArtist extends Component {
                             </Panel>
                         </div> 
                     : 
-                        console.log('loading and not rendering tracks', this.state) }
+                        console.log('loading and not rendering tracks') }
             </div>
         )
     }
 }
 
-const title = (
-    <p> 
-        <img src='/assets/long-beard-2.png' alt="beard guy icon"/><br/>
-    </p>
-)
-
 const albums = (
     <p> 
-        <img src='/assets/music-record-7.png' alt="beard guy icon"/><br/>
+        <img src='/assets/music-record-7.png' alt="record"/><br/>
         <strong>ALBUMS</strong>
     </p>    
 )
 
 const artists = (
     <p> 
-        <img src='/assets/guitar-5.png' alt="beard guy icon"/><br/>
+        <img src='/assets/guitar-5.png' alt="guitar"/><br/>
         <strong>RELATED ARTISTS</strong>
     </p>
 )

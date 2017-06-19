@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ArtistInfo from '../components/artist/artistInfo'
 import TopTracksList from '../components/artist/topTracksList'
-import { Panel, Row } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
 class ArtistShow extends Component {
     render() {

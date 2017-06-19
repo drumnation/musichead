@@ -9,10 +9,15 @@ import {
     Col,
     Button
 } from 'react-bootstrap'
-import Spotify from 'spotify-web-api-js'
 import search from 'youtube-search'
 import { Link } from 'react-router-dom'
-import { searchForTrack, searchForArtist, searchForAlbum, getRelatedTracksBasedOnTrack, getRelatedArtists } from '../../../api/spotify'
+import { 
+    searchForTrack, 
+    searchForArtist, 
+    searchForAlbum, 
+    getRelatedTracksBasedOnTrack, 
+    getRelatedArtists 
+} from '../../../api/spotify'
 import '../style.css'
 import '../../../App.css'
 
@@ -130,11 +135,11 @@ class SearchForTrack extends Component {
             return(
                 <Row>
                     <Col md={8}>
-                        <iframe width="100%" height="315" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allowfullscreen />
+                        <iframe title={video.name} width="100%" height="315" src={`https://www.youtube.com/embed/${video.id}`} frameborder="0" allowfullscreen />
                     </Col>
                     <Col className="track-details-col" md={4}>
                         <Row>
-                            <iframe src={`https://open.spotify.com/embed/track/${track.id}`} width="95%" height="315" frameborder="0" allowtransparency="true"/>
+                            <iframe title={track.name} src={`https://open.spotify.com/embed/track/${track.id}`} width="95%" height="315" frameborder="0" allowtransparency="true"/>
                         </Row>
                     </Col>
                 </Row>
@@ -143,7 +148,7 @@ class SearchForTrack extends Component {
     }
 
     handleTrackClick(event, trackName, artistName) {
-        this.setState({query: `${trackName} ${artistName}`.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")})
+        this.setState({query: `${trackName} ${artistName}`.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")})
         return searchForTrack(this.state.query)
         .then( tracks => {
             if (tracks) {
@@ -163,12 +168,10 @@ class SearchForTrack extends Component {
                     .then( relatedArtists => this.setState({ relatedArtists }) )
                     search(`${track.artists[0].name} ${track.name} Music Video`, opts, (err, video) => {
                         this.setState({video})
-                        console.log('this.video', video)
                     })
                     getRelatedTracksBasedOnTrack(track.id)
                     .then( relatedTracks => {
                         this.setState({ relatedTracks })
-                        console.log('final state at end of promise', this.state)
                     })
                     this.setState({ fetching: false })
                 }
@@ -180,29 +183,30 @@ class SearchForTrack extends Component {
     }
 
     renderRelatedTracks() {
-        console.log('got here related tracks')
         return this.state.relatedTracks.tracks.map( track => {
             return(
                 <Row className="track">
-                    {/*<Link to={`/track/${track.artists[0].name}/${track.album.name}/${track.name}`.replace(/[()\/'+]/,"").replace(/\s+/g, '-').toLowerCase()}>*/}
                     <Link 
-                        to={`/track/${track.artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.album.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
+                        to={`/track/${track.artists[0].name.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")}/${track.album.name.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")}/${track.name.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
                         onClick={ event => {
                                 this.handleTrackClick(event, track.name, track.artists[0].name)
                                 this.setState({fetching: undefined})
-                                this.search()
+                                if (!this.state.fetching) {
+                                    return this.search()
+                                }
                             } 
                         }
                     >
-                    <img
-                        alt="related-track-cover"
-                        className="track-img"
-                        src={track.album.images[0].url}
-                    />
-                    <Row className="track-text">
-                        {track.name}<br/>
-                        <strong>{track.artists[0].name}</strong>
-                    </Row></Link>
+                        <img
+                            alt="related-track-cover"
+                            className="track-img"
+                            src={track.album.images[0].url}
+                        />
+                        <Row className="track-text">
+                            {track.name}<br/>
+                            <strong>{track.artists[0].name}</strong>
+                        </Row>
+                    </Link>
                 </Row>
             )
         })
@@ -252,18 +256,18 @@ class SearchForTrack extends Component {
                         </InputGroup>
                     </FormGroup>
                 </Panel>
-                    { 
-                        this.state.fetching === false
-                            ? 
-                                <div>
-                                    {this.renderTrackInfo()}
-                                    <Panel>{this.renderTrack()}</Panel>
-                                    <Panel header={title}>{this.renderRelatedTracks()}</Panel>
-                                    <Panel header={title2}>{this.renderRelatedArtists()}</Panel>
-                                </div>
-                            : 
-                                console.log('loading and not rendering tracks', this.state) 
-                    }
+                { 
+                    this.state.fetching === false
+                        ? 
+                            <div>
+                                {this.renderTrackInfo()}
+                                <Panel>{this.renderTrack()}</Panel>
+                                <Panel header={title}>{this.renderRelatedTracks()}</Panel>
+                                <Panel header={title2}>{this.renderRelatedArtists()}</Panel>
+                            </div>
+                        : 
+                            console.log('loading and not rendering tracks', this.state) 
+                }
             </div>
         )
     }

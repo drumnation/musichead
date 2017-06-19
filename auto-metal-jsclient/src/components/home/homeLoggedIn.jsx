@@ -3,20 +3,14 @@ import SearchForArtist from './search/searchForArtist'
 import SearchForTrack from './search/searchForTrack'
 import SearchForAlbum from './search/searchForAlbum'
 import UserShow from '../../containers/userShow'
-import HomeFeed from './homeFeed'
+// import HomeFeed from './homeFeed'
 import { Switch, Route, withRouter } from 'react-router-dom'
+import { refreshSpotifyAuthToken } from '../../api/spotify'
 
 
 class HomeLoggedIn extends Component {
     componentDidMount() {
-        return fetch(`http://localhost:3000/auth/spotify/refresh/?id=${localStorage.getItem('user_id')}`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('jwt')
-            },
-            method: 'POST',
-        }).then( response => response.json() )
+        refreshSpotifyAuthToken()
         .then( json => localStorage.setItem('spotify_token', json.spotify_token))
     }
 

@@ -85,6 +85,17 @@ function getRelatedTracksBasedOnTrack(track_id) {
 
 // ME
 
+function refreshSpotifyAuthToken() {
+    return fetch(`http://localhost:3000/auth/spotify/refresh/?id=${localStorage.getItem('user_id')}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('jwt')
+        },
+        method: 'POST',
+    }).then( response => response.json() )
+}
+
 function getUserRecentlyPlayedTracks() {
     return fetch("https://api.spotify.com/v1/me/player/recently-played", {
         headers: {
@@ -208,6 +219,9 @@ export {
     getRelatedArtists,
     getAlbumTracks,
     getRelatedTracksBasedOnTrack,
+    getNewAlbumReleases,
+    refreshSpotifyAuthToken,
+    getUserFollowedArtists,
     getUserRecentlyPlayedTracks,
     getUserSavedTracks,
     getUserCurrentlyPlayingTrack,
