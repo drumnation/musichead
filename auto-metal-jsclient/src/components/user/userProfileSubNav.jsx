@@ -16,7 +16,10 @@ class UserProfileSubNav extends Component {
                                 className="spotify-connect-button"
                                 bsStyle="success"
                                 href="http://localhost:3000/auth/spotify?show_dialog=true"
-                                >Connect Spotify
+                                ><img width={32} height={32}src='/assets/spotify-icon-25.png'/>
+                                    <span className="spotify-button-text">
+                                        Connect Spotify
+                                    </span>
                             </Button>
                         : <div></div>
                     }

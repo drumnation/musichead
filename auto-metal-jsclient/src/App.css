@@ -159,3 +159,8 @@ h1 {
 .login-button {
   margin-right: 23px;
 }
+
+.spotify-button-text{
+  margin-left: 10px;
+  margin-right: 10px;
+}
