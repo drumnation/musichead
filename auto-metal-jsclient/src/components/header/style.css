@@ -1,3 +1,5 @@
+/*header menu*/
+
 .loggedInMenu a {
     color: #fff;
 }
@@ -7,9 +9,9 @@
     height: 64px;
 }
 
-.brand {
-    color: #fff;
-}
+
+
+/*TK*/
 
 .profile-buttons {
     margin-top: 24px;
@@ -28,13 +30,24 @@
 }
 
 .logo {
+    margin-left: 20px;
     font-family: 'Bungee';
-    /*font-family: 'New Rocker';*/
-    font-size: 43px;
+    font-size: 55px;
 }
 
-.logo-image {
-    filter: invert(100%);
+.brand-vertical-align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand {
+    color: #fff;
+}
+
+.brand-image {
+    height: 66px;
+    margin-left: -140px;
 }
 
 .topnav-profile-img {

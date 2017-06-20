@@ -23,7 +23,6 @@ class TrackCard extends Component {
                         </Col>
                         <Col md={3}>
                             <p className="track-title">{this.props.tracks.trackName}</p>
-                            {/*<p className="track-body">{this.props.tracks.albumName}</p>*/}
                         </Col>
                         <Col className="track-subinfo" md={4}>
                             <img className="band-img" src="/assets/mastodon-band.jpg" alt="album cover"/>

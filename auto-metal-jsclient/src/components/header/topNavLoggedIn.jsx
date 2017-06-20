@@ -3,18 +3,17 @@ import { Link, NavLink } from 'react-router-dom'
 import { ButtonGroup, ButtonToolbar, Button, Row, Col } from 'react-bootstrap'
 import connectedWithRoutes from '../../hocs/connectedWithRoutes'
 import { logOut } from '../../actions/authActions'
-import '../../App.css'
 import './style.css'
 
 class TopNavLoggedIn extends Component {
     render() {
         return (
             <Row>
-                <Col xs={4} md={8} className="text-left">
-                    <h2>
+                <Col xs={4} md={8} className="brand-vertical-align">
+                    <h2 className="text-left">
                         <strong>
                             <NavLink className="brand" to="/">
-                                <img alt="metal hand logo" src="/assets/long-beard-2-1.png"/> <span className="logo">MusicHead</span>
+                                <img className="brand-image" alt="metal hand logo" src="/assets/long-beard-2-1.png"/> <span className="logo">MusicHead</span>
                             </NavLink>
                         </strong>
                     </h2>

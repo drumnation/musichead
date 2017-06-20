@@ -148,7 +148,7 @@ class SearchForTrack extends Component {
     }
 
     handleTrackClick(event, trackName, artistName) {
-        this.setState({query: `${trackName} ${artistName}`.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")})
+        this.setState({query: `${trackName} ${artistName}`.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ")})
         return searchForTrack(this.state.query)
         .then( tracks => {
             if (tracks) {
@@ -187,13 +187,11 @@ class SearchForTrack extends Component {
             return(
                 <Row className="track">
                     <Link 
-                        to={`/track/${track.artists[0].name.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")}/${track.album.name.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")}/${track.name.replace(/[.,/#!$%^&*;:{}=-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
+                        to={`/track/${track.artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.album.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
                         onClick={ event => {
-                                this.handleTrackClick(event, track.name, track.artists[0].name)
                                 this.setState({fetching: undefined})
-                                if (!this.state.fetching) {
-                                    return this.search()
-                                }
+                                this.handleTrackClick(event, track.name, track.artists[0].name)
+                                .then( () => !this.state.fetching ? this.search() : console.log('loading'))
                             } 
                         }
                     >
@@ -218,14 +216,24 @@ class SearchForTrack extends Component {
             return artists.map( artist => {
                 return(
                     <Row className="track">
-                        <img
-                            alt="related-track-cover"
-                            className="track-img"
-                            src={artist.images[0].url}
-                        />
-                        <Row className="track-text">
-                            {artist.name}
-                        </Row>
+                        <Link 
+                            to={`/artists/${artist.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
+                            onClick={ event => {
+                                    this.setState({fetching: undefined})
+                                    this.handleTrackClick(event, artist.name, artist.artists[0].name)
+                                    .then( () => !this.state.fetching ? this.search() : console.log('loading'))
+                                } 
+                            }
+                        >
+                            <img
+                                alt="related-track-cover"
+                                className="track-img"
+                                src={artist.images[0].url}
+                            />
+                            <Row className="track-text">
+                                {artist.name}
+                            </Row>
+                        </Link>
                     </Row>
                 )
             })

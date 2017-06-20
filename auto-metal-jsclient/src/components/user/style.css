@@ -177,12 +177,14 @@ strong {
 
 #content {
     text-align: center;
+    margin-left: 460px;
 }
 /* Timeline */
 
 .timeline-track-cover {
     width: 450px;
     height: 450px;
+    border: 3px solid black;
 }
 .timeline {
     border-left: 4px solid #4298C3;
@@ -200,7 +202,7 @@ strong {
     list-style: none;
     text-align: left;
     font-weight: 100;
-    max-width: 45%;
+    max-width: 100%;
 }
 .timeline h1,
 .timeline h2,
@@ -241,7 +243,7 @@ p {
     font-size: 0.9em;
     min-width: 120px;
     background-color: #4CAF50;
-    border: none;
+    border: 1px solid black;
     color: white;
     padding: 15px 32px;
     text-align: center;
