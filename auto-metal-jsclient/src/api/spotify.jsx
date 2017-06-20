@@ -96,6 +96,7 @@ function refreshSpotifyAuthToken() {
     }).then( response => response.json() )
 }
 
+
 function getUserRecentlyPlayedTracks() {
     return fetch("https://api.spotify.com/v1/me/player/recently-played", {
         headers: {
@@ -106,6 +107,9 @@ function getUserRecentlyPlayedTracks() {
         method: 'GET',
     }).then( response => response.json())
 }
+// Valid values 
+// long_term (calculated from several years of data and including all new data as it becomes available), 
+// medium_term (approximately last 6 months), short_term (approximately last 4 weeks). Default: medium_term.
 
 function getUserSavedTracks() {
     return fetch("https://api.spotify.com/v1/me/tracks", {
@@ -131,6 +135,18 @@ function getUserFollowedArtists() {
 }
 
 // ME -> PLAYBACK
+
+function getUserTopArtistsOrTracks(type) { // artists or tracks
+    return fetch(`https://api.spotify.com/v1/me/top/${type}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage["spotify_token"]}`,
+        },
+        method: 'GET',
+    })
+    .then( response => response.json())
+}
 
 function getUserCurrentlyPlayingTrack() {
     return fetch("https://api.spotify.com/v1/me/player/currently-playing", {

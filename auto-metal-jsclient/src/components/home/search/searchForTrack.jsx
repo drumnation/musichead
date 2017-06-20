@@ -295,4 +295,10 @@ const title2 = (
     </p>
 )
 
-export default SearchForTrack
+function mapStateToProps(state) {
+    return {
+        currentSearch: state
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps )(SearchForTrack)
