@@ -12,7 +12,7 @@ import './App.css'
 class App extends Component {
   componentDidMount() {
     if (!!localStorage.jwt) {
-      this.props.stayLoggedIn()
+      this.props.logInAction()
     }
   }
 
@@ -34,14 +34,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-    return ownProps
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-    return { 
-        stayLoggedIn: (data) => dispatch(logInAction())
-    }
-}
-
-export default connectedWithRoutes(mapStateToProps, mapDispatchToProps)(App)
+export default connectedWithRoutes(null, { logInAction })(App)
