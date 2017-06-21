@@ -16,6 +16,7 @@ class SearchForAlbum extends Component {
         super(props)
         this.state = {
             query: '',
+            audio: null,
             playing: false,
             playingUrl: ''
         }
@@ -113,15 +114,15 @@ class SearchForAlbum extends Component {
                 </Panel>
                 { 
                     this.props.store.api.loading === false 
-                    ? 
-                        <div>
-                            <AlbumInfoPanel album={this.props.store.api.album} />
-                            <Panel header={albumTracks}>
-                                {this.renderAlbumTracks()}
-                            </Panel>
-                        </div> 
-                    :   
-                        null 
+                        ? 
+                            <div>
+                                <AlbumInfoPanel album={this.props.store.api.album} />
+                                <Panel header={albumTracks}>
+                                    {this.renderAlbumTracks()}
+                                </Panel>
+                            </div> 
+                        :   
+                            null 
                 }
             </div>
         ) 

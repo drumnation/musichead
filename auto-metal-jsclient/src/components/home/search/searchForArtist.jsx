@@ -15,6 +15,8 @@ import {
     getRelatedArtists 
 } from '../../../api/spotify'
 import '../../../App.css'
+import { connect } from 'react-redux'
+import * as actions from '../../../actions/apiActions'
 
 class SearchForArtist extends Component {
     constructor(props){
@@ -29,33 +31,34 @@ class SearchForArtist extends Component {
         }
     }
 
-    search() {
-        searchForArtist(this.state.query)
-        .then( response => {
-            let artist = response["artists"]["items"][0]
-            if (!artist) {
-                return
-            } else {
-                this.setState({ fetching: true })
-                this.setState({ artist })
-                getArtistTopTracks(artist)
-                .then( tracks => this.setState({ tracks }) )
-                getArtistAlbums(artist)
-                .then( albums => this.setState({ albums }))
-                getRelatedArtists( artist.id )
-                .then( relatedArtists => {
-                    this.setState({ relatedArtists })
-                    this.setState({ fetching: false })
-                })
-            }
+    // search() {
+    //     searchForArtist(this.state.query)
+    //     .then( response => {
+    //         let artist = response["artists"]["items"][0]
+    //         if (!artist) {
+    //             return
+    //         } else {
+    //             this.setState({ fetching: true })
+    //             this.setState({ artist })
+    //             getArtistTopTracks(artist)
+    //             .then( tracks => this.setState({ tracks }) )
+    //             getArtistAlbums(artist)
+    //             .then( albums => this.setState({ albums }))
+    //             getRelatedArtists( artist.id )
+    //             .then( relatedArtists => {
+    //                 this.setState({ relatedArtists })
+    //                 this.setState({ fetching: false })
+    //             })
+    //         }
             
-        })
-    }
+    //     })
+    // }
 
     renderAlbums() {
-        if (this.state.albums.items) {
-            if (this.state.albums.items.length !== 0) {
-                return this.state.albums.items.map( (album, i) => {
+        if (this.props.store.api.albums) {
+            let albums = this.props.store.api.albums.items
+            if (albums.length !== 0) {
+                return albums.map( album => {
                     let index = Math.random()
                     return(
                         <Row className="track">
@@ -77,17 +80,18 @@ class SearchForArtist extends Component {
                     )
                 })
             } else {
-                console.log('loadling')
+                null
             }
         } else {
-            console.log('loading!!!', this.state)
+            null
         }
     }
 
     renderRelatedArtists() {
-        if (this.state.relatedArtists.artists) {
-            if (this.state.relatedArtists.artists.length !== 0) {
-                return this.state.relatedArtists.artists.map( (artist, i) => {
+        if (this.props.store.api.relatedArtists.artists) {
+            let relatedArtists = this.props.store.api.relatedArtists.artists
+            if (relatedArtists.length !== 0) {
+                return relatedArtists.map( artist => {
                     let index = Math.random()
                     return(
                         <Row className="track">
@@ -109,10 +113,10 @@ class SearchForArtist extends Component {
                     )
                 })
             } else {
-                console.log('no tracks', this.state)
+                null
             }
         } else {
-            console.log('loading!!!', this.state)
+            null
         }
     }
 
@@ -132,34 +136,36 @@ class SearchForArtist extends Component {
                                 }}
                                 onKeyPress={ event => {
                                     if (event.key === 'Enter') {
-                                        this.search()
+                                        this.props.artistSearchPage(this.state.query)
                                     }
                                 }}
                             />
 
-                            <InputGroup.Addon onClick={ () => this.search() }>
+                            <InputGroup.Addon onClick={ () => this.props.artistSearchPage(this.state.query) }>
                                 <Glyphicon glyph="search"></Glyphicon>
                             </InputGroup.Addon>
 
                         </InputGroup>
                     </FormGroup>
                 </Panel>
-                <ArtistShow 
-                    artist={this.state.artist}
-                    tracks={this.state.tracks}
-                />
-                { this.state.fetching === false 
-                    ? 
-                        <div>
-                            <Panel header={albums}>
-                                {this.renderAlbums()}
-                            </Panel>
-                            <Panel header={artists}>
-                                {this.renderRelatedArtists()}
-                            </Panel>
-                        </div> 
-                    : 
-                        console.log('loading and not rendering tracks') }
+                { 
+                    this.props.store.api.loading === false 
+                        ? 
+                            <div>
+                                <ArtistShow 
+                                    artist={this.props.store.api.artist}
+                                    tracks={this.props.store.api.tracks}
+                                />
+                                <Panel header={albums}>
+                                    {this.renderAlbums()}
+                                </Panel>
+                                <Panel header={artists}>
+                                    {this.renderRelatedArtists()}
+                                </Panel>
+                            </div> 
+                        : 
+                            null 
+                }
             </div>
         )
     }
@@ -179,4 +185,10 @@ const artists = (
     </p>
 )
 
-export default SearchForArtist
+function mapStateToProps(state) {
+    return {
+        store: state
+    }
+}
+
+export default connect(mapStateToProps, actions)(SearchForArtist)

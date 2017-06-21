@@ -26,18 +26,7 @@ import { connect } from 'react-redux'
 class SearchForTrack extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            query: '',
-            artist: [],
-            tracks: [],
-            video: [],
-            relatedTracks: [],
-            relatedArtists: [],
-            album: null,
-            fetching: undefined,
-            playing: false,
-            playingUrl: ''
-        }
+        this.state = { query: '' }
     }
 
     renderTrackInfo() {
@@ -92,7 +81,7 @@ class SearchForTrack extends Component {
         }
     }
 
-    renderTrack() {
+    renderTrackPlayLinks() {
         if (this.props.store.api.video) {
         let track = this.props.store.api.tracks.tracks.items[0]
         let video = this.props.store.api.video[0]
@@ -199,7 +188,7 @@ class SearchForTrack extends Component {
                         ? 
                             <div>
                                 {this.renderTrackInfo()}
-                                <Panel>{this.renderTrack()}</Panel>
+                                <Panel>{this.renderTrackPlayLinks()}</Panel>
                                 <Panel header={title}>{this.renderRelatedTracks()}</Panel>
                                 <Panel header={title2}>{this.renderRelatedArtists()}</Panel>
                             </div>

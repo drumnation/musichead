@@ -16,10 +16,10 @@ const defaultState = {
     albums: [],
     artist: '',
     relatedArtists: '',
-    tracks: [],
     artistTopTracks: [],
     albumTracks: [], 
     relatedTracks: [],
+    tracks: [],
     video: [],
     loading: false
 }
