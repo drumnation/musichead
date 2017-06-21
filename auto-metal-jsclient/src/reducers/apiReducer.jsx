@@ -45,7 +45,7 @@ const apiReducer = (state = [], action) => {
         case GET_ARTIST_TOP_TRACKS:
             return {...state, artistTopTracks: action.payload.artistTopTracks}
         case GET_ARTIST_ALBUM_TRACKS:
-            return {...state, albumTracks: action.payload.relatedTracks}
+            return {...state, albumTracks: action.payload.albumTracks}
         case GET_YOUTUBE_MUSIC_VIDEO:
             return {...state, video: action.payload.video}
     default:

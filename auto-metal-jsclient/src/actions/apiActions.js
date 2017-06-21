@@ -72,4 +72,25 @@ function artistSearchPage(query) {
     }
 }
 
-export { artistSearchPage, trackSearchPage }
+function albumSearchPage(query) {
+    return function(dispatch) {
+        searchForAlbum(query)
+        .then( album => {
+            if (album) {
+                dispatch({type: "ASYNC_START"})
+                if (album.albums.items) {
+                    dispatch({type: "SEARCH_ALBUM", payload: { album } })
+                    getAlbumTracks(album.albums.items[0].id)
+                    .then( albumTracks => {
+                        dispatch({type: "GET_ARTIST_ALBUM_TRACKS", payload: { albumTracks } })
+                        dispatch({type: "ASYNC_STOP"})   
+                    })
+                } else {
+                    null
+                }
+            }
+        })      
+    }
+}
+
+export { artistSearchPage, trackSearchPage, albumSearchPage }

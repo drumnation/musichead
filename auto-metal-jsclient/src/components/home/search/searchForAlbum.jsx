@@ -8,42 +8,16 @@ import {
     Row,
 } from 'react-bootstrap'
 import AlbumInfoPanel from '../../album/albumInfoPanel'
-import { searchForAlbum, getAlbumTracks } from '../../../api/spotify'
-// import { connect } from 'react-redux'
-// import { album } from '../../../actions/albumActions'
+import { connect } from 'react-redux'
+import * as actions from '../../../actions/apiActions'
 
 class SearchForAlbum extends Component {
     constructor(props){
         super(props)
         this.state = {
             query: '',
-            artistName: '',
-            album: null,
-            albumId: null,
-            albumTracks: [],
-            fetching: undefined,
             playing: false,
             playingUrl: ''
-        }
-    }
-
-    search() {
-        if (this.state.query !== null) {
-            searchForAlbum(this.state.query)
-            .then( album => {
-                if (album) {
-                    this.setState({ fetching: true })
-                    if (album.albums.items[0]) {
-                        this.setState({ album: album, albumId: album.albums.items[0].id })
-                        getAlbumTracks(this.state.albumId)
-                        .then( tracks => this.setState({ albumTracks: tracks }))
-                        .then( tracks => this.setState({fetching: false}))
-                    } else {
-                        console.log('album id is undefined')
-                    }
-                }
-            })
-            
         }
     }
 
@@ -73,12 +47,12 @@ class SearchForAlbum extends Component {
             }
         }
     }
-        
 
-    renderTracks() {
-        if (this.state.albumTracks.items) {
-            if (this.state.albumTracks.items.length > 0) {
-                return this.state.albumTracks.items.map( (track, i) => {
+    renderAlbumTracks() {
+        if (this.props.store.api.albumTracks) {
+            let tracks = this.props.store.api.albumTracks.items
+            if (tracks.length > 0) {
+                return tracks.map( (track, i) => {
                     return(
                         <Row className="track">
                             <div 
@@ -89,7 +63,7 @@ class SearchForAlbum extends Component {
                                 <img
                                     alt="related-track-cover"
                                     className="track-img"
-                                    src={this.state.album.albums.items[0].images[0].url}
+                                    src={this.props.store.api.album.albums.items[0].images[0].url}
                                 />
                                 <div className="track-play">
                                     <div className="track-play-inner">
@@ -108,10 +82,10 @@ class SearchForAlbum extends Component {
                     )
                 })
             } else {
-                console.log('loading, no tracks')
+                null
             }
         } else {
-            console.log('loading!!!')
+            null
         }
     }
     
@@ -129,15 +103,26 @@ class SearchForAlbum extends Component {
                                 onChange={ event => {
                                     this.setState({ query: event.target.value })
                                 }}
-                                onKeyPress={ event => event.key === 'Enter' ? this.search() : null}
+                                onKeyPress={ event => event.key === 'Enter' ? this.props.albumSearchPage(this.state.query) : null}
                             />
-                            <InputGroup.Addon onClick={ () => this.search() }>
+                            <InputGroup.Addon onClick={ () => this.props.albumSearchPage(this.state.query) }>
                                 <Glyphicon glyph="search"></Glyphicon>
                             </InputGroup.Addon>
                         </InputGroup>
                     </FormGroup>
                 </Panel>
-                { this.state.fetching === false ? <div><AlbumInfoPanel album={this.state.album} /><Panel header={albumTracks}>{this.renderTracks()}</Panel></div> : null }
+                { 
+                    this.props.store.api.loading === false 
+                    ? 
+                        <div>
+                            <AlbumInfoPanel album={this.props.store.api.album} />
+                            <Panel header={albumTracks}>
+                                {this.renderAlbumTracks()}
+                            </Panel>
+                        </div> 
+                    :   
+                        null 
+                }
             </div>
         ) 
     }
@@ -150,4 +135,10 @@ const albumTracks = (
     </p>
 )
 
-export default SearchForAlbum
+function mapStateToProps(state) {
+    return {
+        store: state
+    }
+}
+
+export default connect(mapStateToProps, actions)(SearchForAlbum)
