@@ -101,62 +101,71 @@ class SearchForTrack extends Component {
     }
 
     renderRelatedTracks() {
-        return this.props.store.api.relatedTracks.tracks.map( track => {
-            let query = `${track.name} ${track.artists[0].name}`.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ")
-            return(
-                <Row className="track">
-                    <Link 
-                        to={`/track/${track.artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.album.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
-                        onClick={ () => {
-                            if (!this.props.loading) {
-                                this.props.trackSearchPage(query)
-                                this.setState({query: query})
-                            } else {
-                                null
-                            }
-                        }}
-                    >
-                        <img
-                            alt="related-track-cover"
-                            className="track-img"
-                            src={track.album.images[0].url}
-                        />
-                        <Row className="track-text">
-                            {track.name}<br/>
-                            <strong>{track.artists[0].name}</strong>
-                        </Row>
-                    </Link>
-                </Row>
-            )
-        })
-    }
-
-    renderRelatedArtists() {
-        let artists = this.props.store.api.relatedArtists.artists
-        if (artists) {
-            return artists.map( artist => {
+        if (this.props.store.api.relatedTracks) {
+            const relatedTracks = this.props.store.api.relatedTracks.tracks
+            return relatedTracks.map( track => {
+                let cleanTrackName = track.name.replace(/[^\w\s]|_/g, "")
+                let cleanArtistName = track.artists[0].name.replace(/[^\w\s]|_/g, "")
+                let query = `${cleanTrackName} ${cleanArtistName}`.replace(/\s+/g, " ")
                 return(
                     <Row className="track">
                         <Link 
-                            to={`/artists/${artist.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
-                            onClick={ event => {
-                                this.handleTrackClick(event, artist.name, artist.artists[0].name)
-                                .then( () => !this.state.fetching ? this.search() : null )} 
-                            }
+                            to={`/track/${track.artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.album.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
+                            onClick={ () => {
+                                if (!this.props.loading) {
+                                    this.props.trackSearchPage(query)
+                                    this.setState({query: query})
+                                } else {
+                                    null
+                                }
+                            }}
                         >
                             <img
                                 alt="related-track-cover"
                                 className="track-img"
-                                src={artist.images[0].url}
+                                src={track.album.images[0].url}
                             />
                             <Row className="track-text">
-                                {artist.name}
+                                {track.name}<br/>
+                                <strong>{track.artists[0].name}</strong>
                             </Row>
                         </Link>
                     </Row>
                 )
             })
+        } else {
+            null
         }
+    }
+
+    renderRelatedArtists() {
+        if (this.props.store.api.relatedArtists) {
+            let artists = this.props.store.api.relatedArtists.artists
+                return artists.map( artist => {
+                    return(
+                        <Row className="track">
+                            <Link 
+                                to={`/artists/${artist.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
+                                onClick={ event => {
+                                    this.handleTrackClick(event, artist.name, artist.artists[0].name)
+                                    .then( () => !this.state.fetching ? this.search() : null )} 
+                                }
+                            >
+                                <img
+                                    alt="related-track-cover"
+                                    className="track-img"
+                                    src={artist.images[0].url}
+                                />
+                                <Row className="track-text">
+                                    {artist.name}
+                                </Row>
+                            </Link>
+                        </Row>
+                    )
+                })
+            } else {
+                null
+        } 
     }
 
     render() {
