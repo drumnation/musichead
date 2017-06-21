@@ -120,7 +120,7 @@ class SearchForAlbum extends Component {
                                 <Panel header={albumTracks}>
                                     {this.renderAlbumTracks()}
                                 </Panel>
-                            </div> 
+                            </div>
                         :   
                             null 
                 }

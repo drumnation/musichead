@@ -104,13 +104,13 @@ class SearchForTrack extends Component {
         if (this.props.store.api.relatedTracks) {
             const relatedTracks = this.props.store.api.relatedTracks.tracks
             return relatedTracks.map( track => {
-                let cleanTrackName = track.name.replace(/[^\w\s]|_/g, "")
-                let cleanArtistName = track.artists[0].name.replace(/[^\w\s]|_/g, "")
-                let query = `${cleanTrackName} ${cleanArtistName}`.replace(/\s+/g, " ")
+                let cleanTrackName = this.dePunctuate(track.name)
+                let cleanArtistName = this.dePunctuate(track.artists[0].name)
+                let query = this.slugify(`${cleanTrackName} ${cleanArtistName}`)
                 return(
                     <Row className="track">
                         <Link 
-                            to={`/track/${track.artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.album.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
+                            to={this.slugify(`/track/${cleanArtistName}/${this.dePunctuate(track.album.name)}/${cleanTrackName}`)} 
                             onClick={ () => {
                                 if (!this.props.loading) {
                                     this.props.trackSearchPage(query)
@@ -137,6 +137,10 @@ class SearchForTrack extends Component {
             null
         }
     }
+    
+    dePunctuate(text){ return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"") }
+
+    slugify(text) { return text.replace(/\s+/g, '-').toLowerCase() }
 
     renderRelatedArtists() {
         if (this.props.store.api.relatedArtists) {
@@ -145,11 +149,8 @@ class SearchForTrack extends Component {
                     return(
                         <Row className="track">
                             <Link 
-                                to={`/artists/${artist.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
-                                onClick={ event => {
-                                    this.handleTrackClick(event, artist.name, artist.artists[0].name)
-                                    .then( () => !this.state.fetching ? this.search() : null )} 
-                                }
+                                to={`/artists/${this.slugify(this.dePunctuate(artist.name))}`}
+                                onClick={ () => !this.props.store.api.loading ? this.props.artistSearchPage(this.state.query) : null }
                             >
                                 <img
                                     alt="related-track-cover"
@@ -186,7 +187,7 @@ class SearchForTrack extends Component {
                                     }
                                 }}
                             />
-                            <InputGroup.Addon onClick={ () => this.search() }>
+                            <InputGroup.Addon onClick={ () => this.props.trackSearchPage(this.state.query) }>
                                 <Glyphicon glyph="search"></Glyphicon>
                             </InputGroup.Addon>
                         </InputGroup>

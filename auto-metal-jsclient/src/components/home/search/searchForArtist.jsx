@@ -21,38 +21,8 @@ import * as actions from '../../../actions/apiActions'
 class SearchForArtist extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            query: '',
-            artist: null,
-            albums: [],
-            tracks: [],
-            relatedArtists: [],
-            fetching: undefined
-        }
+        this.state = { query: '' }
     }
-
-    // search() {
-    //     searchForArtist(this.state.query)
-    //     .then( response => {
-    //         let artist = response["artists"]["items"][0]
-    //         if (!artist) {
-    //             return
-    //         } else {
-    //             this.setState({ fetching: true })
-    //             this.setState({ artist })
-    //             getArtistTopTracks(artist)
-    //             .then( tracks => this.setState({ tracks }) )
-    //             getArtistAlbums(artist)
-    //             .then( albums => this.setState({ albums }))
-    //             getRelatedArtists( artist.id )
-    //             .then( relatedArtists => {
-    //                 this.setState({ relatedArtists })
-    //                 this.setState({ fetching: false })
-    //             })
-    //         }
-            
-    //     })
-    // }
 
     renderAlbums() {
         if (this.props.store.api.albums) {
