@@ -6,7 +6,7 @@ import apiReducer from './apiReducer'
 const rootReducer = combineReducers({
     auth: authReducer,
     account: accountReducer,
-    visit: apiReducer
+    api: apiReducer
 })
 
 export default rootReducer

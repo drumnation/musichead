@@ -24,6 +24,7 @@ function authReducer(state = initialState, action) {
         const returnState = {
             ...state,
             isFetching: false,
+            user: action.payload.user,
             status: action.status,
             receivedAt: action.receivedAt
         }

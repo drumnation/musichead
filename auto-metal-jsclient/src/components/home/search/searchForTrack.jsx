@@ -20,6 +20,8 @@ import {
 } from '../../../api/spotify'
 import '../style.css'
 import '../../../App.css'
+import * as actions from '../../../actions/apiActions'
+import { connect } from 'react-redux'
 
 class SearchForTrack extends Component {
     constructor(props){
@@ -38,100 +40,62 @@ class SearchForTrack extends Component {
         }
     }
 
-    search() {
-        if (this.state.query !== null) {
-            searchForTrack(this.state.query)
-            .then( tracks => {
-                if (tracks) {
-                    let opts = {
-                        maxResults: 1, 
-                        key: 'AIzaSyDIk4c0whIdjKw-HRc3oA7v9Qo_d6OkuU8'
-                    }
-                    let track = tracks.tracks.items[0]
-                    this.setState({ fetching: true })
-                    this.setState({ tracks })
-                    console.log('track', track)
-                    if (track) {
-                        searchForAlbum(track.album.name)
-                        .then( album => this.setState({ album }) )
-                        searchForArtist(track.artists[0].name)
-                        .then( artist => this.setState({ artist }))
-                        getRelatedArtists(track.artists[0].id)
-                        .then( relatedArtists => this.setState({ relatedArtists }) )
-                        search(`${track.artists[0].name} ${track.name} Music Video`, opts, (err, video) => {
-                            this.setState({video})
-                            console.log('this.video', video)
-                        })
-                        getRelatedTracksBasedOnTrack(track.id)
-                        .then( relatedTracks => {
-                            this.setState({ relatedTracks })
-                            console.log('final state at end of promise', this.state)
-                            this.setState({ fetching: false })
-                        })
-                    }
-                } else {
-                    console.log('loading')
-                }
-            })
-            console.log('state after if:', this.state)
-        } else {
-            console.log('loading')
-        }
-    }
-
     renderTrackInfo() {
         let track
         let album
         let artist
-        if (this.state.artist && this.state.album && this.state.artist) {
-                console.log('state render info', this.state)
-                track = this.state.tracks.tracks.items[0]
-                album = this.state.album.albums.items[0]
-                artist = this.state.artist.artists.items[0]
-                return (
-                    <Panel>
-                        <Row>
-                            <Col md={6}>
-                                <img
-                                    alt="album-cover"
-                                    className="album-cover"
-                                    src={album.images[0].url}
-                                />
-                            </Col>
-                            <Col className="track-details-col" md={6}>
-                                <Row className="track-card-title">
-                                    {track.name}
-                                </Row>
-                                <Row className="album-card-title">
-                                    {album.name}
-                                </Row>
-                                <Row className="popularity-card">
-                                    <strong>Popularity:</strong> {track.popularity}
-                                </Row>
-                                <Row className="followers-card">
-                                    <strong>Followers:</strong> { artist.followers.total.toLocaleString( undefined, { minimumFractionDigits: 0 }) }
-                                </Row>
-                                <hr/>
-                                <Row className="band-card-name">
-                                    {artist.name}
-                                </Row>
-                                <Row className="genres-card">
-                                    <strong>Genres:</strong> {artist.genres}
-                                </Row>
-                                <Row>
-                                    <Button bsSize="lg" className="track-info-card-artist-button" bsStyle="primary">View Artist</Button>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Panel>
-                )
+        if (this.props.store.api.tracks) {
+            if (this.props.store.api.album) {
+                if (this.props.store.api.artist) {
+                    track = this.props.store.api.tracks.tracks.items[0]
+                    album = this.props.store.api.album.albums.items[0]
+                    artist = this.props.store.api.artist.artists.items[0]
+                    return (
+                        <Panel>
+                            <Row>
+                                <Col md={6}>
+                                    <img
+                                        alt="album-cover"
+                                        className="album-cover"
+                                        src={album.images[0].url}
+                                    />
+                                </Col>
+                                <Col className="track-details-col" md={6}>
+                                    <Row className="track-card-title">
+                                        {track.name}
+                                    </Row>
+                                    <Row className="album-card-title">
+                                        {album.name}
+                                    </Row>
+                                    <Row className="popularity-card">
+                                        <strong>Popularity:</strong> {track.popularity}
+                                    </Row>
+                                    <Row className="followers-card">
+                                        <strong>Followers:</strong> { artist.followers.total.toLocaleString( undefined, { minimumFractionDigits: 0 }) }
+                                    </Row>
+                                    <hr/>
+                                    <Row className="band-card-name">
+                                        {artist.name}
+                                    </Row>
+                                    <Row className="genres-card">
+                                        <strong>Genres:</strong> {artist.genres}
+                                    </Row>
+                                    <Row>
+                                        <Button bsSize="lg" className="track-info-card-artist-button" bsStyle="primary">View Artist</Button>
+                                    </Row>
+                                </Col>
+                            </Row>
+                        </Panel>
+                    )
+                }
             }
         }
+    }
 
     renderTrack() {
-        let track = this.state.tracks.tracks.items[0]
-        let video = this.state.video[0]
-        if (video) {
+        if (this.props.store.api.video) {
+        let track = this.props.store.api.tracks.tracks.items[0]
+        let video = this.props.store.api.video[0]
             return(
                 <Row>
                     <Col md={8}>
@@ -147,53 +111,21 @@ class SearchForTrack extends Component {
         }
     }
 
-    handleTrackClick(event, trackName, artistName) {
-        this.setState({query: `${trackName} ${artistName}`.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ")})
-        return searchForTrack(this.state.query)
-        .then( tracks => {
-            if (tracks) {
-                let opts = {
-                    maxResults: 1, 
-                    key: 'AIzaSyDIk4c0whIdjKw-HRc3oA7v9Qo_d6OkuU8'
-                }
-                let track = tracks.tracks.items[0]
-                this.setState({ fetching: true })
-                this.setState({ tracks })
-                if (track) {
-                    searchForAlbum(track.album.name)
-                    .then( album => this.setState({ album }) )
-                    searchForArtist(track.artists[0].name)
-                    .then( artist => this.setState({ artist }))
-                    getRelatedArtists(track.artists[0].id)
-                    .then( relatedArtists => this.setState({ relatedArtists }) )
-                    search(`${track.artists[0].name} ${track.name} Music Video`, opts, (err, video) => {
-                        this.setState({video})
-                    })
-                    getRelatedTracksBasedOnTrack(track.id)
-                    .then( relatedTracks => {
-                        this.setState({ relatedTracks })
-                    })
-                    this.setState({ fetching: false })
-                }
-            } else {
-                console.log('loading')
-            }
-        })
-        
-    }
-
     renderRelatedTracks() {
-        return this.state.relatedTracks.tracks.map( track => {
+        return this.props.store.api.relatedTracks.tracks.map( track => {
+            let query = `${track.name} ${track.artists[0].name}`.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ")
             return(
                 <Row className="track">
                     <Link 
                         to={`/track/${track.artists[0].name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.album.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}/${track.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
-                        onClick={ event => {
-                                this.setState({fetching: undefined})
-                                this.handleTrackClick(event, track.name, track.artists[0].name)
-                                .then( () => !this.state.fetching ? this.search() : console.log('loading'))
-                            } 
-                        }
+                        onClick={ () => {
+                            if (!this.props.loading) {
+                                this.props.trackSearchPage(query)
+                                this.setState({query: query})
+                            } else {
+                                null
+                            }
+                        }}
                     >
                         <img
                             alt="related-track-cover"
@@ -211,7 +143,7 @@ class SearchForTrack extends Component {
     }
 
     renderRelatedArtists() {
-        let artists = this.state.relatedArtists.artists
+        let artists = this.props.store.api.relatedArtists.artists
         if (artists) {
             return artists.map( artist => {
                 return(
@@ -219,10 +151,8 @@ class SearchForTrack extends Component {
                         <Link 
                             to={`/artists/${artist.name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}`.replace(/\s+/g, '-').toLowerCase()} 
                             onClick={ event => {
-                                    this.setState({fetching: undefined})
-                                    this.handleTrackClick(event, artist.name, artist.artists[0].name)
-                                    .then( () => !this.state.fetching ? this.search() : console.log('loading'))
-                                } 
+                                this.handleTrackClick(event, artist.name, artist.artists[0].name)
+                                .then( () => !this.state.fetching ? this.search() : null )} 
                             }
                         >
                             <img
@@ -254,7 +184,7 @@ class SearchForTrack extends Component {
                                 onChange={ event => this.setState({ query: event.target.value }) }
                                 onKeyPress={ event => {
                                     if (event.key === 'Enter') {
-                                        this.search()
+                                        this.props.trackSearchPage(this.state.query)
                                     }
                                 }}
                             />
@@ -265,7 +195,7 @@ class SearchForTrack extends Component {
                     </FormGroup>
                 </Panel>
                 { 
-                    this.state.fetching === false
+                    this.props.store.api.loading === false
                         ? 
                             <div>
                                 {this.renderTrackInfo()}
@@ -273,8 +203,7 @@ class SearchForTrack extends Component {
                                 <Panel header={title}>{this.renderRelatedTracks()}</Panel>
                                 <Panel header={title2}>{this.renderRelatedArtists()}</Panel>
                             </div>
-                        : 
-                            console.log('loading and not rendering tracks', this.state) 
+                        :   null
                 }
             </div>
         )
@@ -297,8 +226,8 @@ const title2 = (
 
 function mapStateToProps(state) {
     return {
-        currentSearch: state
+        store: state
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps )(SearchForTrack)
+export default connect(mapStateToProps, actions)(SearchForTrack)

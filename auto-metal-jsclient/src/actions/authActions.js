@@ -59,6 +59,7 @@ export function receiveLogIn( user ) {
         dispatch({
             type: 'RECEIVE_LOG_IN',
             status: 'success',
+            payload: { user },
             receivedAt: Date.now()
         })
     }
