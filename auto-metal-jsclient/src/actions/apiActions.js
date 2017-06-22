@@ -8,6 +8,7 @@ import { PLAY_TRACK } from '../constants'
 import { GET_ARTIST_TOP_TRACKS } from '../constants'
 import { GET_ARTIST_ALBUM_TRACKS } from '../constants'
 import { GET_ARTIST_ALBUMS } from '../constants'
+import { CLEAR_STATE_BETWEEN_SEARCHES } from '../constants'
 import search from 'youtube-search'
 import { 
     searchForTrack, 
@@ -22,8 +23,9 @@ import {
 
 function trackSearchPage(query) {
     return function (dispatch) {
+        // dispatch({type: "CLEAR_STATE_BETWEEN_SEARCHES"})
         dispatch({type: "ASYNC_START"})
-        searchForTrack(query)
+        return searchForTrack(query)
         .then( tracks => {
             if (tracks) {
                 dispatch({type: "SEARCH_TRACK", payload: { tracks } })
@@ -61,10 +63,8 @@ function artistSearchPage(query) {
                 getArtistAlbums(artist)
                 .then( albums => dispatch({type: "GET_ARTIST_ALBUMS", payload: { albums } }) )
                 getRelatedArtists( artist.id )
-                .then( relatedArtists => {
-                    dispatch({type: "GET_RELATED_ARTISTS", payload: { relatedArtists } })
-                    dispatch({type: "ASYNC_STOP"})
-                })
+                .then( relatedArtists => dispatch({type: "GET_RELATED_ARTISTS", payload: { relatedArtists } }))
+                .then( () => dispatch({type: "ASYNC_STOP"}) )
             } else {
                 null
             }
@@ -81,10 +81,8 @@ function albumSearchPage(query) {
                 if (album.albums.items) {
                     dispatch({type: "SEARCH_ALBUM", payload: { album } })
                     getAlbumTracks(album.albums.items[0].id)
-                    .then( albumTracks => {
-                        dispatch({type: "GET_ARTIST_ALBUM_TRACKS", payload: { albumTracks } })
-                        dispatch({type: "ASYNC_STOP"})   
-                    })
+                    .then( albumTracks => dispatch({type: "GET_ARTIST_ALBUM_TRACKS", payload: { albumTracks } }) )
+                    .then( () => dispatch({type: "ASYNC_STOP"}) )
                 } else {
                     null
                 }

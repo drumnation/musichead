@@ -83,10 +83,10 @@ class SearchForAlbum extends Component {
                     )
                 })
             } else {
-                null
+                return null
             }
         } else {
-            null
+            return null
         }
     }
     

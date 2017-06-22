@@ -10,5 +10,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :google, keys['GOOGLE_CLIENT_ID'], keys['GOOGLE_CLIENT_SECRET']
+    provider OmniAuth::Strategies::GoogleOauth2, keys['GOOGLE_CLIENT_ID'], keys['GOOGLE_CLIENT_SECRET']
 end

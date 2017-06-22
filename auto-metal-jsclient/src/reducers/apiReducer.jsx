@@ -10,6 +10,7 @@ import { ASYNC_STOP } from '../constants'
 import { GET_ARTIST_TOP_TRACKS } from '../constants'
 import { GET_ARTIST_ALBUM_TRACKS } from '../constants'
 import { GET_ARTIST_ALBUMS } from '../constants'
+import { CLEAR_STATE_BETWEEN_SEARCHES } from '../constants'
 
 const defaultState = {
     album: [], 
@@ -21,7 +22,7 @@ const defaultState = {
     relatedTracks: [],
     tracks: [],
     video: [],
-    loading: false
+    loading: undefined
 }
 
 const apiReducer = (state = [], action) => {
@@ -48,6 +49,8 @@ const apiReducer = (state = [], action) => {
             return {...state, albumTracks: action.payload.albumTracks}
         case GET_YOUTUBE_MUSIC_VIDEO:
             return {...state, video: action.payload.video}
+        case CLEAR_STATE_BETWEEN_SEARCHES:
+            return { state: defaultState }
     default:
         return state
     }

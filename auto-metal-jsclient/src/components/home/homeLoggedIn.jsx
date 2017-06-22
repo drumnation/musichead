@@ -19,8 +19,11 @@ class HomeLoggedIn extends Component {
             <Switch>
                 {/*<Route exact path='/' component={HomeFeed}/>*/}
                 <Route exact path='/' component={UserShow}/>
+                    {/*<Route path="/profile/:userName" component={UserShow}/>*/}
                 <Route path='/artist' component={SearchForArtist}/>
+                    {/*<Route path="/artist/:artistName" component={SearchForTrack}/>*/}
                 <Route path='/album' component={SearchForAlbum}/>
+                    {/*<Route path="/album/:artistName/:albumName" component={SearchForAlbum}/>*/}
                 <Route path='/track' component={SearchForTrack}/>
             </Switch>
         )
