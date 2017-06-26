@@ -18,7 +18,7 @@ I originally named the project "MetalHead" and was planning on making this proto
 
 + To begin I exported the database of songs from Wordpress. The data was a bit sloppy and my friend Scott helped me with some Regex to clean up the track data for use with the Spotify api. I created a rails seed file that uses multiple Spotify end points to download everything necessary to build a page with Spotify data for the 7,383 track titles. I plan on using this data, and even though I spent a good chunk of time on it I ended up not using it in this prototype after pivoting the concept a bit.
 
-+ Created an API via Rails to authenticate and serve persisted user and music content data to the React/Redux Client
++ Created a Ruby on Rails API and serializer to render data as json for the React client, authenticating and persisting user and music content data.
 
 + Configured OAUTH2 Spotify Authorization using a combination of OMNIAUTH, Fetch, and Axios to retrieve Spotify tokens and facilitate the process of obtaining a a refresh token and periodically updating the user's main token when it expires.
 
