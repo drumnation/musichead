@@ -26,4 +26,4 @@ I plan on using this data, and even though I spent a good chunk of time on it I 
 
 + Configured OAUTH2 Spotify Authorization using a combination of OMNIAUTH, Fetch, and Axios to retrieve Spotify tokens and facilitate the process of obtaining a a refresh token and periodically updating the user's main token when it expires.
 
-+ Developed asynchronous redux actions and reducers to retrieve retrieve data from multiple api end points that depend on data from each other in order to make their api requests with chains of promises and conditionals.
++ Developed asynchronous redux actions and reducers to retrieve data from multiple api end points that depend on data from each other in order to make their api requests with chains of promises and conditionals.

@@ -9,6 +9,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
         scope: 'email,user_birthday,read_stream'
 end
 
-Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :google, keys['GOOGLE_CLIENT_ID'], keys['GOOGLE_CLIENT_SECRET']
-end
+# Rails.application.config.middleware.use OmniAuth::Builder do
+#     provider :google, keys['GOOGLE_CLIENT_ID'], keys['GOOGLE_CLIENT_SECRET']
+# end
