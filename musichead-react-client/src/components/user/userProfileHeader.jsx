@@ -4,19 +4,21 @@ import { getUserRecentlyPlayedTracks } from '../../api/spotify'
 import './style.css'
 
 class UserProfileHeader extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = { lastCover: '/assets/mastodon-cover.jpg' }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         getUserRecentlyPlayedTracks()
-        .then( tracks => {
-            let cover = tracks.items[0]['track']['album']['images'][1]['url']
-            this.setState({lastCover: cover})
-        })
+            .then(tracks => {
+                if (tracks.items) {
+                    let cover = tracks.items[0]['track']['album']['images'][1]['url']
+                    this.setState({ lastCover: cover })
+                }
+            })
     }
-    
+
     render() {
         const profileStyle = { backgroundImage: `url(${this.state.lastCover})` }
         return (
@@ -26,7 +28,7 @@ class UserProfileHeader extends Component {
                     <img alt="profile" src={localStorage["profile_image"]} className="profile-image" />
                     <label htmlFor="image-checkbox" className="image-overlay"></label>
                 </div>
-                <UserProfileSubNav/>
+                <UserProfileSubNav />
             </div>
         )
     }
