@@ -1,3 +1,0 @@
-[submodule "musichead-rails-api-server/heroku"]
-	path = musichead-rails-api-server/heroku
-	url = https://github.com/drumnation/musichead-backend
