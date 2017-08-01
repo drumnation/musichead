@@ -1,0 +1,3 @@
+[submodule "musichead-rails-api-server/--force"]
+	path = musichead-rails-api-server/--force
+	url = https://github.com/drumnation/musichead-rails-api-server
