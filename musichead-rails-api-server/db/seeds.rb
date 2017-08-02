@@ -1,1 +1,0 @@
-User.create(name: "David Mieloch", email: "davidmieloch@gmail.com", password: "123")
